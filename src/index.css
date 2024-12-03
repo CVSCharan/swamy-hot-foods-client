@@ -1,13 +1,264 @@
-body {
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&family=Itim&family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Macondo&family=Playwrite+GB+S:ital,wght@0,100..400;1,100..400&family=Quicksand:wght@300..700&display=swap");
+
+* {
+  box-sizing: border-box !important;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  padding: 0;
+  font-family: "Poppins", sans-serif;
+  color: black;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.itim-regular {
+  font-family: "Itim", cursive;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.playwrite-gb-s-text {
+  font-family: "Playwrite GB S", cursive;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: normal;
+}
+
+.quicksand-text {
+  font-family: "Quicksand", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: normal;
+}
+
+.josefin-sans-text {
+  font-family: "Josefin Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: normal;
+}
+
+.cinzel-text {
+  font-family: "Cinzel", serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: normal;
+}
+
+.macondo-regular {
+  font-family: "Macondo", cursive;
+  font-weight: 400;
+  font-style: normal;
+}
+
+/* General styles for the main container */
+.App {
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 20px;
+  background-color: #fff;
+}
+
+/* Logo container */
+.landing-container-one {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* Logo styling */
+.landing-logo {
+  height: 150px;
+  width: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 10px;
+}
+
+/* Restaurant status styling */
+.restaurant-status {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-top: 10px;
+  padding: 10px 20px;
+  border-radius: 8px;
+  text-align: center;
+}
+
+.restaurant-status.open {
+  color: #ffffff;
+  background-color: #28a745; /* Green for open */
+}
+
+.restaurant-status.closed {
+  color: #ffffff;
+  background-color: #dc3545; /* Red for closed */
+}
+
+/* Heading styles */
+.title-heading {
+  font-size: 1.8rem;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+/* Address styling */
+.address-heading {
+  font-size: 1.2rem;
+  color: #555;
+  margin: 10px 0 5px;
+}
+
+.address-body {
+  font-size: 1rem;
+  color: #777;
+}
+
+/* Container for Google Reviews */
+.custom-google-reviews-widget {
+  max-width: 90%;
+  width: 85%;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+/* Title styling */
+.widget-title {
+  font-size: 1.5rem;
+  color: #333;
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
+/* Elfsight widget styling */
+.elfsight-app-43d6f5c4-e329-4dcd-b9d8-c956d5a6ce77 {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .landing-logo {
+    height: 100px;
+    width: 100px;
+  }
+
+  .title-heading {
+    font-size: 1.5rem;
+  }
+
+  .address-heading {
+    font-size: 1rem;
+  }
+
+  .address-body {
+    font-size: 0.9rem;
+  }
+
+  .custom-google-reviews-widget {
+    padding: 15px;
+  }
+
+  .widget-title {
+    font-size: 1.25rem;
+  }
+
+  .elfsight-app-43d6f5c4-e329-4dcd-b9d8-c956d5a6ce77 {
+    font-size: 0.9rem;
+    padding: 8px;
+  }
+}
+
+@media (max-width: 480px) {
+  .landing-logo {
+    height: 80px;
+    width: 80px;
+  }
+
+  .title-heading {
+    font-size: 1.2rem;
+  }
+
+  .address-heading {
+    font-size: 0.9rem;
+  }
+
+  .address-body {
+    font-size: 0.8rem;
+  }
+
+  .widget-title {
+    font-size: 1rem;
+  }
+}
+
+/* General Switch Container */
+.shop-status-toggle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+
+/* Button-based Switch */
+.switch-button {
+  display: inline-block;
+  padding: 10px 30px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+/* Open State Styling */
+.switch-button.open {
+  background-color: #4caf50;
+  box-shadow: 0 4px 8px rgba(76, 175, 80, 0.2);
+}
+
+/* Closed State Styling */
+.switch-button.closed {
+  background-color: #f44336;
+  box-shadow: 0 4px 8px rgba(244, 67, 54, 0.2);
+}
+
+/* Hover Effect */
+.switch-button:hover {
+  transform: scale(1.05);
+}
+
+/* Toggle Button */
+.switch-button {
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.switch-button.open {
+  background-color: green;
+  color: white;
+}
+
+.switch-button.closed {
+  background-color: red;
+  color: white;
 }
