@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useState, useEffect } from "react";
 
 // WebSocket server URL
-const WS_URL = "wss://swamy-hot-foods-server-production.up.railway.app";
+// const WS_URL = process.env.REACT_APP_WS_URL;
 
 // Create context
 const StatusContext = createContext();
@@ -22,7 +22,7 @@ export const ShopStatusProvider = ({ children }) => {
 
   // Create WebSocket connection on mount
   useEffect(() => {
-    const ws = new WebSocket(WS_URL);
+    const ws = new WebSocket(process.env.REACT_APP_WS_URL);
 
     ws.onopen = () => {
       console.log("Connected to WebSocket server.");
