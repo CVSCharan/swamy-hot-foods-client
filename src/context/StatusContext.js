@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useState, useEffect } from "react";
 
 // WebSocket server URL
-const WS_URL = "ws://localhost:3001";
+const WS_URL = "wss://swamy-hot-foods-server-production.up.railway.app";
 
 // Create context
 const StatusContext = createContext();
