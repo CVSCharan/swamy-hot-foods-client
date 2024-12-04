@@ -2,7 +2,6 @@ import React from "react";
 import { useShopStatus } from "../context/StatusContext";
 import GoogleReviewsComp from "./GoogleRatingsComp";
 import { useLogo } from "../context/LogoCoontext";
-import { motion } from "framer-motion";
 import { WaveText } from "./TextAnimation";
 
 const Landing = () => {
