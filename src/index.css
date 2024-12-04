@@ -319,16 +319,8 @@
 }
 
 .call-us-button:hover {
-  background-color: #218838; /* Darker green on hover */
+  background-color: #4682B4; /* Darker green on hover */
   transform: scale(1.05);
-}
-
-/* Mobile Responsiveness */
-@media only screen and (max-width: 480px) {
-  .call-us-button {
-    font-size: 1rem;
-    padding: 12px 25px;
-  }
 }
 
 /* Extra Small Mobile Devices (Portrait) */
@@ -374,6 +366,11 @@
 
   .switch-button {
     font-size: 1rem;
+  }
+
+  .call-us-button {
+    font-size: 1rem;
+    padding: 12px 25px;
   }
 }
 
@@ -421,6 +418,11 @@
   .switch-button {
     font-size: 1rem;
   }
+
+  .call-us-button {
+    font-size: 1rem;
+    padding: 12px 25px;
+  }
 }
 
 /* Medium Mobile Devices (Portrait) */
@@ -467,6 +469,11 @@
   .switch-button {
     font-size: 1rem;
   }
+
+  .call-us-button {
+    font-size: 1rem;
+    padding: 12px 25px;
+  }
 }
 
 /* Large Mobile Devices (Portrait) */
@@ -512,5 +519,10 @@
 
   .switch-button {
     font-size: 1rem;
+  }
+
+  .call-us-button {
+    font-size: 1rem;
+    padding: 12px 25px;
   }
 }
