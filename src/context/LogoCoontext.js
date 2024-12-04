@@ -7,7 +7,7 @@ export const useLogo = () => {
 };
 
 export const LogoProvider = ({ children }) => {
-  const [logoUrl, setLogoUrl] = useState("/swamy_restaurant_logo.jpg");
+  const [logoUrl, setLogoUrl] = useState("");
 
   const fetchLogo = async () => {
     try {
