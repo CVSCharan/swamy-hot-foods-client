@@ -32,7 +32,7 @@ const ShopStatus = () => {
     formData.append("logo", file);
 
     try {
-      const response = await fetch("http://localhost:3001/upload", {
+      const response = await fetch(`${process.env.REACT_APP_BASE_URL}/upload`, {
         method: "POST",
         body: formData,
       });
@@ -40,7 +40,7 @@ const ShopStatus = () => {
 
       if (result.success) {
         console.info("Logo Upload Success!!");
-        const newLogoUrl = `http://localhost:3001${
+        const newLogoUrl = `${process.env.REACT_APP_BASE_URL}${
           result.filePath
         }?t=${new Date().getTime()}`; // Adding timestamp to avoid caching
         setLogoUrl(newLogoUrl); // Immediately update the frontend with new logo from LogoContext
