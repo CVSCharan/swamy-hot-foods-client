@@ -1,22 +1,13 @@
 import React, { createContext, useContext, useState, useEffect } from "react";
 
-// WebSocket server URL
-// const WS_URL = process.env.REACT_APP_WS_URL;
-
 // Create context
 const StatusContext = createContext();
 
 export const ShopStatusProvider = ({ children }) => {
-  const [shopStatus, setShopStatus] = useState(() => {
-    // Retrieve from localStorage or default to false (closed)
-    const savedStatus = localStorage.getItem("shopStatus");
+  // Initialize `shopStatus` and `cooking` states
+  const [shopStatus, setShopStatus] = useState(false);
 
-    try {
-      return savedStatus ? JSON.parse(savedStatus) : false;
-    } catch (error) {
-      return false;
-    }
-  });
+  const [cooking, setCooking] = useState(false);
 
   const [socket, setSocket] = useState(null);
 
@@ -30,7 +21,14 @@ export const ShopStatusProvider = ({ children }) => {
 
     ws.onmessage = (event) => {
       const data = JSON.parse(event.data);
-      setShopStatus(data.shopStatus); // Update status from WebSocket
+
+      if (data.shopStatus !== undefined) {
+        setShopStatus(data.shopStatus);
+      }
+
+      if (data.cooking !== undefined) {
+        setCooking(data.cooking);
+      }
     };
 
     // Save socket for future use
@@ -44,18 +42,38 @@ export const ShopStatusProvider = ({ children }) => {
     };
   }, []);
 
-  // Update status on WebSocket and localStorage
+  // Update shop status
   const updateShopStatus = (status) => {
-    localStorage.setItem("shopStatus", JSON.stringify(status));
+    if (cooking) {
+      alert("Cannot open shop while cooking is on.");
+      return;
+    }
     setShopStatus(status);
     if (socket) {
-      socket.send(JSON.stringify({ shopStatus: status })); // Send status to WebSocket server
+      socket.send(JSON.stringify({ shopStatus: status }));
+    }
+  };
+
+  // Update cooking status
+  const updateCookingStatus = (status) => {
+    if (shopStatus) {
+      alert("Cannot start cooking while the shop is open.");
+      return;
+    }
+    setCooking(status);
+    if (socket) {
+      socket.send(JSON.stringify({ cooking: status }));
     }
   };
 
   return (
     <StatusContext.Provider
-      value={{ shopStatus, setShopStatus: updateShopStatus }}
+      value={{
+        shopStatus,
+        setShopStatus: updateShopStatus,
+        cooking,
+        setCooking: updateCookingStatus,
+      }}
     >
       {children}
     </StatusContext.Provider>
