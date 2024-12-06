@@ -57,10 +57,9 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 20px;
+  gap: 10px;
   overflow-y: auto;
   overflow-x: hidden;
-  padding: 20px;
   background-color: #fff;
   padding: 2rem;
 }
@@ -77,15 +76,16 @@
   width: 150px;
   border-radius: 50%;
   object-fit: cover;
-  margin-bottom: 10px;
+  margin-bottom: 7px;
+  border: 3px solid #4682b4;
 }
 
 /* Restaurant status styling */
 .restaurant-status {
-  font-size: 1.2rem;
+  font-size: 1.4rem;
   font-weight: bold;
   margin-top: 20px;
-  padding: 10px 20px;
+  padding: 10px 10px;
   border-radius: 8px;
   text-align: center;
   letter-spacing: 0.05rem;
@@ -105,14 +105,15 @@
 /* Heading styles */
 .title-heading {
   font-size: 1.8rem;
-  color: #333;
   letter-spacing: 0.05rem;
+  color: #ff7722;
 }
 
 .title-heading-span {
   font-size: 1.2rem;
   color: #333;
   letter-spacing: 0.05rem;
+  color: #50ba94;
 }
 
 /* Address styling */
@@ -121,7 +122,7 @@
   color: #555;
   margin: 10px 0 5px;
   letter-spacing: 0.05rem;
-  margin: 15px 0;
+  margin: 10px 0;
   font-weight: bold;
 }
 
@@ -153,7 +154,7 @@
 }
 
 /* Elfsight widget styling */
-.elfsight-app-43d6f5c4-e329-4dcd-b9d8-c956d5a6ce77 {
+.elfsight-app-a1c76203-4053-42c0-934f-11fcd7d2628e {
   border: 1px solid #ccc;
   border-radius: 5px;
   padding: 10px;
@@ -166,8 +167,8 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 1rem;
-  margin: 1.5rem 0;
+  gap: 0.8rem;
+  margin: 1rem 0;
 }
 
 /* General Switch Container */
@@ -238,7 +239,7 @@
 }
 
 .cooking-img {
-  height: 250px;
+  height: 200px;
   width: 300px;
   border: 0;
   border-radius: 20px;
@@ -253,18 +254,18 @@
 
 .working-hours {
   background-color: #f4f4f4;
-  padding: 20px;
+  padding: 15px;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   max-width: 400px;
   margin: 0 auto;
-  margin-top: 20px;
+  margin-top: 15px;
   text-align: center;
 }
 
 .working-hours h2 {
   font-size: 1.2rem;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   color: #333;
   font-family: "Cinzel", serif;
 }
@@ -272,7 +273,7 @@
 .hours-container {
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  gap: 10px;
 }
 
 .hours-item {
@@ -281,19 +282,22 @@
   justify-content: center;
   gap: 10px;
   background-color: #fff;
-  padding: 12px;
+  padding: 10px;
   border-radius: 6px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .time-label {
-  font-weight: bold;
-  color: #333;
+  font-style: italic;
+  font-weight: 500;
+  color: #555;
+  font-size: 1rem;
 }
 
 .time {
   font-style: italic;
   color: #555;
+  font-size: 1rem;
 }
 
 /* Call Us Container */
@@ -301,26 +305,33 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 30px;
+  margin-top: 15px;
 }
 
 /* Call Us Button Styling */
 .call-us-button {
   padding: 15px 30px;
   font-size: 1.2rem;
-  font-weight: bold;
+  font-weight: 500;
   text-align: center;
-  color: black;
-  background-color: #87ceeb; /* Green background */
+  color: #333;
   border-radius: 25px;
   text-decoration: none;
-  transition: all 0.3s ease;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  border: 2px solid #4682b4;
 }
 
-.call-us-button:hover {
-  background-color: #4682B4; /* Darker green on hover */
-  transform: scale(1.05);
+.footer-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin-top: 7px;
+}
+
+.footer-heading {
+  font-size: 1rem;
+  text-align: center;
+  margin-top: 10px;
 }
 
 /* Extra Small Mobile Devices (Portrait) */
@@ -332,19 +343,19 @@
   }
 
   .title-heading {
-    font-size: 1.7rem;
+    font-size: 1.4rem;
   }
 
   .title-heading-span {
-    font-size: 1rem;
+    font-size: 0.9rem;
   }
 
   .address-heading {
-    font-size: 1.2rem;
+    font-size: 1rem;
   }
 
   .address-body {
-    font-size: 0.9rem;
+    font-size: 0.7rem;
   }
 
   .custom-google-reviews-widget {
@@ -355,7 +366,7 @@
     font-size: 1.2rem;
   }
 
-  .elfsight-app-43d6f5c4-e329-4dcd-b9d8-c956d5a6ce77 {
+  .elfsight-app-a1c76203-4053-42c0-934f-11fcd7d2628e {
     font-size: 0.9rem;
     padding: 8px;
   }
@@ -365,12 +376,24 @@
   }
 
   .switch-button {
-    font-size: 1rem;
+    font-size: 0.8rem;
   }
 
   .call-us-button {
-    font-size: 1rem;
+    font-size: 0.8rem;
     padding: 12px 25px;
+  }
+
+  .time-label {
+    font-size: 0.7rem;
+  }
+
+  .time {
+    font-size: 0.7rem;
+  }
+
+  .footer-heading {
+    font-size: 0.6rem;
   }
 }
 
@@ -406,7 +429,7 @@
     font-size: 1.2rem;
   }
 
-  .elfsight-app-43d6f5c4-e329-4dcd-b9d8-c956d5a6ce77 {
+  .elfsight-app-a1c76203-4053-42c0-934f-11fcd7d2628e {
     font-size: 0.9rem;
     padding: 8px;
   }
@@ -423,6 +446,18 @@
     font-size: 1rem;
     padding: 12px 25px;
   }
+
+  .time-label {
+    font-size: 0.8rem;
+  }
+
+  .time {
+    font-size: 0.8rem;
+  }
+
+  .footer-heading {
+    font-size: 0.7rem;
+  }
 }
 
 /* Medium Mobile Devices (Portrait) */
@@ -434,7 +469,7 @@
   }
 
   .title-heading {
-    font-size: 1.7rem;
+    font-size: 1.9rem;
   }
 
   .title-heading-span {
@@ -457,13 +492,13 @@
     font-size: 1.2rem;
   }
 
-  .elfsight-app-43d6f5c4-e329-4dcd-b9d8-c956d5a6ce77 {
+  .elfsight-app-a1c76203-4053-42c0-934f-11fcd7d2628e {
     font-size: 0.9rem;
     padding: 8px;
   }
 
   .restaurant-status {
-    font-size: 0.8rem;
+    font-size: 1rem;
   }
 
   .switch-button {
@@ -473,6 +508,18 @@
   .call-us-button {
     font-size: 1rem;
     padding: 12px 25px;
+  }
+
+  .time-label {
+    font-size: 0.9rem;
+  }
+
+  .time {
+    font-size: 0.9rem;
+  }
+
+  .footer-heading {
+    font-size: 0.85rem;
   }
 }
 
@@ -508,7 +555,7 @@
     font-size: 1.2rem;
   }
 
-  .elfsight-app-43d6f5c4-e329-4dcd-b9d8-c956d5a6ce77 {
+  .elfsight-app-a1c76203-4053-42c0-934f-11fcd7d2628e {
     font-size: 0.9rem;
     padding: 8px;
   }
@@ -524,5 +571,17 @@
   .call-us-button {
     font-size: 1rem;
     padding: 12px 25px;
+  }
+
+  .time-label {
+    font-size: 0.8rem;
+  }
+
+  .time {
+    font-size: 0.8rem;
+  }
+
+  .footer-heading {
+    font-size: 0.9rem;
   }
 }

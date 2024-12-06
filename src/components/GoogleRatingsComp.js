@@ -29,7 +29,7 @@ const GoogleReviewsComp = () => {
     <div className="custom-google-reviews-widget">
       <h1 className="playwrite-gb-s-text widget-title">Google Reviews</h1>
       <div
-        className="elfsight-app-43d6f5c4-e329-4dcd-b9d8-c956d5a6ce77"
+        className="elfsight-app-a1c76203-4053-42c0-934f-11fcd7d2628e"
         data-elfsight-app-lazy
       ></div>
     </div>

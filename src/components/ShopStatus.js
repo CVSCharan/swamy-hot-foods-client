@@ -76,7 +76,7 @@ const ShopStatus = () => {
         />
 
         <div className="title-heading-container">
-          <h2 className="macondo-regular title-heading">Swamy's hot foods</h2>
+          <h2 className="quicksand-text title-heading">Swamy's hot foods</h2>
           <span className="macondo-regular title-heading-span">
             --- Pure Veg ---
           </span>
