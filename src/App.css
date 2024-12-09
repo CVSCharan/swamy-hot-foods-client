@@ -1,0 +1,465 @@
+/* Main styles for the Google reviews widget */
+.google-reviews-widget {
+  max-width: 900px;
+  max-height: 100vh;
+  height: auto;
+  width: 100%;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+/* Title of the reviews section */
+.reviews-title {
+  text-align: center;
+  font-size: 1.5rem; /* Changed from fixed px to rem for better scaling */
+  margin-bottom: 20px;
+  color: #333;
+}
+
+/* Styling the overall rating section */
+.overall-rating {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #f7f7f7;
+  padding: 15px 30px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+/* Google review section title */
+.google-title {
+  font-size: 1.5rem; /* Changed from fixed px to rem for better scaling */
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+}
+
+.google-title span {
+  color: #4285f4;
+  margin-left: 5px;
+}
+
+/* Styling for the rating and review count */
+.rating-score {
+  display: flex;
+  align-items: center;
+}
+
+.rating-score .score {
+  font-size: 1.8rem; /* Changed from fixed px to rem for better scaling */
+  font-weight: bold;
+  margin-right: 5px;
+}
+
+.rating-score .stars {
+  color: #ffa534;
+  font-size: 1.4rem; /* Changed from fixed px to rem for better scaling */
+}
+
+.rating-score .review-count {
+  margin-left: 5px;
+  color: #777;
+}
+
+/* Review us button */
+.review-button {
+  background-color: #4285f4;
+  color: white;
+  padding: 10px 15px;
+  border-radius: 5px;
+  text-decoration: none;
+  font-size: 0.9rem; /* Changed from fixed px to rem for better scaling */
+  border-radius: 20px;
+}
+
+/* Individual review card styling */
+.review-card {
+  background: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  margin: 10px; /* This ensures there’s a gap between cards */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.slick-slide {
+  margin: 0 10px; /* Adjust margin between slides (cards) */
+}
+
+.reviewer-info {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.profile-circle {
+  width: 40px;
+  height: 40px;
+  background-color: #4285f4;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-weight: bold;
+  font-size: 1.2rem; /* Changed from fixed px to rem for better scaling */
+  margin-right: 10px;
+}
+
+.review-details .author-name {
+  font-size: 1rem; /* Changed from fixed px to rem for better scaling */
+  font-weight: bold;
+  margin: 0;
+}
+
+.review-details .review-time {
+  font-size: 0.8rem; /* Changed from fixed px to rem for better scaling */
+  color: #777;
+}
+
+.review-rating {
+  color: #ffa534;
+  font-size: 1rem; /* Changed from fixed px to rem for better scaling */
+  margin-bottom: 10px;
+}
+
+.review-text {
+  font-size: 1rem; /* Changed from fixed px to rem for better scaling */
+  color: #555;
+}
+
+/* Styling for the custom arrows */
+.slick-prev,
+.slick-next {
+  z-index: 1;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 50%;
+  width: 40px; /* Adjust size */
+  height: 40px;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 20%; /* Vertically center the arrows */
+  transform: translateY(-50%); /* Adjust vertically */
+}
+
+.slick-prev {
+  left: 10px; /* Position left arrow */
+}
+
+.slick-next {
+  right: 10px; /* Position right arrow */
+}
+
+/* Arrows appear on hover */
+.slick-prev:hover,
+.slick-next:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+  cursor: pointer;
+}
+
+/* Carousel container should be position: relative */
+.slick-slider {
+  position: relative;
+}
+
+.review-slider {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Extra Small Mobile Devices (Portrait) */
+/* iPhone SE, older Android phones */
+@media only screen and (max-width: 320px) {
+  .review-card {
+    padding: 15px;
+    width: 100%;
+  }
+
+  .google-reviews-widget {
+    padding: 10px;
+  }
+
+  .slick-prev,
+  .slick-next {
+    width: 30px;
+    height: 30px;
+  }
+
+  .slick-prev {
+    left: 0px; /* Position left arrow */
+  }
+
+  .slick-next {
+    right: 0px; /* Position right arrow */
+  }
+
+  .google-title {
+    font-size: 0.9rem;
+  }
+
+  .rating-score .score {
+    font-size: 0.8rem; /* Changed from fixed px to rem for better scaling */
+    font-weight: bold;
+    margin-right: 5px;
+  }
+
+  .rating-score .stars {
+    color: #ffa534;
+    font-size: 0.8rem; /* Changed from fixed px to rem for better scaling */
+  }
+
+  .reviews-title {
+    font-size: 0.8rem;
+  }
+
+  .overall-rating {
+    flex-direction: column;
+    gap: 7px;
+  }
+
+  .review-button {
+    font-size: 0.7rem;
+    padding: 7px 7px;
+  }
+
+  .review-details .author-name {
+    font-size: 0.8rem;
+  }
+
+  .review-details .review-time {
+    font-size: 0.6rem;
+  }
+
+  .review-rating {
+    font-size: 0.8rem;
+  }
+
+  .review-text {
+    font-size: 0.7rem;
+  }
+}
+
+/* Small Mobile Devices (Portrait) */
+/* iPhone 6/7/8, Galaxy S8 */
+@media only screen and (min-width: 321px) and (max-width: 375px) {
+  .review-card {
+    padding: 15px;
+    width: 100%;
+  }
+
+  .google-reviews-widget {
+    padding: 10px;
+  }
+
+  .slick-prev,
+  .slick-next {
+    width: 30px;
+    height: 30px;
+  }
+
+  .slick-prev {
+    left: 0px; /* Position left arrow */
+  }
+
+  .slick-next {
+    right: 0px; /* Position right arrow */
+  }
+
+  .google-title {
+    font-size: 0.9rem;
+  }
+
+  .rating-score .score {
+    font-size: 0.8rem; /* Changed from fixed px to rem for better scaling */
+    font-weight: bold;
+    margin-right: 5px;
+  }
+
+  .rating-score .stars {
+    color: #ffa534;
+    font-size: 0.8rem; /* Changed from fixed px to rem for better scaling */
+  }
+
+  .reviews-title {
+    font-size: 0.8rem;
+  }
+
+  .overall-rating {
+    flex-direction: column;
+    gap: 7px;
+  }
+
+  .review-button {
+    font-size: 0.7rem;
+    padding: 7px 7px;
+  }
+
+  .review-details .author-name {
+    font-size: 0.8rem;
+  }
+
+  .review-details .review-time {
+    font-size: 0.6rem;
+  }
+
+  .review-rating {
+    font-size: 0.8rem;
+  }
+
+  .review-text {
+    font-size: 0.7rem;
+  }
+}
+
+/* Medium Mobile Devices (Portrait) */
+/* iPhone 11 Pro, Google Pixel 2 */
+@media only screen and (min-width: 376px) and (max-width: 425px) {
+  .review-card {
+    padding: 15px;
+    width: 100%;
+  }
+
+  .google-reviews-widget {
+    padding: 10px;
+  }
+
+  .slick-prev,
+  .slick-next {
+    width: 30px;
+    height: 30px;
+  }
+
+  .slick-prev {
+    left: 0px; /* Position left arrow */
+  }
+
+  .slick-next {
+    right: 0px; /* Position right arrow */
+  }
+
+  .google-title {
+    font-size: 0.9rem;
+  }
+
+  .rating-score .score {
+    font-size: 0.8rem; /* Changed from fixed px to rem for better scaling */
+    font-weight: bold;
+    margin-right: 5px;
+  }
+
+  .rating-score .stars {
+    color: #ffa534;
+    font-size: 0.8rem; /* Changed from fixed px to rem for better scaling */
+  }
+
+  .reviews-title {
+    font-size: 0.8rem;
+  }
+
+  .overall-rating {
+    flex-direction: column;
+    gap: 7px;
+  }
+
+  .review-button {
+    font-size: 0.7rem;
+    padding: 7px 7px;
+  }
+
+  .review-details .author-name {
+    font-size: 0.8rem;
+  }
+
+  .review-details .review-time {
+    font-size: 0.6rem;
+  }
+
+  .review-rating {
+    font-size: 0.8rem;
+  }
+
+  .review-text {
+    font-size: 0.7rem;
+  }
+}
+
+/* Large Mobile Devices (Portrait) */
+/* iPhone 11 Pro Max, Galaxy Note */
+@media only screen and (min-width: 426px) and (max-width: 480px) {
+  .review-card {
+    padding: 15px;
+    width: 100%;
+  }
+
+  .google-reviews-widget {
+    padding: 10px;
+  }
+
+  .slick-prev,
+  .slick-next {
+    width: 30px;
+    height: 30px;
+  }
+
+  .slick-prev {
+    left: 0px; /* Position left arrow */
+  }
+
+  .slick-next {
+    right: 0px; /* Position right arrow */
+  }
+
+  .google-title {
+    font-size: 0.9rem;
+  }
+
+  .rating-score .score {
+    font-size: 0.8rem; /* Changed from fixed px to rem for better scaling */
+    font-weight: bold;
+    margin-right: 5px;
+  }
+
+  .rating-score .stars {
+    color: #ffa534;
+    font-size: 0.8rem; /* Changed from fixed px to rem for better scaling */
+  }
+
+  .reviews-title {
+    font-size: 0.8rem;
+  }
+
+  .overall-rating {
+    flex-direction: column;
+    gap: 7px;
+  }
+
+  .review-button {
+    font-size: 0.7rem;
+    padding: 7px 7px;
+  }
+
+  .review-details .author-name {
+    font-size: 0.8rem;
+  }
+
+  .review-details .review-time {
+    font-size: 0.6rem;
+  }
+
+  .review-rating {
+    font-size: 0.8rem;
+  }
+
+  .review-text {
+    font-size: 0.7rem;
+  }
+}

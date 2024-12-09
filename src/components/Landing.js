@@ -81,7 +81,8 @@ const Landing = () => {
         </div>
       </div>
       <div className="landing-container-two">
-        <GoogleReviewsComp />
+        {/* <GoogleReviewsComp /> */}
+        <GoogleReviews />
       </div>
       <Footer />
     </main>
