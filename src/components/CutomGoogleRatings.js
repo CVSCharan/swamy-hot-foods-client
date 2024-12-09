@@ -16,7 +16,7 @@ const GoogleReviews = () => {
       setLoading(true);
       try {
         const response = await axios.get(
-          "http://localhost:3001/api/google-reviews"
+          `${process.env.REACT_APP_BASE_URL}/api/google-reviews`
         );
         console.log(response.data.reviews);
         console.log(response.data);
