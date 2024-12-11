@@ -285,9 +285,30 @@
 
 .hours-item {
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 10px;
+  gap: 15px;
+  background-color: #fff;
+  padding: 10px;
+  border-radius: 6px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.hours-item-sub {
+  display: flex;
+  width: 60%;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 15px;
+}
+
+.hours-item-holiday {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
   background-color: #fff;
   padding: 10px;
   border-radius: 6px;
@@ -295,7 +316,6 @@
 }
 
 .time-label {
-  font-style: italic;
   font-weight: 500;
   color: #555;
   font-size: 1rem;
@@ -339,6 +359,28 @@
   font-size: 1rem;
   text-align: center;
   margin-top: 10px;
+}
+
+.google-map-container {
+  margin: 20px 0;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.directions-button {
+  background-color: #4285f4;
+  color: white;
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.directions-button:hover {
+  background-color: #357ae8;
 }
 
 /* Extra Small Mobile Devices (Portrait) */
@@ -530,11 +572,11 @@
   }
 
   .time-label {
-    font-size: 0.9rem;
+    font-size: 1.1rem;
   }
 
   .time {
-    font-size: 0.9rem;
+    font-size: 1rem;
   }
 
   .footer-heading {
@@ -593,11 +635,11 @@
   }
 
   .time-label {
-    font-size: 0.8rem;
+    font-size: 1.1rem;
   }
 
   .time {
-    font-size: 0.8rem;
+    font-size: 0.9rem;
   }
 
   .footer-heading {

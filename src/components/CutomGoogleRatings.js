@@ -7,7 +7,8 @@ import "../App.css";
 
 const GoogleReviews = () => {
   const [reviews, setReviews] = useState([]);
-  const [totalReviews, setTotalReviews] = useState(0); // Store total reviews count
+  const [totalReviews, setTotalReviews] = useState(0);
+  const [overallRating, setOverallRating] = useState(0); // Store overall rating
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -18,10 +19,10 @@ const GoogleReviews = () => {
         const response = await axios.get(
           `${process.env.REACT_APP_BASE_URL}/api/google-reviews`
         );
-        console.log(response.data.reviews);
         console.log(response.data);
         setReviews(response.data.reviews);
-        setTotalReviews(response.data.totalReviews); // Use the totalReviews from the response
+        setTotalReviews(response.data.totalReviews);
+        setOverallRating(response.data.overallRating); // Set overall rating
         setLoading(false);
       } catch (err) {
         setError("Error fetching reviews.");
@@ -70,10 +71,12 @@ const GoogleReviews = () => {
             Google <span>Reviews</span>
           </h3>
           <div className="rating-score">
-            <span className="score">4.2</span>
-            <div className="stars">★★★★★</div>
-            {/* <span className="review-count">({totalReviews})</span>{" "} */}
-            {/* Display total reviews */}
+            <span className="score">{overallRating}</span>
+            <div className="stars">
+              {"★".repeat(Math.round(overallRating))}{" "}
+              {"☆".repeat(5 - Math.round(overallRating))}
+            </div>
+            {/* <span className="review-count">({totalReviews})</span> */}
           </div>
         </div>
         <a
@@ -111,14 +114,14 @@ const GoogleReviews = () => {
 };
 
 const NextArrow = (props) => {
-  const { className, style, onClick } = props;
+  const { className, onClick } = props;
   return (
     <div className={`${className} custom-arrow next-arrow`} onClick={onClick} />
   );
 };
 
 const PrevArrow = (props) => {
-  const { className, style, onClick } = props;
+  const { className, onClick } = props;
   return (
     <div className={`${className} custom-arrow prev-arrow`} onClick={onClick} />
   );

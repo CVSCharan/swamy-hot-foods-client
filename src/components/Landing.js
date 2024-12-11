@@ -6,6 +6,8 @@ import { WaveText } from "./TextAnimation";
 import { AccessTime, CalendarToday } from "@mui/icons-material";
 import GoogleReviews from "./CutomGoogleRatings";
 import Footer from "./Footer";
+import CustomGoogleMap from "./CustomGMaps";
+import GetDirectionsButton from "./GMapsDirection";
 
 const Landing = () => {
   const { shopStatus, cooking } = useShopStatus();
@@ -21,6 +23,7 @@ const Landing = () => {
           src={logoUrl}
           alt="Swamy's Hot Foods Landing Logo"
           key={logoUrl} // Adding key prop to force re-render
+          loading="lazy"
         />
         <div className="title-heading-container">
           <h2 className="quicksand-text title-heading">Swamy's Hot Foods</h2>
@@ -35,7 +38,8 @@ const Landing = () => {
         <h3 className="quicksand-text address-body">
           Railway feeders road, Nellore - 524001.
         </h3>
-
+        <CustomGoogleMap />
+        <GetDirectionsButton />
         {cooking ? (
           <div className="cooking-container">
             <img src="/cooking.gif" className="cooking-img" alt="Cooking Img" />
@@ -62,17 +66,24 @@ const Landing = () => {
           <h2>Working Hours</h2>
           <div className="hours-container">
             <div className="hours-item">
-              <span className="josefin-sans-text time">Mon - Sat</span>
-              <AccessTime style={{ fontSize: "1.2rem", color: "#FF6347" }} />
-              <span className="josefin-sans-text time">5:30 AM - 11:00 AM</span>
+              <span className="josefin-sans-text time-label">
+                Monday - Saturday
+              </span>
+              <div className="hours-item-sub">
+                <AccessTime style={{ fontSize: "1.4rem", color: "#FF6347" }} />
+                <span className="josefin-sans-text time">
+                  5:30 AM - 11:00 AM
+                </span>
+              </div>
+              <div className="hours-item-sub">
+                <AccessTime style={{ fontSize: "1.4rem", color: "#FF6347" }} />
+                <span className="josefin-sans-text time">
+                  4:30 PM - 9:00 PM
+                </span>
+              </div>
             </div>
-            <div className="hours-item">
-              <span className="josefin-sans-text time">Mon - Sat</span>
-              <AccessTime style={{ fontSize: "1.2rem", color: "#FF6347" }} />
-              <span className="josefin-sans-text time">4:30 PM - 9:00 PM</span>
-            </div>
-            <div className="hours-item">
-              <CalendarToday sx={{ fontSize: "1.2rem", color: "#FF6347" }} />
+            <div className="hours-item-holiday">
+              <CalendarToday sx={{ fontSize: "1.4rem", color: "#FF6347" }} />
               <span className="josefin-sans-text time-label">
                 Sunday's holiday
               </span>
