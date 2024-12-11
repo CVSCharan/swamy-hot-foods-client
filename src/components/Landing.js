@@ -1,22 +1,57 @@
 import React from "react";
 import { useShopStatus } from "../context/StatusContext";
-import GoogleReviewsComp from "./GoogleRatingsComp";
 import { useLogo } from "../context/LogoCoontext";
 import { WaveText } from "./TextAnimation";
 import { AccessTime, CalendarToday } from "@mui/icons-material";
 import GoogleReviews from "./CutomGoogleRatings";
 import Footer from "./Footer";
-import CustomGoogleMap from "./CustomGMaps";
 import GetDirectionsButton from "./GMapsDirection";
+import { Helmet } from "react-helmet";
 
 const Landing = () => {
   const { shopStatus, cooking } = useShopStatus();
   const { logoUrl } = useLogo();
 
-  console.info("Landing Logo URL:", logoUrl);
-
   return (
     <main id="Landing" className="App">
+      <Helmet>
+        <title>Swamy's Hot Foods - Pure Veg Restaurant in Nellore</title>
+        <meta
+          name="description"
+          content="Swamy's Hot Foods is a pure vegetarian restaurant in Nellore. Offering delicious meals with convenient hours and excellent Google reviews."
+        />
+        <meta
+          name="keywords"
+          content="Swamy's Hot Foods, vegetarian restaurant, Nellore food, pure veg, restaurant near Nellore railway station"
+        />
+        <link rel="canonical" href="https://swamyshotfoods.shop" />
+      </Helmet>
+
+      {/* Structured Data for SEO */}
+      <script type="application/ld+json">
+        {`
+        {
+          "@context": "https://schema.org",
+          "@type": "Restaurant",
+          "name": "Swamy's Hot Foods",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "7-1-931, Opp. road of Nellore railway station west entrance",
+            "addressLocality": "Nellore",
+            "postalCode": "524001",
+            "addressCountry": "IN"
+          },
+          "telephone": "+91 9642415385",
+          "openingHours": [
+            "Mo-Sa 05:30-11:00",
+            "Mo-Sa 16:30-21:00"
+          ],
+          "servesCuisine": "Vegetarian",
+          "url": "https://swamyshotfoods.shop"
+        }
+        `}
+      </script>
+
       <div className="landing-container-one">
         <img
           className="landing-logo"
@@ -41,7 +76,12 @@ const Landing = () => {
 
         {cooking ? (
           <div className="cooking-container">
-            <img src="/cooking.gif" className="cooking-img" alt="Cooking Img" />
+            <img
+              src="/cooking.gif"
+              className="cooking-img"
+              alt="Cooking Animation"
+              loading="lazy"
+            />
             <WaveText text="Cooking..!!" />
           </div>
         ) : (
@@ -92,7 +132,6 @@ const Landing = () => {
         </div>
       </div>
       <div className="landing-container-two">
-        {/* <GoogleReviewsComp /> */}
         <GoogleReviews />
       </div>
       <Footer />

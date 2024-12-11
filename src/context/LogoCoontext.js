@@ -17,7 +17,7 @@ export const LogoProvider = ({ children }) => {
       );
       if (response.ok) {
         setLogoUrl(response.url); // Update logo URL from server
-        console.info("Logo Fetching Success!!");
+        // console.info("Logo Fetching Success!!");
       } else {
         console.warn("Default logo not found on the server.");
       }

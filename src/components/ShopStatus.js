@@ -39,7 +39,7 @@ const ShopStatus = () => {
       const result = await response.json();
 
       if (result.success) {
-        console.info("Logo Upload Success!!");
+        // console.info("Logo Upload Success!!");
         const newLogoUrl = `${process.env.REACT_APP_BASE_URL}${
           result.filePath
         }?t=${new Date().getTime()}`; // Adding timestamp to avoid caching

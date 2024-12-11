@@ -9,7 +9,7 @@ import ReviewAuthorImage from "./ReviewAuthorImgComp";
 const GoogleReviews = () => {
   const [reviews, setReviews] = useState([]);
   const [totalReviews, setTotalReviews] = useState(0);
-  const [overallRating, setOverallRating] = useState(0); // Store overall rating
+  const [overallRating, setOverallRating] = useState(0);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -20,9 +20,7 @@ const GoogleReviews = () => {
         const response = await axios.get(
           `${process.env.REACT_APP_BASE_URL}/api/google-reviews`
         );
-        console.log("Fetched Reviews:", response.data);
 
-        // Ensure data structure is correct before updating state
         if (
           response.data &&
           response.data.reviews &&
@@ -30,8 +28,8 @@ const GoogleReviews = () => {
           response.data.overallRating !== undefined
         ) {
           setReviews(response.data.reviews);
-          setTotalReviews(response.data.totalReviews); // Set totalReviews to 340
-          setOverallRating(response.data.overallRating); // Set overallRating to correct value
+          setTotalReviews(response.data.totalReviews);
+          setOverallRating(response.data.overallRating);
         } else {
           setError("Invalid data format received.");
         }
@@ -71,55 +69,102 @@ const GoogleReviews = () => {
     ],
   };
 
-  if (loading) return <div className="reviews-loading">Loading reviews...</div>;
-  if (error) return <div className="reviews-error">{error}</div>;
+  if (loading)
+    return (
+      <div className="reviews-loading">
+        <span className="reviews-loader"></span>
+      </div>
+    );
+  if (error)
+    return (
+      <div className="reviews-error">
+        <a
+          href="https://g.page/r/Cf84CB0kaZ3yEBM/review"
+          className="review-button"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Review us on Google"
+        >
+          Review Us on Google
+        </a>
+      </div>
+    );
 
   return (
-    <div className="google-reviews-widget">
-      <h2 className="reviews-title">What our customers say</h2>
+    <section className="google-reviews-widget" aria-label="Customer Reviews">
+      <h2 className="reviews-title">What Our Customers Say</h2>
+
       <div className="overall-rating">
         <div className="overall-rating-sub">
           <h3 className="google-title">
             Google <span>Reviews</span>
           </h3>
           <div className="rating-score">
-            <span className="score">{overallRating}</span>
-            <div className="stars">
+            <span
+              className="score"
+              aria-label={`Overall rating: ${overallRating}`}
+            >
+              {overallRating}
+            </span>
+            <div className="stars" aria-hidden="true">
               {"★".repeat(Math.round(overallRating))}{" "}
               {"☆".repeat(5 - Math.round(overallRating))}
             </div>
-            <span className="review-count">({totalReviews})</span>
+            <span
+              className="review-count"
+              aria-label={`Total reviews: ${totalReviews}`}
+            >
+              ({totalReviews})
+            </span>
           </div>
         </div>
         <a
           href="https://g.page/r/Cf84CB0kaZ3yEBM/review"
           className="review-button"
           target="_blank"
-          rel="noreferrer"
+          rel="noopener noreferrer"
+          aria-label="Review us on Google"
         >
-          Review us on Google
+          Review Us on Google
         </a>
       </div>
+
       <Slider {...settings} className="review-slider">
         {reviews.map((review, index) => (
           <div key={index} className="review-card-wrapper">
-            <div className="review-card">
+            <article
+              className="review-card"
+              itemScope
+              itemType="https://schema.org/Review"
+            >
               <div className="reviewer-info">
                 <ReviewAuthorImage review={review} />
                 <div className="review-details">
-                  <h4 className="author-name">{review.author_name}</h4>
-                  <p className="review-time">
+                  <h4 className="author-name" itemProp="author">
+                    {review.author_name}
+                  </h4>
+                  <time
+                    className="review-time"
+                    dateTime={new Date(review.time).toISOString()}
+                  >
                     {review.relative_time_description}
-                  </p>
+                  </time>
                 </div>
               </div>
-              <div className="review-rating">{"★".repeat(review.rating)}</div>
-              <p className="review-text">{review.text}</p>
-            </div>
+              <div
+                className="review-rating"
+                aria-label={`Rating: ${review.rating}`}
+              >
+                {"★".repeat(review.rating)}
+              </div>
+              <p className="review-text" itemProp="reviewBody">
+                {review.text}
+              </p>
+            </article>
           </div>
         ))}
       </Slider>
-    </div>
+    </section>
   );
 };
 
