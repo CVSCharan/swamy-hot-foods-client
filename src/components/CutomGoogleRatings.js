@@ -4,6 +4,7 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "../App.css";
+import ReviewAuthorImage from "./ReviewAuthorImgComp";
 
 const GoogleReviews = () => {
   const [reviews, setReviews] = useState([]);
@@ -19,10 +20,21 @@ const GoogleReviews = () => {
         const response = await axios.get(
           `${process.env.REACT_APP_BASE_URL}/api/google-reviews`
         );
-        console.log(response.data);
-        setReviews(response.data.reviews);
-        setTotalReviews(response.data.totalReviews);
-        setOverallRating(response.data.overallRating); // Set overall rating
+        console.log("Fetched Reviews:", response.data);
+
+        // Ensure data structure is correct before updating state
+        if (
+          response.data &&
+          response.data.reviews &&
+          response.data.totalReviews !== undefined &&
+          response.data.overallRating !== undefined
+        ) {
+          setReviews(response.data.reviews);
+          setTotalReviews(response.data.totalReviews); // Set totalReviews to 340
+          setOverallRating(response.data.overallRating); // Set overallRating to correct value
+        } else {
+          setError("Invalid data format received.");
+        }
         setLoading(false);
       } catch (err) {
         setError("Error fetching reviews.");
@@ -76,7 +88,7 @@ const GoogleReviews = () => {
               {"★".repeat(Math.round(overallRating))}{" "}
               {"☆".repeat(5 - Math.round(overallRating))}
             </div>
-            {/* <span className="review-count">({totalReviews})</span> */}
+            <span className="review-count">({totalReviews})</span>
           </div>
         </div>
         <a
@@ -93,14 +105,12 @@ const GoogleReviews = () => {
           <div key={index} className="review-card-wrapper">
             <div className="review-card">
               <div className="reviewer-info">
-                <div className="profile-circle">
-                  <span className="profile-initial">
-                    {review.author_name.charAt(0).toUpperCase()}
-                  </span>
-                </div>
+                <ReviewAuthorImage review={review} />
                 <div className="review-details">
                   <h4 className="author-name">{review.author_name}</h4>
-                  <p className="review-time">1 month ago</p>
+                  <p className="review-time">
+                    {review.relative_time_description}
+                  </p>
                 </div>
               </div>
               <div className="review-rating">{"★".repeat(review.rating)}</div>

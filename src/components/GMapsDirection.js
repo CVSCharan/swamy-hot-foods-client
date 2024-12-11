@@ -17,7 +17,7 @@ const GetDirectionsButton = () => {
 
   return (
     <button onClick={handleGetDirections} className="directions-button">
-      <LocationOnIcon sx={{ color: "#fff", fontSize: "24px" }} />
+      <LocationOnIcon className="directions-icon" sx={{ fontSize: "22px" }} />
     </button>
   );
 };
