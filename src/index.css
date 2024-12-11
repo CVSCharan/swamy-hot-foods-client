@@ -333,6 +333,7 @@
   justify-content: center;
   align-items: center;
   margin-top: 15px;
+  gap: 20px;
 }
 
 /* Call Us Button Styling */
@@ -369,18 +370,19 @@
 }
 
 .directions-button {
-  background-color: #4285f4;
-  color: white;
-  padding: 10px 20px;
-  font-size: 16px;
-  border: none;
-  border-radius: 5px;
+  border: 2px solid #4682b4; /* Classic blue background */
+  border-radius: 50%;
+  padding: 7px;
   cursor: pointer;
-  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .directions-button:hover {
-  background-color: #357ae8;
+  transform: scale(1.1);
 }
 
 /* Extra Small Mobile Devices (Portrait) */

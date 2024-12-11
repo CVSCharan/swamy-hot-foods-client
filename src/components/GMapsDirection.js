@@ -1,19 +1,23 @@
 import React from "react";
+import LocationOnIcon from "@mui/icons-material/LocationOn";
 
 const GetDirectionsButton = () => {
-  // Your Place ID
+  // Your Place ID and fallback destination address
   const PLACE_ID = "ChIJmYN2XqONTDoR_zgIHSRpnfI";
+  const DESTINATION_ADDRESS = "1600 Amphitheatre Pkwy, Mountain View, CA"; // Replace with your actual location
 
   const handleGetDirections = () => {
     window.open(
-      `https://www.google.com/maps/dir/?api=1&destination_place_id=${PLACE_ID}`,
+      `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(
+        DESTINATION_ADDRESS
+      )}&destination_place_id=${PLACE_ID}`,
       "_blank"
     );
   };
 
   return (
     <button onClick={handleGetDirections} className="directions-button">
-      Get Directions
+      <LocationOnIcon sx={{ color: "#fff", fontSize: "24px" }} />
     </button>
   );
 };

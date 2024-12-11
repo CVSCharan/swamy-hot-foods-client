@@ -38,7 +38,7 @@ const Landing = () => {
         <h3 className="quicksand-text address-body">
           Railway feeders road, Nellore - 524001.
         </h3>
-        <GetDirectionsButton />
+
         {cooking ? (
           <div className="cooking-container">
             <img src="/cooking.gif" className="cooking-img" alt="Cooking Img" />
@@ -59,6 +59,7 @@ const Landing = () => {
           >
             <i className="fa-solid fa-phone"></i> +91 9642415385
           </a>
+          <GetDirectionsButton />
         </div>
 
         <div className="working-hours">
