@@ -38,7 +38,6 @@ const Landing = () => {
         <h3 className="quicksand-text address-body">
           Railway feeders road, Nellore - 524001.
         </h3>
-        <CustomGoogleMap />
         <GetDirectionsButton />
         {cooking ? (
           <div className="cooking-container">
