@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useState, useEffect } from "react";
+import { io } from "socket.io-client";
 
 // Create context
 const StatusContext = createContext();
@@ -6,22 +7,19 @@ const StatusContext = createContext();
 export const ShopStatusProvider = ({ children }) => {
   // Initialize `shopStatus` and `cooking` states
   const [shopStatus, setShopStatus] = useState(false);
-
   const [cooking, setCooking] = useState(false);
-
   const [socket, setSocket] = useState(null);
 
-  // Create WebSocket connection on mount
+  // Create Socket.io connection on mount
   useEffect(() => {
-    const ws = new WebSocket(process.env.REACT_APP_WS_URL);
+    // Replace with your server URL
+    const socketIo = io(process.env.REACT_APP_SOCKET_URL);
 
-    ws.onopen = () => {
-      console.log("Connected to WebSocket server.");
-    };
+    socketIo.on("connect", () => {
+      console.log("Connected to Socket.io server.");
+    });
 
-    ws.onmessage = (event) => {
-      const data = JSON.parse(event.data);
-
+    socketIo.on("statusUpdate", (data) => {
       if (data.shopStatus !== undefined) {
         setShopStatus(data.shopStatus);
       }
@@ -29,15 +27,15 @@ export const ShopStatusProvider = ({ children }) => {
       if (data.cooking !== undefined) {
         setCooking(data.cooking);
       }
-    };
+    });
 
     // Save socket for future use
-    setSocket(ws);
+    setSocket(socketIo);
 
-    // Cleanup WebSocket connection on unmount
+    // Cleanup on unmount
     return () => {
-      if (ws) {
-        ws.close();
+      if (socketIo) {
+        socketIo.disconnect();
       }
     };
   }, []);
@@ -50,7 +48,8 @@ export const ShopStatusProvider = ({ children }) => {
     }
     setShopStatus(status);
     if (socket) {
-      socket.send(JSON.stringify({ shopStatus: status }));
+      console.log("Emitting shopStatus:", status);
+      socket.emit("statusChange", { shopStatus: status });
     }
   };
 
@@ -62,7 +61,8 @@ export const ShopStatusProvider = ({ children }) => {
     }
     setCooking(status);
     if (socket) {
-      socket.send(JSON.stringify({ cooking: status }));
+      console.log("Emitting shopStatus:", status);
+      socket.emit("statusChange", { cooking: status });
     }
   };
 
