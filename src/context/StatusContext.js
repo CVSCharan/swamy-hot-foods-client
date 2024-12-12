@@ -12,8 +12,11 @@ export const ShopStatusProvider = ({ children }) => {
 
   // Create Socket.io connection on mount
   useEffect(() => {
+    console.log("WebSocket URL:", process.env.REACT_APP_SOCKET_URL);
     // Replace with your server URL
-    const socketIo = io(process.env.REACT_APP_SOCKET_URL);
+    const socketIo = io(process.env.REACT_APP_SOCKET_URL, {
+      transports: ["websocket"],
+    });
 
     socketIo.on("connect", () => {
       console.log("Connected to Socket.io server.");
