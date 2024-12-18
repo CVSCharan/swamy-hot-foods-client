@@ -27,6 +27,7 @@ const Landing = () => {
       const afternoonOpening = 16 * 60 + 30; // 4:30 PM
       const eveningClosingSoon = 20 * 60 + 45; // 8:45 PM
       const eveningClosed = 21 * 60; // 9:00 PM
+      const nightClosed = 24 * 60; // 12:00 AM
       const nextMorningOpening = 5 * 60 + 30; // 5:30 AM
 
       // Clear message on Sundays
@@ -44,7 +45,7 @@ const Landing = () => {
       } else {
         if (time >= morningClosed && time < afternoonOpening) {
           setCurrentMessage("Visit us back at 4:30 PM.");
-        } else if (time >= eveningClosed || time < nextMorningOpening) {
+        } else if (time >= eveningClosed || time < nightClosed) {
           setCurrentMessage("Visit us tomorrow by 5:30 AM.");
         } else {
           setCurrentMessage("");
