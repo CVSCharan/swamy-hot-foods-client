@@ -129,13 +129,15 @@ const Landing = () => {
           </span>
         </div>
 
-        <h2 className="cinzel-text address-heading">Address</h2>
-        <h3 className="quicksand-text address-body">
-          7-1-931, Opp. road of Nellore railway station west entrance,
-        </h3>
-        <h3 className="quicksand-text address-body">
-          Railway feeders road, Nellore - 524001.
-        </h3>
+        <div className="address-container">
+          <GetDirectionsButton />
+          <h3 className="quicksand-text address-body">
+            7-1-931, Opp. road of Nellore railway station west entrance,
+          </h3>
+          <h3 className="quicksand-text address-body">
+            Railway feeders road, Nellore - 524001.
+          </h3>
+        </div>
 
         {cooking ? (
           <div className="cooking-container">
@@ -172,7 +174,6 @@ const Landing = () => {
           >
             <i className="fa-solid fa-phone"></i> +91 9642415385
           </a>
-          <GetDirectionsButton />
         </div>
 
         <div className="working-hours">

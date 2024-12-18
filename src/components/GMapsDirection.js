@@ -18,6 +18,9 @@ const GetDirectionsButton = () => {
   return (
     <button onClick={handleGetDirections} className="directions-button">
       <LocationOnIcon className="directions-icon" sx={{ fontSize: "22px" }} />
+      <h2 className="josefin-sans-text" style={{ color: "#333" }}>
+        Location
+      </h2>
     </button>
   );
 };
