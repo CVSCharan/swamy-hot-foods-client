@@ -8,6 +8,7 @@ export const ShopStatusProvider = ({ children }) => {
   // Initialize `shopStatus` and `cooking` states
   const [shopStatus, setShopStatus] = useState(false);
   const [cooking, setCooking] = useState(false);
+  const [holiday, setHoliday] = useState(false);
   const [socket, setSocket] = useState(null);
 
   // Create Socket.io connection on mount
@@ -29,6 +30,10 @@ export const ShopStatusProvider = ({ children }) => {
 
       if (data.cooking !== undefined) {
         setCooking(data.cooking);
+      }
+
+      if (data.holiday !== undefined) {
+        setHoliday(data.holiday);
       }
     });
 
@@ -69,6 +74,19 @@ export const ShopStatusProvider = ({ children }) => {
     }
   };
 
+  // Update cooking status
+  const updateHolidayStatus = (status) => {
+    if (shopStatus || cooking) {
+      alert("Cannot declare holiday while the shop is open/cooking.");
+      return;
+    }
+    setHoliday(status);
+    if (socket) {
+      console.log("Emitting shopStatus:", status);
+      socket.emit("statusChange", { holiday: status });
+    }
+  };
+
   return (
     <StatusContext.Provider
       value={{
@@ -76,6 +94,8 @@ export const ShopStatusProvider = ({ children }) => {
         setShopStatus: updateShopStatus,
         cooking,
         setCooking: updateCookingStatus,
+        holiday,
+        setHoliday: updateHolidayStatus,
       }}
     >
       {children}

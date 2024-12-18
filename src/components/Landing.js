@@ -9,7 +9,8 @@ import GetDirectionsButton from "./GMapsDirection";
 import { Helmet } from "react-helmet";
 
 const Landing = () => {
-  const { shopStatus, cooking } = useShopStatus();
+  const { shopStatus, cooking, holiday } = useShopStatus();
+  console.log(holiday);
   const { logoUrl } = useLogo();
   const [currentMessage, setCurrentMessage] = useState("");
 
@@ -164,13 +165,21 @@ const Landing = () => {
           </div>
         )}
 
-        {currentMessage !== "" && (
-          <div
-            className={`status-message ${
-              currentMessage.includes("closing") ? "warning" : "info"
-            }`}
-          >
-            {currentMessage}
+        {!holiday ? (
+          <>
+            {currentMessage !== "" && (
+              <div
+                className={`status-message ${
+                  currentMessage.includes("closing") ? "warning" : "info"
+                }`}
+              >
+                {currentMessage}
+              </div>
+            )}
+          </>
+        ) : (
+          <div className={`status-message ${"warning"}`}>
+            It's a Holiday Today
           </div>
         )}
 
