@@ -483,6 +483,29 @@
   transition: transform 0.3s ease;
 }
 
+.status-message {
+  font-size: 1.2rem;
+  padding: 10px;
+  border-radius: 8px;
+  margin: 15px 0;
+  text-align: center;
+  font-weight: bold;
+}
+
+/* Warning style for "We are closing soon!" */
+.status-message.warning {
+  background-color: #fff3cd; /* Light yellow */
+  color: #856404; /* Dark golden brown */
+  border: 1px solid #ffeeba;
+}
+
+/* Info style for "Visit us back..." */
+.status-message.info {
+  background-color: #d9edf7; /* Light blue */
+  color: #31708f; /* Dark blue */
+  border: 1px solid #bce8f1;
+}
+
 /* Extra Small Mobile Devices (Portrait) */
 /* iPhone SE, older Android phones */
 @media only screen and (max-width: 320px) {
