@@ -7,12 +7,18 @@ import GoogleReviews from "./CutomGoogleRatings";
 import Footer from "./Footer";
 import GetDirectionsButton from "./GMapsDirection";
 import { Helmet } from "react-helmet";
+import { Fab } from "@mui/material";
+import WhatsAppIcon from "@mui/icons-material/WhatsApp";
 
 const Landing = () => {
   const { shopStatus, cooking, holiday, holidayPlaceholder } = useShopStatus();
   console.log(holiday);
   const { logoUrl } = useLogo();
   const [currentMessage, setCurrentMessage] = useState("");
+
+  const handleWhatsAppClick = () => {
+    window.open("https://wa.me/919642415385", "_blank");
+  };
 
   useEffect(() => {
     const checkTimeStatus = () => {
@@ -81,31 +87,6 @@ const Landing = () => {
         />
         <link rel="canonical" href="https://swamyshotfoods.shop" />
       </Helmet>
-
-      {/* Structured Data for SEO */}
-      <script type="application/ld+json">
-        {`
-             {
-               "@context": "https://schema.org",
-               "@type": "Restaurant",
-               "name": "Swamy's Hot Foods",
-               "address": {
-                 "@type": "PostalAddress",
-                 "streetAddress": "7-1-931, Opp. road of Nellore railway station west entrance",
-                 "addressLocality": "Nellore",
-                 "postalCode": "524001",
-                 "addressCountry": "IN"
-               },
-               "telephone": "+91 9642415385",
-               "openingHours": [
-                 "Mo-Sa 05:30-11:00",
-                 "Mo-Sa 16:30-21:00"
-               ],
-               "servesCuisine": "Vegetarian",
-               "url": "https://swamyshotfoods.shop"
-             }
-             `}
-      </script>
 
       <div className="landing-container-one">
         {logoUrl && (
@@ -225,6 +206,22 @@ const Landing = () => {
       <div className="landing-container-two">
         <GoogleReviews />
       </div>
+      <Fab
+        color="success"
+        aria-label="chat"
+        onClick={handleWhatsAppClick}
+        style={{
+          position: "fixed",
+          bottom: "20px",
+          right: "20px",
+          backgroundColor: "#25D366",
+        }}
+      >
+        <WhatsAppIcon
+          sx={{ color: "white" }}
+          style={{ color: "#fff", fontSize: "2rem" }}
+        />
+      </Fab>
       <Footer />
     </main>
   );
