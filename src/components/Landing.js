@@ -37,8 +37,8 @@ const Landing = () => {
       const nightClosed = 23 * 60 + 30; // 11:30 PM
       // const nextMorningOpening = 5 * 60 + 30; // 5:30 AM
 
-      // Clear message on Sundays
-      if (day === 0) {
+      // Clear message on Sundays and Saturday evening after closing
+      if (day === 0 || (day === 6 && time >= eveningClosed)) {
         setCurrentMessage("");
         return;
       }
@@ -72,6 +72,59 @@ const Landing = () => {
 
     return () => clearInterval(timer);
   }, [shopStatus]);
+
+  useEffect(() => {
+    const checkTimeStatus = () => {
+      const now = new Date();
+      const hours = now.getHours();
+      const minutes = now.getMinutes();
+      const day = now.getDay(); // Sunday is 0
+      const time = hours * 60 + minutes;
+
+      // Define time intervals
+      const morningClosingSoon = 10 * 60 + 45; // 10:45 AM
+      const morningClosed = 11 * 60; // 11:00 AM
+      const afternoonOpening = 16 * 60 + 30; // 4:30 PM
+      const eveningClosingSoon = 20 * 60 + 45; // 8:45 PM
+      const eveningClosed = 21 * 60; // 9:00 PM
+      const nightClosed = 23 * 60 + 30; // 11:30 PM
+      // const nextMorningOpening = 5 * 60 + 30; // 5:30 AM
+
+      // Clear message on Sundays and Saturday evening after closing
+      if (day === 0 || (day === 6 && time >= eveningClosed)) {
+        setCurrentMessage("");
+        return;
+      }
+
+      // Logic to hide the message between 11:30 PM and 10:45 AM
+      if (time >= nightClosed || time < morningClosingSoon) {
+        setCurrentMessage("");
+        return;
+      }
+
+      if (shopStatus) {
+        if (time === morningClosingSoon || time === eveningClosingSoon) {
+          setCurrentMessage("We are closing soon..!");
+        } else {
+          setCurrentMessage("");
+        }
+      } else {
+        if (time >= morningClosed && time < afternoonOpening) {
+          setCurrentMessage("Visit us back at 4:30 PM.");
+        } else if (time >= eveningClosed && time < nightClosed) {
+          setCurrentMessage("Visit us tomorrow by 5:30 AM.");
+        } else {
+          setCurrentMessage("");
+        }
+      }
+    };
+
+    // Check the time immediately and set an interval to update every minute
+    checkTimeStatus();
+    const timer = setInterval(checkTimeStatus, 60000);
+
+    return () => clearInterval(timer);
+  }, []);
 
   return (
     <main id="Landing" className="App">
