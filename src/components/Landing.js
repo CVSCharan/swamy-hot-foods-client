@@ -9,7 +9,7 @@ import GetDirectionsButton from "./GMapsDirection";
 import { Helmet } from "react-helmet";
 
 const Landing = () => {
-  const { shopStatus, cooking, holiday } = useShopStatus();
+  const { shopStatus, cooking, holiday, holidayPlaceholder } = useShopStatus();
   console.log(holiday);
   const { logoUrl } = useLogo();
   const [currentMessage, setCurrentMessage] = useState("");
@@ -29,7 +29,7 @@ const Landing = () => {
       const eveningClosingSoon = 20 * 60 + 45; // 8:45 PM
       const eveningClosed = 21 * 60; // 9:00 PM
       const nightClosed = 23 * 60 + 30; // 11:30 PM
-      const nextMorningOpening = 5 * 60 + 30; // 5:30 AM
+      // const nextMorningOpening = 5 * 60 + 30; // 5:30 AM
 
       // Clear message on Sundays
       if (day === 0) {
@@ -179,7 +179,7 @@ const Landing = () => {
           </>
         ) : (
           <div className={`status-message ${"warning"}`}>
-            It's a Holiday Today
+            {holidayPlaceholder}
           </div>
         )}
 
