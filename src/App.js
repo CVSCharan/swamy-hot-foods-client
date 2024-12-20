@@ -2,7 +2,7 @@ import React from "react";
 import { ShopStatusProvider } from "./context/StatusContext";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Landing from "./components/Landing";
-import ShopStatus from "./components/ShopStatus";
+// import ShopStatus from "./components/ShopStatus";
 import { LogoProvider } from "./context/LogoCoontext";
 
 function App() {
