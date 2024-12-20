@@ -568,6 +568,54 @@
   border: 1px solid #bce8f1;
 }
 
+.notice-board-container {
+  padding: 1.5rem;
+  margin: 1.5rem 0;
+  border: 5px solid #8b4513;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  position: relative;
+  max-width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.notice-board-title {
+  font-family: "Josefin Sans", sans-serif;
+  font-size: 1.5rem;
+  color: #5c4033;
+  margin-bottom: 1rem;
+  text-decoration: underline;
+}
+
+.notice-board-message {
+  font-family: "Quicksand", sans-serif;
+  font-size: 1.2rem;
+  color: #333;
+  padding: 2rem;
+  background: #fff;
+  border: 2px dashed #daa520;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  position: relative;
+  display: inline-block;
+  margin-top: 0.5rem;
+}
+
+.notice-board-message::before {
+  content: "";
+  position: absolute;
+  width: 15px;
+  height: 15px;
+  background: #daa520;
+  border-radius: 50%;
+  top: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
 /* Extra Small Mobile Devices (Portrait) */
 /* iPhone SE, older Android phones */
 @media only screen and (max-width: 320px) {

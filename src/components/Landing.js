@@ -11,7 +11,7 @@ import { Fab } from "@mui/material";
 import WhatsAppIcon from "@mui/icons-material/WhatsApp";
 
 const Landing = () => {
-  const { shopStatus, cooking, holiday, holidayPlaceholder } = useShopStatus();
+  const { shopStatus, cooking, holiday, noticeBoardTxt } = useShopStatus();
   console.log(holiday);
   const { logoUrl } = useLogo();
   const [currentMessage, setCurrentMessage] = useState("");
@@ -44,13 +44,16 @@ const Landing = () => {
       }
 
       // Logic to hide the message between 11:30 PM and 10:45 AM
-      if (time >= nightClosed || time < morningClosingSoon) {
+      if (
+        (time >= nightClosed && time <= nightClosed) ||
+        (time < morningClosingSoon && time >= morningClosed)
+      ) {
         setCurrentMessage("");
         return;
       }
 
       if (shopStatus) {
-        if (time === morningClosingSoon || time === eveningClosingSoon) {
+        if (time >= morningClosingSoon || time >= eveningClosingSoon) {
           setCurrentMessage("We are closing soon..!");
         } else {
           setCurrentMessage("");
@@ -103,16 +106,16 @@ const Landing = () => {
       }
 
       if (shopStatus) {
-        if (time === morningClosingSoon || time === eveningClosingSoon) {
+        if (time >= morningClosingSoon || time >= eveningClosingSoon) {
           setCurrentMessage("We are closing soon..!");
         } else {
           setCurrentMessage("");
         }
       } else {
         if (time >= morningClosed && time < afternoonOpening) {
-          setCurrentMessage("Visit us back at 4:30 PM.");
+          setCurrentMessage("We are open back at 4:30 PM.");
         } else if (time >= eveningClosed && time < nightClosed) {
-          setCurrentMessage("Visit us tomorrow by 5:30 AM.");
+          setCurrentMessage("We are open tomorrow by 5:30 AM.");
         } else {
           setCurrentMessage("");
         }
@@ -213,7 +216,7 @@ const Landing = () => {
           </>
         ) : (
           <div className={`status-message ${"warning"}`}>
-            {holidayPlaceholder}
+            It's Holiday Time.
           </div>
         )}
 
@@ -225,6 +228,23 @@ const Landing = () => {
             <i className="fa-solid fa-phone"></i> +91 9642415385
           </a>
         </div>
+
+        {/* Notice Board Section */}
+        {noticeBoardTxt &&
+          typeof noticeBoardTxt === "string" &&
+          noticeBoardTxt.trim() !== "" && (
+            <div className="notice-board-container">
+              <h3 className="josefin-sans-text notice-board-title">
+                Notice Board
+              </h3>
+              <p
+                style={{ whiteSpace: "pre-wrap" }}
+                className="notice-board-message"
+              >
+                {noticeBoardTxt}
+              </p>
+            </div>
+          )}
 
         <div className="working-hours">
           <h2>Working Hours</h2>

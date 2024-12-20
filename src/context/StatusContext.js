@@ -9,7 +9,7 @@ export const ShopStatusProvider = ({ children }) => {
   const [shopStatus, setShopStatus] = useState(false);
   const [cooking, setCooking] = useState(false);
   const [holiday, setHoliday] = useState(false);
-  const [holidayPlaceholder, setHolidayPlaceholder] = useState("");
+  const [noticeBoardTxt, setNoticeBoardTxt] = useState("");
   const [socket, setSocket] = useState(null);
 
   // Create Socket.io connection on mount
@@ -37,8 +37,8 @@ export const ShopStatusProvider = ({ children }) => {
         setHoliday(data.holiday);
       }
 
-      if (data.holidayPlaceholder !== undefined) {
-        setHolidayPlaceholder(data.holidayPlaceholder);
+      if (data.noticeBoardTxt !== undefined) {
+        setNoticeBoardTxt(data.noticeBoardTxt);
       }
     });
 
@@ -95,16 +95,15 @@ export const ShopStatusProvider = ({ children }) => {
     }
   };
 
-  const updateHolidayPlaceholderStatus = (status) => {
-    if (!holiday) {
-      console.log(
-        "Cannot apply Holiday Placeholder while the shop is not marked Holiday"
-      );
+  const updateNoticeBoardStatus = (status) => {
+    if (noticeBoardTxt) {
+      console.log("Notice Board Text can't be empty");
       return;
     }
-    setHolidayPlaceholder(status);
+    setNoticeBoardTxt(status);
     if (socket) {
-      socket.emit("statusChange", { holiday: status });
+      console.log("Emitting Notice Board Text:", status);
+      socket.emit("statusChange", { noticeBoardTxt: status });
     }
   };
 
@@ -117,8 +116,8 @@ export const ShopStatusProvider = ({ children }) => {
         setCooking: updateCookingStatus,
         holiday,
         setHoliday: updateHolidayStatus,
-        holidayPlaceholder,
-        setHolidayPlaceholder: updateHolidayPlaceholderStatus,
+        noticeBoardTxt,
+        setNoticeBoardTxt: updateNoticeBoardStatus,
       }}
     >
       {children}
