@@ -576,7 +576,8 @@
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
   text-align: center;
   position: relative;
-  max-width: 90%;
+  max-width: 95%;
+  height: auto;
   margin-left: auto;
   margin-right: auto;
 }
@@ -593,7 +594,7 @@
   font-family: "Quicksand", sans-serif;
   font-size: 1.2rem;
   color: #333;
-  padding: 2rem;
+  padding: 1.5rem;
   background: #fff;
   border: 2px dashed #daa520;
   border-radius: 8px;
