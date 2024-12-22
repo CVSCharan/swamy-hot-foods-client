@@ -120,19 +120,6 @@ const Landing = () => {
     }
   };
 
-  // Update useEffect to update state
-  useEffect(() => {
-    const message = checkTimeStatus();
-    setCurrentMessage(message);
-
-    const timer = setInterval(() => {
-      const newMessage = checkTimeStatus();
-      setCurrentMessage(newMessage);
-    }, 60000);
-
-    return () => clearInterval(timer);
-  }, [shopStatus]);
-
   useEffect(() => {
     // Check the time immediately and set an interval to update every minute
     checkTimeStatus();
@@ -147,6 +134,10 @@ const Landing = () => {
       checkTimeStatus(shopStatus, new Date(date))
     );
   }, []);
+
+  useEffect(() => {
+    console.log(noticeBoardText);
+  }, [noticeBoardText]);
 
   return (
     <main id="Landing" className="App">
