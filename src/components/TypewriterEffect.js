@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-export const Typewriter = ({ text }) => {
+export const Typewriter = ({ text, noticeBoard }) => {
   const [displayedText, setDisplayedText] = useState("");
   const [index, setIndex] = useState(0);
 
@@ -17,7 +17,7 @@ export const Typewriter = ({ text }) => {
     }, 100);
 
     return () => clearInterval(timer);
-  }, [text, index]);
+  }, [text, index, noticeBoard]);
 
   return <div>{displayedText}</div>;
 };

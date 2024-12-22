@@ -260,7 +260,10 @@ const Landing = () => {
                     style={{ whiteSpace: "pre-wrap" }}
                     className="notice-board-message"
                   >
-                    <Typewriter text={noticeBoardTxt} />
+                    <Typewriter
+                      text={noticeBoardTxt}
+                      noticeBoard={noticeBoard}
+                    />
                   </p>
                 </div>
               )}
