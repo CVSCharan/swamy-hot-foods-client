@@ -9,47 +9,7 @@ import GetDirectionsButton from "./GMapsDirection";
 import { Helmet } from "react-helmet";
 import { Fab } from "@mui/material";
 import WhatsAppIcon from "@mui/icons-material/WhatsApp";
-import { Typewriter, useTypewriter } from "./TypewriterEffect";
-
-const timestamp = new Date().toISOString();
-
-const testCheckTimeStatus = (checkTimeStatus) => {
-  const testCases = [
-    {
-      shopStatus: true,
-      date: timestamp,
-      expected: "We are closing soon..!",
-    },
-    {
-      shopStatus: false,
-      date: timestamp,
-      expected: "Shop opens at 4:30 PM.",
-    },
-    {
-      shopStatus: true,
-      date: timestamp,
-      expected: "We are closing soon..!",
-    },
-    {
-      shopStatus: false,
-      date: timestamp,
-      expected: "Shop opens at 5:30 AM.",
-    },
-    { shopStatus: true, date: timestamp, expected: "" },
-    { shopStatus: false, date: timestamp, expected: "" },
-    { shopStatus: true, date: timestamp, expected: "" },
-  ];
-
-  testCases.forEach(({ shopStatus, date, expected }) => {
-    const result = checkTimeStatus(shopStatus, new Date(date));
-    console.log(
-      `Test for ${date}:`,
-      result === expected
-        ? "Passed"
-        : `Failed (Expected: ${expected}, Got: ${result})`
-    );
-  });
-};
+import { Typewriter } from "./TypewriterEffect";
 
 const Landing = () => {
   const {
@@ -66,74 +26,6 @@ const Landing = () => {
   const handleWhatsAppClick = () => {
     window.open("https://wa.me/919642415385", "_blank");
   };
-
-  const checkTimeStatus = (
-    shopStatusOverride = shopStatus,
-    dateOverride = new Date()
-  ) => {
-    const now =
-      dateOverride instanceof Date ? dateOverride : new Date(dateOverride);
-    const day = now.getDay(); // Sunday is 0
-    const hours = now.getHours();
-    const minutes = now.getMinutes();
-    const time = hours * 60 + minutes;
-
-    // Define time intervals
-    const morningClosingSoon = 10 * 60 + 45; // 10:45 AM
-    const morningClosed = 11 * 60; // 11:00 AM
-    const afternoonOpening = 16 * 60 + 30; // 4:30 PM
-    const eveningClosingSoon = 20 * 60 + 45; // 8:45 PM
-    const eveningClosed = 21 * 60; // 9:00 PM
-    const eod = 23 * 60 + 45; // 11:45 PM
-
-    // Clear message on Sundays and Saturday evening after closing
-    if (day === 0 || (day === 6 && time >= eveningClosed)) {
-      return "";
-    }
-
-    // Logic to hide the message between 11:30 PM and 10:45 AM
-    if (
-      (time >= eod && time <= eod) ||
-      (time < morningClosingSoon && time >= morningClosed)
-    ) {
-      return "";
-    }
-
-    if (shopStatusOverride) {
-      // Shop is open
-      if (time >= morningClosingSoon && time < morningClosed) {
-        return "We are closing soon..!";
-      } else if (time >= eveningClosingSoon && time < eveningClosed) {
-        return "We are closing soon..!";
-      } else {
-        return ""; // Display nothing if open and not in specified ranges
-      }
-    } else {
-      // Shop is closed
-      if (time >= morningClosed && time < afternoonOpening) {
-        return "Shop opens at 4:30 PM.";
-      } else if (time >= eveningClosed && time < eod) {
-        return "Shop opens at 5:30 AM.";
-      } else {
-        return ""; // Hide message after EOD
-      }
-    }
-  };
-
-  useEffect(() => {
-    // Check the time immediately and set an interval to update every minute
-    checkTimeStatus();
-
-    const timer = setInterval(checkTimeStatus, 60000);
-
-    return () => clearInterval(timer);
-  }, [shopStatus]);
-
-  useEffect(() => {
-    testCheckTimeStatus((shopStatus, date) =>
-      checkTimeStatus(shopStatus, new Date(date))
-    );
-  }, []);
 
   useEffect(() => {
     console.log(noticeBoardTxt);
