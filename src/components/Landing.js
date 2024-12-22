@@ -9,7 +9,7 @@ import GetDirectionsButton from "./GMapsDirection";
 import { Helmet } from "react-helmet";
 import { Fab } from "@mui/material";
 import WhatsAppIcon from "@mui/icons-material/WhatsApp";
-import { useTypewriter } from "./TypewriterEffect";
+import { Typewriter, useTypewriter } from "./TypewriterEffect";
 
 const timestamp = new Date().toISOString();
 
@@ -148,8 +148,6 @@ const Landing = () => {
     );
   }, []);
 
-  const typedNoticeBoardTxt = useTypewriter(noticeBoardTxt || "", 100);
-
   return (
     <main id="Landing" className="App">
       <Helmet>
@@ -262,7 +260,7 @@ const Landing = () => {
                     style={{ whiteSpace: "pre-wrap" }}
                     className="notice-board-message"
                   >
-                    {typedNoticeBoardTxt}
+                    <Typewriter text={noticeBoardTxt} />
                   </p>
                 </div>
               )}

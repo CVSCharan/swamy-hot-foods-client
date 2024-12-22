@@ -1,19 +1,23 @@
-import React, { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 
-// Typewriter Effect Hook
-export const useTypewriter = (text, delay = 100) => {
+export const Typewriter = ({ text }) => {
   const [displayedText, setDisplayedText] = useState("");
+  const [index, setIndex] = useState(0);
+
   useEffect(() => {
-    let index = 0;
+    if (!text) return;
+
     const timer = setInterval(() => {
-      setDisplayedText((prev) => prev + text[index]);
-      index++;
-      if (index === text.length) {
+      if (index < text.length) {
+        setDisplayedText((prevText) => prevText + text[index]);
+        setIndex(index + 1);
+      } else {
         clearInterval(timer);
       }
-    }, delay);
-    return () => clearInterval(timer); // Cleanup the interval on component unmount
-  }, [text, delay]);
+    }, 100);
 
-  return displayedText;
+    return () => clearInterval(timer);
+  }, [text, index]);
+
+  return <div>{displayedText}</div>;
 };
