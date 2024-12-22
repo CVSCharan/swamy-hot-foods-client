@@ -11,8 +11,15 @@ import { Fab } from "@mui/material";
 import WhatsAppIcon from "@mui/icons-material/WhatsApp";
 
 const Landing = () => {
-  const { shopStatus, cooking, holiday, noticeBoardTxt } = useShopStatus();
-  console.log(holiday);
+  const {
+    shopStatus,
+    cooking,
+    holiday,
+    holidayTxt,
+    noticeBoard,
+    noticeBoardTxt,
+  } = useShopStatus();
+  console.log(noticeBoard);
   const { logoUrl } = useLogo();
   const [currentMessage, setCurrentMessage] = useState("");
 
@@ -20,114 +27,106 @@ const Landing = () => {
     window.open("https://wa.me/919642415385", "_blank");
   };
 
-  useEffect(() => {
-    const checkTimeStatus = () => {
-      const now = new Date();
-      const hours = now.getHours();
-      const minutes = now.getMinutes();
-      const day = now.getDay(); // Sunday is 0
-      const time = hours * 60 + minutes;
+  const checkTimeStatus = () => {
+    const now = new Date();
+    const hours = now.getHours();
+    const minutes = now.getMinutes();
+    const day = now.getDay(); // Sunday is 0
+    const time = hours * 60 + minutes;
 
-      // Define time intervals
-      const morningClosingSoon = 10 * 60 + 45; // 10:45 AM
-      const morningClosed = 11 * 60; // 11:00 AM
-      const afternoonOpening = 16 * 60 + 30; // 4:30 PM
-      const eveningClosingSoon = 20 * 60 + 45; // 8:45 PM
-      const eveningClosed = 21 * 60; // 9:00 PM
-      const nightClosed = 23 * 60 + 30; // 11:30 PM
-      // const nextMorningOpening = 5 * 60 + 30; // 5:30 AM
+    // Define time intervals
+    const morningClosingSoon = 10 * 60 + 45; // 10:45 AM
+    const morningClosed = 11 * 60; // 11:00 AM
+    const afternoonOpening = 16 * 60 + 30; // 4:30 PM
+    const eveningClosingSoon = 20 * 60 + 45; // 8:45 PM
+    const eveningClosed = 21 * 60; // 9:00 PM
+    const eod = 23 * 60 + 45; // 11:45 PM
+    // const nextMorningOpening = 5 * 60 + 30; // 5:30 AM
 
-      // Clear message on Sundays and Saturday evening after closing
-      if (day === 0 || (day === 6 && time >= eveningClosed)) {
-        setCurrentMessage("");
-        return;
-      }
+    // Clear message on Sundays and Saturday evening after closing
+    if (day === 0 || (day === 6 && time >= eveningClosed)) {
+      setCurrentMessage("");
+      return;
+    }
 
-      // Logic to hide the message between 11:30 PM and 10:45 AM
-      if (
-        (time >= nightClosed && time <= nightClosed) ||
-        (time < morningClosingSoon && time >= morningClosed)
-      ) {
-        setCurrentMessage("");
-        return;
-      }
+    // Logic to hide the message between 11:30 PM and 10:45 AM
+    if (
+      (time >= eod && time <= eod) ||
+      (time < morningClosingSoon && time >= morningClosed)
+    ) {
+      setCurrentMessage("");
+      return;
+    }
 
-      if (shopStatus) {
-        if (time >= morningClosingSoon || time >= eveningClosingSoon) {
-          setCurrentMessage("We are closing soon..!");
-        } else {
-          setCurrentMessage("");
-        }
+    if (shopStatus) {
+      // Shop is open
+      if (time >= morningClosingSoon && time < morningClosed) {
+        setCurrentMessage("We are closing soon..!");
+      } else if (time >= eveningClosingSoon && time < eveningClosed) {
+        setCurrentMessage("We are closing soon..!");
       } else {
-        if (time >= morningClosed && time < afternoonOpening) {
-          setCurrentMessage("Visit us back at 4:30 PM.");
-        } else if (time >= eveningClosed && time < nightClosed) {
-          setCurrentMessage("Visit us tomorrow by 5:30 AM.");
-        } else {
-          setCurrentMessage("");
-        }
+        setCurrentMessage(""); // Display nothing if open and not in specified ranges
       }
-    };
+    } else {
+      // Shop is closed
+      if (time >= morningClosed && time < afternoonOpening) {
+        setCurrentMessage("Shop opens at 4:30 PM.");
+      } else if (time >= eveningClosed && time < eod) {
+        setCurrentMessage("Shop opens at 5:30 AM.");
+      } else {
+        setCurrentMessage(""); // Hide message after EOD
+      }
+    }
+  };
 
+  useEffect(() => {
     // Check the time immediately and set an interval to update every minute
     checkTimeStatus();
+
+    const testCheckTimeStatus = () => {
+      const testCases = [
+        {
+          shopStatus: true,
+          date: "2024-12-22T10:45:00",
+          expected: "We are closing soon..!",
+        },
+        {
+          shopStatus: false,
+          date: "2024-12-22T11:15:00",
+          expected: "Shop opens at 4:30 PM.",
+        },
+        {
+          shopStatus: true,
+          date: "2024-12-22T20:45:00",
+          expected: "We are closing soon..!",
+        },
+        {
+          shopStatus: false,
+          date: "2024-12-22T21:15:00",
+          expected: "Shop opens at 5:30 AM.",
+        },
+        { shopStatus: true, date: "2024-12-22T14:00:00", expected: "" },
+        { shopStatus: false, date: "2024-12-22T23:50:00", expected: "" },
+        { shopStatus: true, date: "2024-12-22T12:00:00", expected: "" },
+      ];
+
+      testCases.forEach(({ shopStatus, date, expected }) => {
+        const result = checkTimeStatus(shopStatus, new Date(date));
+        console.log(
+          `Test for ${date}:`,
+          result === expected
+            ? "Passed"
+            : `Failed (Expected: ${expected}, Got: ${result})`
+        );
+      });
+    };
+
+    testCheckTimeStatus();
+
     const timer = setInterval(checkTimeStatus, 60000);
 
     return () => clearInterval(timer);
   }, [shopStatus]);
-
-  useEffect(() => {
-    const checkTimeStatus = () => {
-      const now = new Date();
-      const hours = now.getHours();
-      const minutes = now.getMinutes();
-      const day = now.getDay(); // Sunday is 0
-      const time = hours * 60 + minutes;
-
-      // Define time intervals
-      const morningClosingSoon = 10 * 60 + 45; // 10:45 AM
-      const morningClosed = 11 * 60; // 11:00 AM
-      const afternoonOpening = 16 * 60 + 30; // 4:30 PM
-      const eveningClosingSoon = 20 * 60 + 45; // 8:45 PM
-      const eveningClosed = 21 * 60; // 9:00 PM
-      const nightClosed = 23 * 60 + 30; // 11:30 PM
-      // const nextMorningOpening = 5 * 60 + 30; // 5:30 AM
-
-      // Clear message on Sundays and Saturday evening after closing
-      if (day === 0 || (day === 6 && time >= eveningClosed)) {
-        setCurrentMessage("");
-        return;
-      }
-
-      // Logic to hide the message between 11:30 PM and 10:45 AM
-      if (time >= nightClosed || time < morningClosingSoon) {
-        setCurrentMessage("");
-        return;
-      }
-
-      if (shopStatus) {
-        if (time >= morningClosingSoon || time >= eveningClosingSoon) {
-          setCurrentMessage("We are closing soon..!");
-        } else {
-          setCurrentMessage("");
-        }
-      } else {
-        if (time >= morningClosed && time < afternoonOpening) {
-          setCurrentMessage("We are open back at 4:30 PM.");
-        } else if (time >= eveningClosed && time < nightClosed) {
-          setCurrentMessage("We are open tomorrow by 5:30 AM.");
-        } else {
-          setCurrentMessage("");
-        }
-      }
-    };
-
-    // Check the time immediately and set an interval to update every minute
-    checkTimeStatus();
-    const timer = setInterval(checkTimeStatus, 60000);
-
-    return () => clearInterval(timer);
-  }, []);
 
   return (
     <main id="Landing" className="App">
@@ -215,9 +214,7 @@ const Landing = () => {
             )}
           </>
         ) : (
-          <div className={`status-message ${"warning"}`}>
-            It's Holiday Time.
-          </div>
+          <div className={`status-message ${"warning"}`}>{holidayTxt}</div>
         )}
 
         <div className="call-us-container">
@@ -230,21 +227,25 @@ const Landing = () => {
         </div>
 
         {/* Notice Board Section */}
-        {noticeBoardTxt &&
-          typeof noticeBoardTxt === "string" &&
-          noticeBoardTxt.trim() !== "" && (
-            <div className="notice-board-container">
-              <h3 className="josefin-sans-text notice-board-title">
-                Notice Board
-              </h3>
-              <p
-                style={{ whiteSpace: "pre-wrap" }}
-                className="notice-board-message"
-              >
-                {noticeBoardTxt}
-              </p>
-            </div>
-          )}
+        {noticeBoard && (
+          <>
+            {noticeBoardTxt &&
+              typeof noticeBoardTxt === "string" &&
+              noticeBoardTxt.trim() !== "" && (
+                <div className="notice-board-container">
+                  <h3 className="josefin-sans-text notice-board-title">
+                    Notice Board
+                  </h3>
+                  <p
+                    style={{ whiteSpace: "pre-wrap" }}
+                    className="notice-board-message"
+                  >
+                    {noticeBoardTxt}
+                  </p>
+                </div>
+              )}
+          </>
+        )}
 
         <div className="working-hours">
           <h2>Working Hours</h2>

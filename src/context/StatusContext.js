@@ -9,6 +9,8 @@ export const ShopStatusProvider = ({ children }) => {
   const [shopStatus, setShopStatus] = useState(false);
   const [cooking, setCooking] = useState(false);
   const [holiday, setHoliday] = useState(false);
+  const [noticeBoard, setNoticeBoard] = useState(false);
+  const [holidayTxt, setHolidayTxt] = useState(false);
   const [noticeBoardTxt, setNoticeBoardTxt] = useState("");
   const [socket, setSocket] = useState(null);
 
@@ -35,6 +37,14 @@ export const ShopStatusProvider = ({ children }) => {
 
       if (data.holiday !== undefined) {
         setHoliday(data.holiday);
+      }
+
+      if (data.holidayTxt !== undefined) {
+        setHolidayTxt(data.holidayTxt);
+      }
+
+      if (data.noticeBoard !== undefined) {
+        setNoticeBoard(data.noticeBoard);
       }
 
       if (data.noticeBoardTxt !== undefined) {
@@ -95,6 +105,29 @@ export const ShopStatusProvider = ({ children }) => {
     }
   };
 
+  const updateHolidayTxtStatus = (status) => {
+    if (shopStatus) {
+      alert("Cannot set holiday txt while the shop is open/cooking.");
+      return;
+    } else if (cooking) {
+      alert("Cannot set holiday txt while the shop is open/cooking.");
+      return;
+    }
+    setHolidayTxt(status);
+    if (socket) {
+      console.log("Emitting shopStatus:", status);
+      socket.emit("statusChange", { holidayTxt: status });
+    }
+  };
+
+  const updateNoticeStatus = (status) => {
+    setNoticeBoard(status);
+    if (socket) {
+      console.log("Emitting Notice Board Status:", status);
+      socket.emit("statusChange", { noticeBoard: status });
+    }
+  };
+
   const updateNoticeBoardStatus = (status) => {
     if (noticeBoardTxt) {
       console.log("Notice Board Text can't be empty");
@@ -118,6 +151,10 @@ export const ShopStatusProvider = ({ children }) => {
         setHoliday: updateHolidayStatus,
         noticeBoardTxt,
         setNoticeBoardTxt: updateNoticeBoardStatus,
+        noticeBoard,
+        setNoticeBoard: updateNoticeStatus,
+        holidayTxt,
+        setHolidayTxt: updateHolidayTxtStatus,
       }}
     >
       {children}

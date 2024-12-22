@@ -200,7 +200,6 @@
   width: 150px;
   border-radius: 50%;
   object-fit: cover;
-  margin-bottom: 7px;
   border: 3px solid #4682b4;
 }
 
@@ -292,7 +291,7 @@
   justify-content: center;
   align-items: center;
   gap: 0.8rem;
-  margin: 1rem 0;
+  margin: 0.8rem 0;
 }
 
 /* General Switch Container */
@@ -508,7 +507,7 @@
 }
 
 .address-container {
-  height: 15vh;
+  height: 18vh;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
@@ -525,7 +524,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 12px 0;
+  margin: 10px 0;
   gap: 15px;
   background-color: transparent;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
@@ -569,17 +568,15 @@
 }
 
 .notice-board-container {
+  width: 100%; /* Make it occupy the full width */
   padding: 1.5rem;
   margin: 1.5rem 0;
-  border: 5px solid #8b4513;
+  border: 3px solid #8b4513;
   border-radius: 10px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
   text-align: center;
   position: relative;
-  max-width: 95%;
-  height: auto;
-  margin-left: auto;
-  margin-right: auto;
+  background-color: #fff;
 }
 
 .notice-board-title {
@@ -594,27 +591,15 @@
   font-family: "Quicksand", sans-serif;
   font-size: 1.2rem;
   color: #333;
-  padding: 1.5rem;
+  padding: 1rem;
   background: #fff;
-  border: 2px dashed #daa520;
+  width: 100%;
+  height: auto;
   border-radius: 8px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
   position: relative;
   display: inline-block;
   margin-top: 0.5rem;
-}
-
-.notice-board-message::before {
-  content: "";
-  position: absolute;
-  width: 15px;
-  height: 15px;
-  background: #daa520;
-  border-radius: 50%;
-  top: -10px;
-  left: 50%;
-  transform: translateX(-50%);
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
 /* Extra Small Mobile Devices (Portrait) */
@@ -713,7 +698,7 @@
   }
 
   .address-body {
-    font-size: 0.9rem;
+    font-size: 0.8rem;
   }
 
   .custom-google-reviews-widget {
