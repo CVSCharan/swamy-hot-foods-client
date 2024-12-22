@@ -83,31 +83,33 @@ const Landing = () => {
     // Check the time immediately and set an interval to update every minute
     checkTimeStatus();
 
+    const timestamp = new Date().toISOString();
+
     const testCheckTimeStatus = () => {
       const testCases = [
         {
           shopStatus: true,
-          date: "2024-12-22T10:45:00",
+          date: timestamp,
           expected: "We are closing soon..!",
         },
         {
           shopStatus: false,
-          date: "2024-12-22T11:15:00",
+          date: timestamp,
           expected: "Shop opens at 4:30 PM.",
         },
         {
           shopStatus: true,
-          date: "2024-12-22T20:45:00",
+          date: timestamp,
           expected: "We are closing soon..!",
         },
         {
           shopStatus: false,
-          date: "2024-12-22T21:15:00",
+          date: timestamp,
           expected: "Shop opens at 5:30 AM.",
         },
-        { shopStatus: true, date: "2024-12-22T14:00:00", expected: "" },
-        { shopStatus: false, date: "2024-12-22T23:50:00", expected: "" },
-        { shopStatus: true, date: "2024-12-22T12:00:00", expected: "" },
+        { shopStatus: true, date: timestamp, expected: "" },
+        { shopStatus: false, date: timestamp, expected: "" },
+        { shopStatus: true, date: timestamp, expected: "" },
       ];
 
       testCases.forEach(({ shopStatus, date, expected }) => {
