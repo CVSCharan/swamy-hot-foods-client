@@ -19,5 +19,9 @@ export const Typewriter = ({ text, noticeBoard }) => {
     return () => clearInterval(timer);
   }, [text, index, noticeBoard]);
 
-  return <div>{displayedText}</div>;
+  return (
+    <p style={{ whiteSpace: "pre-wrap" }} className="notice-board-message">
+      {displayedText}
+    </p>
+  );
 };

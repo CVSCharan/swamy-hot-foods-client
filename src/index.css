@@ -602,6 +602,10 @@
   margin-top: 0.5rem;
 }
 
+.MuiButtonBase-root svg {
+  fill: white !important;
+}
+
 /* Extra Small Mobile Devices (Portrait) */
 /* iPhone SE, older Android phones */
 @media only screen and (max-width: 320px) {

@@ -31,6 +31,47 @@ const Landing = () => {
     console.log(noticeBoardTxt);
   }, [noticeBoardTxt]);
 
+  const checkTimeStatus = () => {
+    const now = new Date();
+    const hours = now.getHours();
+    const minutes = now.getMinutes();
+    const time = hours * 60 + minutes; // Current time in minutes
+    const day = now.getDay(); // Sunday is 0
+
+    // Define time intervals
+    const morningClosingSoon = 10 * 60 + 45; // 10:45 AM
+    const morningClosed = 11 * 60; // 11:00 AM
+    const afternoonOpening = 16 * 60 + 30; // 4:30 PM
+    const eveningClosingSoon = 20 * 60 + 45; // 8:45 PM
+    const eveningClosed = 21 * 60; // 9:00 PM
+    const eod = 23 * 60 + 45; // 11:45 PM
+
+    // Clear message on Sundays and Saturday evening after closing
+    if (day === 0 || (day === 6 && time >= eveningClosed)) {
+      setCurrentMessage("");
+      return;
+    }
+
+    if (time >= eod && time < morningClosingSoon) {
+      setCurrentMessage("");
+      return;
+    }
+
+    if (shopStatus) {
+      if (time >= morningClosingSoon) {
+        setCurrentMessage("We are Closing soon..!");
+      } else if (time >= eveningClosingSoon) {
+        setCurrentMessage("We are Closing soon..!");
+      }
+    } else {
+      if (time >= morningClosed) {
+        setCurrentMessage("Shop opens at 4:30 P.M.");
+      } else if (time >= eveningClosed) {
+        setCurrentMessage("Shop opens at 5:30 A.M.");
+      }
+    }
+  };
+
   return (
     <main id="Landing" className="App">
       <Helmet>
@@ -43,7 +84,50 @@ const Landing = () => {
           name="keywords"
           content="Swamy's Hot Foods, vegetarian restaurant, Nellore food, pure veg, restaurant near Nellore railway station"
         />
+        <meta property="og:title" content="Swamy's Hot Foods" />
+        <meta
+          property="og:description"
+          content="Delicious pure vegetarian food in Nellore. Visit us today!"
+        />
+        <meta property="og:image" content="/images/restaurant-image.jpg" />
+        <meta property="og:url" content="https://swamyshotfoods.shop" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Swamy's Hot Foods" />
+        <meta
+          name="twitter:description"
+          content="A top-rated vegetarian restaurant in Nellore."
+        />
+        <meta name="twitter:image" content="/images/restaurant-image.jpg" />
+        <meta name="robots" content="index, follow" />
         <link rel="canonical" href="https://swamyshotfoods.shop" />
+
+        {/* Structured Data */}
+        <script type="application/ld+json">
+          {`
+            {
+              "@context": "https://schema.org",
+              "@type": "Restaurant",
+              "name": "Swamy's Hot Foods",
+              "image": "/images/restaurant-image.jpg",
+              "address": {
+                "@type": "PostalAddress",
+                "streetAddress": "7-1-931, Opp. road of Nellore railway station west entrance",
+                "addressLocality": "Nellore",
+                "addressRegion": "Andhra Pradesh",
+                "postalCode": "524001",
+                "addressCountry": "IN"
+              },
+              "telephone": "+91 9642415385",
+              "url": "https://swamyshotfoods.shop",
+              "openingHours": "Mo-Sa 05:30-11:00, Mo-Sa 16:30-21:00",
+              "image": "https://swamyshotfoods.shop/images/restaurant-image.jpg",
+              "sameAs": [
+                "https://www.facebook.com/swamys.hotfoods",
+                "https://www.instagram.com/swamys.hotfoods"
+              ]
+            }
+          `}
+        </script>
       </Helmet>
 
       <div className="landing-container-one">
@@ -139,15 +223,8 @@ const Landing = () => {
                   <h3 className="josefin-sans-text notice-board-title">
                     Notice Board
                   </h3>
-                  <p
-                    style={{ whiteSpace: "pre-wrap" }}
-                    className="notice-board-message"
-                  >
-                    <Typewriter
-                      text={noticeBoardTxt}
-                      noticeBoard={noticeBoard}
-                    />
-                  </p>
+
+                  <Typewriter text={noticeBoardTxt} noticeBoard={noticeBoard} />
                 </div>
               )}
           </>
@@ -186,6 +263,7 @@ const Landing = () => {
       <div className="landing-container-two">
         <GoogleReviews />
       </div>
+
       <Fab
         color="success"
         aria-label="chat"
@@ -195,12 +273,10 @@ const Landing = () => {
           bottom: "20px",
           right: "20px",
           backgroundColor: "#25D366",
+          color: "white",
         }}
       >
-        <WhatsAppIcon
-          sx={{ color: "white" }}
-          style={{ color: "#fff", fontSize: "2rem" }}
-        />
+        <WhatsAppIcon style={{ fontSize: "2rem" }} />
       </Fab>
       <Footer />
     </main>
