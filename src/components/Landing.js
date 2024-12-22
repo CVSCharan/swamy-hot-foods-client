@@ -27,6 +27,48 @@ const Landing = () => {
     window.open("https://wa.me/919642415385", "_blank");
   };
 
+  const timestamp = new Date().toISOString();
+
+  const testCheckTimeStatus = () => {
+    const testCases = [
+      {
+        shopStatus: true,
+        date: timestamp,
+        expected: "We are closing soon..!",
+      },
+      {
+        shopStatus: false,
+        date: timestamp,
+        expected: "Shop opens at 4:30 PM.",
+      },
+      {
+        shopStatus: true,
+        date: timestamp,
+        expected: "We are closing soon..!",
+      },
+      {
+        shopStatus: false,
+        date: timestamp,
+        expected: "Shop opens at 5:30 AM.",
+      },
+      { shopStatus: true, date: timestamp, expected: "" },
+      { shopStatus: false, date: timestamp, expected: "" },
+      { shopStatus: true, date: timestamp, expected: "" },
+    ];
+
+    testCases.forEach(({ shopStatus, date, expected }) => {
+      const result = checkTimeStatus(shopStatus, new Date(date));
+      console.log(
+        `Test for ${date}:`,
+        result === expected
+          ? "Passed"
+          : `Failed (Expected: ${expected}, Got: ${result})`
+      );
+    });
+  };
+
+  testCheckTimeStatus();
+
   const checkTimeStatus = () => {
     const now = new Date();
     const hours = now.getHours();
@@ -82,48 +124,6 @@ const Landing = () => {
   useEffect(() => {
     // Check the time immediately and set an interval to update every minute
     checkTimeStatus();
-
-    const timestamp = new Date().toISOString();
-
-    const testCheckTimeStatus = () => {
-      const testCases = [
-        {
-          shopStatus: true,
-          date: timestamp,
-          expected: "We are closing soon..!",
-        },
-        {
-          shopStatus: false,
-          date: timestamp,
-          expected: "Shop opens at 4:30 PM.",
-        },
-        {
-          shopStatus: true,
-          date: timestamp,
-          expected: "We are closing soon..!",
-        },
-        {
-          shopStatus: false,
-          date: timestamp,
-          expected: "Shop opens at 5:30 AM.",
-        },
-        { shopStatus: true, date: timestamp, expected: "" },
-        { shopStatus: false, date: timestamp, expected: "" },
-        { shopStatus: true, date: timestamp, expected: "" },
-      ];
-
-      testCases.forEach(({ shopStatus, date, expected }) => {
-        const result = checkTimeStatus(shopStatus, new Date(date));
-        console.log(
-          `Test for ${date}:`,
-          result === expected
-            ? "Passed"
-            : `Failed (Expected: ${expected}, Got: ${result})`
-        );
-      });
-    };
-
-    testCheckTimeStatus();
 
     const timer = setInterval(checkTimeStatus, 60000);
 
