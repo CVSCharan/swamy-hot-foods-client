@@ -136,8 +136,8 @@ const Landing = () => {
   }, []);
 
   useEffect(() => {
-    console.log(noticeBoardText);
-  }, [noticeBoardText]);
+    console.log(noticeBoardTxt);
+  }, [noticeBoardTxt]);
 
   return (
     <main id="Landing" className="App">
