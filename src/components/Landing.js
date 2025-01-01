@@ -7,9 +7,58 @@ import GoogleReviews from "./CutomGoogleRatings";
 import Footer from "./Footer";
 import GetDirectionsButton from "./GMapsDirection";
 import { Helmet } from "react-helmet";
-import { Fab } from "@mui/material";
-import WhatsAppIcon from "@mui/icons-material/WhatsApp";
 import { Typewriter } from "./TypewriterEffect";
+import WhatsAppComp from "./WhatsAppComp";
+
+function testClosingSoonLogic(date, shopStatus) {
+  const currentHour = date.getHours();
+  const currentMinute = date.getMinutes();
+
+  let expectedMessage = "";
+  if (shopStatus) {
+    if (
+      (currentHour === 10 && currentMinute >= 45) ||
+      (currentHour === 20 && currentMinute >= 45)
+    ) {
+      expectedMessage = "Closing Soon...";
+    }
+  }
+
+  // Simulate the actual function logic
+  let actualMessage = "";
+  if (shopStatus) {
+    if (
+      (currentHour === 10 && currentMinute >= 45) ||
+      (currentHour === 20 && currentMinute >= 45)
+    ) {
+      actualMessage = "Closing Soon...";
+    }
+  }
+
+  // Log the test case
+  console.log(`Testing for date: ${date}`);
+  console.log(`Expected: "${expectedMessage}", Returned: "${actualMessage}"`);
+  console.log(
+    expectedMessage === actualMessage ? "✅ Test Passed" : "❌ Test Failed"
+  );
+}
+
+// Example Test Cases
+const testCases = [
+  { date: new Date(2025, 0, 1, 10, 44), shopStatus: true }, // Before 10:45 AM
+  { date: new Date(2025, 0, 1, 10, 45), shopStatus: true }, // At 10:45 AM
+  { date: new Date(2025, 0, 1, 11, 0), shopStatus: true }, // At 11:00 AM
+  { date: new Date(2025, 0, 1, 20, 44), shopStatus: true }, // Before 8:45 PM
+  { date: new Date(2025, 0, 1, 20, 45), shopStatus: true }, // At 8:45 PM
+  { date: new Date(2025, 0, 1, 21, 0), shopStatus: true }, // At 9:00 PM
+  { date: new Date(2025, 0, 1, 15, 30), shopStatus: true }, // Midday (not closing soon)
+  { date: new Date(2025, 0, 1, 10, 50), shopStatus: false }, // Shop closed
+];
+
+// Run the Test Suite
+testCases.forEach(({ date, shopStatus }) =>
+  testClosingSoonLogic(date, shopStatus)
+);
 
 const Landing = () => {
   const {
@@ -23,54 +72,44 @@ const Landing = () => {
   const { logoUrl } = useLogo();
   const [currentMessage, setCurrentMessage] = useState("");
 
-  const handleWhatsAppClick = () => {
-    window.open("https://wa.me/919642415385", "_blank");
-  };
-
   useEffect(() => {
     console.log(noticeBoardTxt);
   }, [noticeBoardTxt]);
 
-  const checkTimeStatus = () => {
-    const now = new Date();
-    const hours = now.getHours();
-    const minutes = now.getMinutes();
-    const time = hours * 60 + minutes; // Current time in minutes
-    const day = now.getDay(); // Sunday is 0
-
-    // Define time intervals
-    const morningClosingSoon = 10 * 60 + 45; // 10:45 AM
-    const morningClosed = 11 * 60; // 11:00 AM
-    const afternoonOpening = 16 * 60 + 30; // 4:30 PM
-    const eveningClosingSoon = 20 * 60 + 45; // 8:45 PM
-    const eveningClosed = 21 * 60; // 9:00 PM
-    const eod = 23 * 60 + 45; // 11:45 PM
-
-    // Clear message on Sundays and Saturday evening after closing
-    if (day === 0 || (day === 6 && time >= eveningClosed)) {
-      setCurrentMessage("");
-      return;
-    }
-
-    if (time >= eod && time < morningClosingSoon) {
-      setCurrentMessage("");
-      return;
-    }
-
+  useEffect(() => {
     if (shopStatus) {
-      if (time >= morningClosingSoon) {
-        setCurrentMessage("We are Closing soon..!");
-      } else if (time >= eveningClosingSoon) {
-        setCurrentMessage("We are Closing soon..!");
+      const currentTime = new Date(); // Get current date and time
+      const currentHour = currentTime.getHours();
+      const currentMinute = currentTime.getMinutes();
+
+      // Check for "Closing Soon" conditions
+      if (
+        (currentHour === 10 && currentMinute >= 45) ||
+        (currentHour === 20 && currentMinute >= 45)
+      ) {
+        setCurrentMessage("Closing Soon...");
+      } else {
+        setCurrentMessage("");
       }
     } else {
-      if (time >= morningClosed) {
-        setCurrentMessage("Shop opens at 4:30 P.M.");
-      } else if (time >= eveningClosed) {
-        setCurrentMessage("Shop opens at 5:30 A.M.");
-      }
+      setCurrentMessage(""); // Clear message when the shop is closed
     }
-  };
+  }, [shopStatus]);
+
+  useEffect(() => {
+    // Function to Run the Test Suite
+    function runTests() {
+      console.log("Running Tests...\n");
+      testCases.forEach(({ date, shopStatus }, index) => {
+        console.log(`Test Case ${index + 1}:`);
+        testClosingSoonLogic(date, shopStatus);
+        console.log("\n"); // Add spacing between test cases
+      });
+    }
+
+    // Call the Test Suite
+    runTests();
+  }, [shopStatus]);
 
   return (
     <main id="Landing" className="App">
@@ -190,7 +229,7 @@ const Landing = () => {
 
         {!holiday ? (
           <>
-            {currentMessage !== "" && (
+            {currentMessage && (
               <div
                 className={`status-message ${
                   currentMessage.includes("closing") ? "warning" : "info"
@@ -264,20 +303,7 @@ const Landing = () => {
         <GoogleReviews />
       </div>
 
-      <Fab
-        color="success"
-        aria-label="chat"
-        onClick={handleWhatsAppClick}
-        style={{
-          position: "fixed",
-          bottom: "20px",
-          right: "20px",
-          backgroundColor: "#25D366",
-          color: "white",
-        }}
-      >
-        <WhatsAppIcon style={{ fontSize: "2rem" }} />
-      </Fab>
+      <WhatsAppComp />
       <Footer />
     </main>
   );

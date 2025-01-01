@@ -1,5 +1,8 @@
+// jest.config.js
 module.exports = {
-  transform: {
-    "^.+\\.[t|j]sx?$": "babel-jest",
+  testEnvironment: "jsdom", // or 'node' if you're not testing UI
+  setupFilesAfterEnv: ["<rootDir>/src/setupTests.js"], // Optional setup file
+  moduleNameMapper: {
+    "^@/(.*)$": "<rootDir>/src/$1", // For absolute imports
   },
 };
