@@ -77,23 +77,34 @@ const Landing = () => {
   }, [noticeBoardTxt]);
 
   useEffect(() => {
-    if (shopStatus) {
+    const updateClosingSoonMessage = () => {
       const currentTime = new Date(); // Get current date and time
       const currentHour = currentTime.getHours();
       const currentMinute = currentTime.getMinutes();
 
-      // Check for "Closing Soon" conditions
-      if (
-        (currentHour === 10 && currentMinute >= 45) ||
-        (currentHour === 20 && currentMinute >= 45)
-      ) {
-        setCurrentMessage("Closing Soon...");
+      if (shopStatus) {
+        // Check for "Closing Soon" conditions
+        if (
+          (currentHour === 10 && currentMinute >= 45) ||
+          (currentHour === 20 && currentMinute >= 45)
+        ) {
+          setCurrentMessage("We are Closing Soon..!");
+        } else {
+          setCurrentMessage(""); // Clear message if conditions are not met
+        }
       } else {
-        setCurrentMessage("");
+        setCurrentMessage(""); // Clear message when the shop is closed
       }
-    } else {
-      setCurrentMessage(""); // Clear message when the shop is closed
-    }
+    };
+
+    // Update message immediately on shop status or time changes
+    updateClosingSoonMessage();
+
+    // Set an interval to check every minute
+    const interval = setInterval(updateClosingSoonMessage, 60000);
+
+    // Clear interval on cleanup
+    return () => clearInterval(interval);
   }, [shopStatus]);
 
   useEffect(() => {
