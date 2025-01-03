@@ -553,6 +553,20 @@
   font-family: "Josefin Sans", sans-serif;
 }
 
+.blinking-effect {
+  animation: blink 5.5s linear infinite; /* Blinking animation */
+}
+
+@keyframes blink {
+  0%,
+  100% {
+    opacity: 1; /* Fully visible */
+  }
+  50% {
+    opacity: 0.2; /* Invisible at midpoint */
+  }
+}
+
 /* Warning style for "We are closing soon!" */
 .status-message.warning {
   background-color: #fff3cd; /* Light yellow */
