@@ -554,7 +554,7 @@
 }
 
 .blinking-effect {
-  animation: blink 5.5s linear infinite; /* Blinking animation */
+  animation: blink 3.5s linear infinite; /* Blinking animation */
 }
 
 @keyframes blink {
@@ -576,8 +576,8 @@
 
 /* Info style for "Visit us back..." */
 .status-message.info {
-  background-color: #d9edf7; /* Light blue */
-  color: #31708f; /* Dark blue */
+  background-color: #74a4bd; /* Light blue */
+  color: #1d3f50; /* Dark blue */
   border: 1px solid #bce8f1;
 }
 
