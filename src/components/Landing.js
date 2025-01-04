@@ -10,56 +10,6 @@ import { Helmet } from "react-helmet";
 import { Typewriter } from "./TypewriterEffect";
 import WhatsAppComp from "./WhatsAppComp";
 
-function testClosingSoonLogic(date, shopStatus) {
-  const currentHour = date.getHours();
-  const currentMinute = date.getMinutes();
-
-  let expectedMessage = "";
-  if (shopStatus) {
-    if (
-      (currentHour === 10 && currentMinute >= 45) ||
-      (currentHour === 20 && currentMinute >= 45)
-    ) {
-      expectedMessage = "Closing Soon...";
-    }
-  }
-
-  // Simulate the actual function logic
-  let actualMessage = "";
-  if (shopStatus) {
-    if (
-      (currentHour === 10 && currentMinute >= 45) ||
-      (currentHour === 20 && currentMinute >= 45)
-    ) {
-      actualMessage = "Closing Soon...";
-    }
-  }
-
-  // Log the test case
-  console.log(`Testing for date: ${date}`);
-  console.log(`Expected: "${expectedMessage}", Returned: "${actualMessage}"`);
-  console.log(
-    expectedMessage === actualMessage ? "✅ Test Passed" : "❌ Test Failed"
-  );
-}
-
-// Example Test Cases
-const testCases = [
-  { date: new Date(2025, 0, 1, 10, 44), shopStatus: true }, // Before 10:45 AM
-  { date: new Date(2025, 0, 1, 10, 45), shopStatus: true }, // At 10:45 AM
-  { date: new Date(2025, 0, 1, 11, 0), shopStatus: true }, // At 11:00 AM
-  { date: new Date(2025, 0, 1, 20, 44), shopStatus: true }, // Before 8:45 PM
-  { date: new Date(2025, 0, 1, 20, 45), shopStatus: true }, // At 8:45 PM
-  { date: new Date(2025, 0, 1, 21, 0), shopStatus: true }, // At 9:00 PM
-  { date: new Date(2025, 0, 1, 15, 30), shopStatus: true }, // Midday (not closing soon)
-  { date: new Date(2025, 0, 1, 10, 50), shopStatus: false }, // Shop closed
-];
-
-// Run the Test Suite
-testCases.forEach(({ date, shopStatus }) =>
-  testClosingSoonLogic(date, shopStatus)
-);
-
 const Landing = () => {
   const {
     shopStatus,
@@ -68,59 +18,13 @@ const Landing = () => {
     holidayTxt,
     noticeBoard,
     noticeBoardTxt,
+    currentStatusMsg,
   } = useShopStatus();
   const { logoUrl } = useLogo();
-  const [currentMessage, setCurrentMessage] = useState("");
 
   useEffect(() => {
     console.log(noticeBoardTxt);
   }, [noticeBoardTxt]);
-
-  useEffect(() => {
-    const updateClosingSoonMessage = () => {
-      const currentTime = new Date(); // Get current date and time
-      const currentHour = currentTime.getHours();
-      const currentMinute = currentTime.getMinutes();
-
-      if (shopStatus) {
-        // Check for "Closing Soon" conditions
-        if (
-          (currentHour === 10 && currentMinute >= 45) ||
-          (currentHour === 20 && currentMinute >= 45)
-        ) {
-          setCurrentMessage("We are Closing Soon..!");
-        } else {
-          setCurrentMessage(""); // Clear message if conditions are not met
-        }
-      } else {
-        setCurrentMessage(""); // Clear message when the shop is closed
-      }
-    };
-
-    // Update message immediately on shop status or time changes
-    updateClosingSoonMessage();
-
-    // Set an interval to check every minute
-    const interval = setInterval(updateClosingSoonMessage, 60000);
-
-    // Clear interval on cleanup
-    return () => clearInterval(interval);
-  }, [shopStatus]);
-
-  useEffect(() => {
-    // Function to Run the Test Suite
-    function runTests() {
-      console.log("Running Tests...\n");
-      testCases.forEach(({ date, shopStatus }, index) => {
-        console.log(`Test Case ${index + 1}:`);
-        testClosingSoonLogic(date, shopStatus);
-        console.log("\n"); // Add spacing between test cases
-      });
-    }
-
-    // Call the Test Suite
-    runTests();
-  }, [shopStatus]);
 
   return (
     <main id="Landing" className="App">
@@ -240,13 +144,13 @@ const Landing = () => {
 
         {!holiday ? (
           <>
-            {currentMessage && (
+            {currentStatusMsg && (
               <div
                 className={`blinking-effect status-message ${
-                  currentMessage.includes("closing") ? "warning" : "info"
+                  currentStatusMsg.includes("closing") ? "warning" : "info"
                 }`}
               >
-                {currentMessage}
+                {currentStatusMsg}
               </div>
             )}
           </>

@@ -13,6 +13,7 @@ export const ShopStatusProvider = ({ children }) => {
   const [holidayTxt, setHolidayTxt] = useState(false);
   const [noticeBoardTxt, setNoticeBoardTxt] = useState("");
   const [socket, setSocket] = useState(null);
+  const [currentStatusMsg, setCurrentStatusMsg] = useState("");
 
   // Create Socket.io connection on mount
   useEffect(() => {
@@ -49,6 +50,10 @@ export const ShopStatusProvider = ({ children }) => {
 
       if (data.noticeBoardTxt !== undefined) {
         setNoticeBoardTxt(data.noticeBoardTxt);
+      }
+
+      if (data.currentStatusMsg !== undefined) {
+        setCurrentStatusMsg(data.currentStatusMsg);
       }
     });
 
@@ -155,6 +160,7 @@ export const ShopStatusProvider = ({ children }) => {
         setNoticeBoard: updateNoticeStatus,
         holidayTxt,
         setHolidayTxt: updateHolidayTxtStatus,
+        currentStatusMsg,
       }}
     >
       {children}
