@@ -554,7 +554,7 @@
 }
 
 .blinking-effect {
-  animation: blink 3.5s linear infinite; /* Blinking animation */
+  animation: blink 2.2s linear infinite; /* Blinking animation */
 }
 
 @keyframes blink {
