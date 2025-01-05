@@ -146,8 +146,10 @@ const Landing = () => {
           <>
             {currentStatusMsg && (
               <div
-                className={`blinking-effect status-message ${
-                  currentStatusMsg.includes("Closing") ? "warning" : "info"
+                className={`status-message ${
+                  currentStatusMsg.includes("Closing")
+                    ? "blinking-effect  warning"
+                    : "info"
                 }`}
               >
                 {currentStatusMsg}
