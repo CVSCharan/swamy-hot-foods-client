@@ -9,6 +9,8 @@ import GetDirectionsButton from "./GMapsDirection";
 import { Helmet } from "react-helmet";
 import { Typewriter } from "./TypewriterEffect";
 import WhatsAppComp from "./WhatsAppComp";
+import RestaurantMenuOutlinedIcon from "@mui/icons-material/RestaurantMenuOutlined";
+import { Link } from "react-router-dom";
 
 const Landing = () => {
   const {
@@ -167,6 +169,12 @@ const Landing = () => {
           >
             <i className="fa-solid fa-phone"></i> +91 9642415385
           </a>
+          <Link
+            to="/menu"
+            className="josefin-sans-text call-us-button"
+          >
+            <RestaurantMenuOutlinedIcon /> Menu
+          </Link>
         </div>
 
         {/* Notice Board Section */}
