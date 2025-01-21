@@ -8,17 +8,18 @@ const MenuPage = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [shopDescription, setShopDescription] = useState("");
+  const [expandedIngredients, setExpandedIngredients] = useState({});
 
   useEffect(() => {
     const fetchMenuItems = async () => {
       try {
         const response = await fetch(
           `${process.env.REACT_APP_BASE_URL}/api/menu`
-        ); // Replace with your API URL
+        );
         if (!response.ok) throw new Error("Failed to fetch menu items");
         const data = await response.json();
 
-        // Sort items based on priority (assuming lower priority number is higher importance)
+        // Sort items based on priority (lower priority number = higher importance)
         const sortedMenuItems = data.sort((a, b) => a.priority - b.priority);
 
         setMenuItems(sortedMenuItems);
@@ -37,7 +38,7 @@ const MenuPage = () => {
       try {
         const response = await fetch(
           `${process.env.REACT_APP_BASE_URL}/api/shop/desc`
-        ); // Replace with your API URL
+        );
         if (!response.ok) throw new Error("Failed to fetch shop description");
         const data = await response.json();
         setShopDescription(data.desc);
@@ -50,6 +51,14 @@ const MenuPage = () => {
 
     fetchShopDesc();
   }, []);
+
+  // Function to toggle expanded state for ingredients
+  const toggleExpandIngredients = (id) => {
+    setExpandedIngredients((prev) => ({
+      ...prev,
+      [id]: !prev[id],
+    }));
+  };
 
   return (
     <main id="Menu" className="App">
@@ -92,24 +101,60 @@ const MenuPage = () => {
         )}
 
         <div className="menu-grid">
-          {menuItems.map((item) => (
-            <div key={item._id} className="menu-card">
-              <img src={item.imgSrc} alt={item.name} className="menu-image" />
-              <div className="menu-info">
-                <h3 className="quicksand-text menu-item-name">{item.name}</h3>
-                <p className="quicksand-text menu-item-desc">{item.desc}</p>
-                <p className="quicksand-text menu-item-timings">
-                  {item.timings}
-                </p>
-                <p className="quicksand-text menu-item-desc">
-                  {item.ingredients}
-                </p>
-                <div className="menu-details">
-                  <span className="cinzel-text menu-price">₹ {item.price}</span>
+          {menuItems.map((item) => {
+            const ingredientsWords = item.ingredients
+              ? item.ingredients.split(" ")
+              : [];
+
+            const isLongIngredients = ingredientsWords.length > 0;
+            const showFullIngredients = expandedIngredients[item._id];
+
+            return (
+              <div key={item._id} className="menu-card">
+                <img src={item.imgSrc} alt={item.name} className="menu-image" />
+                <div className="menu-info">
+                  <h3 className="quicksand-text menu-item-name">{item.name}</h3>
+
+                  {/* Description - Always show only 100 words */}
+                  {item.desc && (
+                    <p className="quicksand-text menu-item-desc">{item.desc}</p>
+                  )}
+
+                  <p className="quicksand-text menu-item-timings">
+                    {item.timings}
+                  </p>
+
+                  {/* Ingredients - Initially show 100 words, expand on Read More */}
+                  {item.ingredients && (
+                    <>
+                      <p className="quicksand-text menu-item-desc">
+                        {showFullIngredients
+                          ? item.ingredients
+                          : ingredientsWords.slice(0, 0).join(" ") +
+                            (isLongIngredients ? "..." : "")}
+                      </p>
+
+                      {/* Read More Button for Ingredients */}
+                      {isLongIngredients && (
+                        <button
+                          className="read-more-btn"
+                          onClick={() => toggleExpandIngredients(item._id)}
+                        >
+                          {showFullIngredients ? "Read Less" : "Read More"}
+                        </button>
+                      )}
+                    </>
+                  )}
+
+                  <div className="menu-details">
+                    <span className="cinzel-text menu-price">
+                      ₹ {item.price}
+                    </span>
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </section>
       <Footer />

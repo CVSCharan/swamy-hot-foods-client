@@ -297,6 +297,18 @@
   color: #888;
 }
 
+.read-more-btn {
+  background: none;
+  border: none;
+  color: #007bff;
+  cursor: pointer;
+  font-size: 14px;
+  margin-top: 5px;
+}
+
+.read-more-btn:hover {
+  text-decoration: underline;
+}
 
 /* Extra Small Mobile Devices (Portrait) */
 /* iPhone SE, older Android phones */
