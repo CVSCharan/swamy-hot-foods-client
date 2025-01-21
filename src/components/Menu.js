@@ -111,7 +111,11 @@ const MenuPage = () => {
 
             return (
               <div key={item._id} className="menu-card">
-                <img src={item.imgSrc} alt={item.name} className="menu-image" />
+                <img
+                  src={item.imgSrc !== "" ? item.imgSrc : "/default_menu_img.png"}
+                  alt={item.name}
+                  className="menu-image"
+                />
                 <div className="menu-info">
                   <h3 className="quicksand-text menu-item-name">{item.name}</h3>
 
