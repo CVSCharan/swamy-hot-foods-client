@@ -102,7 +102,7 @@ const MenuPage = () => {
                   {item.timings}
                 </p>
                 <p className="quicksand-text menu-item-desc">
-                  {item.ingridents}
+                  {item.ingredients}
                 </p>
                 <div className="menu-details">
                   <span className="cinzel-text menu-price">₹ {item.price}</span>
