@@ -17,7 +17,11 @@ const MenuPage = () => {
         ); // Replace with your API URL
         if (!response.ok) throw new Error("Failed to fetch menu items");
         const data = await response.json();
-        setMenuItems(data);
+
+        // Sort items based on priority (assuming lower priority number is higher importance)
+        const sortedMenuItems = data.sort((a, b) => a.priority - b.priority);
+
+        setMenuItems(sortedMenuItems);
       } catch (err) {
         setError(err.message);
       } finally {
@@ -94,11 +98,14 @@ const MenuPage = () => {
               <div className="menu-info">
                 <h3 className="quicksand-text menu-item-name">{item.name}</h3>
                 <p className="quicksand-text menu-item-desc">{item.desc}</p>
+                <p className="quicksand-text menu-item-timings">
+                  {item.timings}
+                </p>
+                <p className="quicksand-text menu-item-desc">
+                  {item.ingridents}
+                </p>
                 <div className="menu-details">
                   <span className="cinzel-text menu-price">₹ {item.price}</span>
-                  <span className="josefin-sans-text menu-quantity">
-                    Qty: {item.quant}
-                  </span>
                 </div>
               </div>
             </div>

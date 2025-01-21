@@ -271,6 +271,13 @@
   margin-top: 5px;
 }
 
+.menu-item-timings {
+  font-size: 1rem;
+  color: #555;
+  margin-top: 5px;
+  font-weight: bold;
+}
+
 /* Menu Details */
 .menu-details {
   display: flex;
