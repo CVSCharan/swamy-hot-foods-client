@@ -215,21 +215,22 @@ const Landing = () => {
             onClick={handleShare}
             className="josefin-sans-text call-us-button"
             style={{
-              borderColor: "#4CAF50",
-              color: "#4CAF50",
+              borderColor: "royalblue",
+              color: "royalblue",
               backgroundColor: "transparent",
             }}
           >
-            <i class="fa-solid fa-share" style={{ color: "#4CAF50" }}></i> Share
+            <i class="fa-solid fa-share" style={{ color: "royalblue" }}></i>{" "}
+            Share
           </button>
 
           <Link
             to="/menu"
             className="josefin-sans-text call-us-button"
-            style={{ color: "royalblue" }}
+            style={{ color: "#4CAF50", borderColor: "#4CAF50" }}
           >
             <RestaurantMenuOutlinedIcon
-              sx={{ fontSize: 22, fill: "royalblue" }}
+              sx={{ fontSize: 22, fill: "#4CAF50" }}
             />{" "}
             Menu
           </Link>

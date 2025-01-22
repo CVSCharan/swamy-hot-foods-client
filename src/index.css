@@ -627,7 +627,7 @@
 
 .call-animation {
   display: inline-block;
-  animation: vibrate 0.4s ease-in-out infinite, delayAnimation 4s infinite;
+  animation: vibrate 0.4s ease-in-out infinite;
 }
 
 @keyframes vibrate {
@@ -648,22 +648,6 @@
   }
   100% {
     transform: translate(0);
-  }
-}
-
-@keyframes delayAnimation {
-  0%,
-  100% {
-    opacity: 1;
-  }
-  75% {
-    opacity: 0;
-  }
-  50% {
-    opacity: 1;
-  }
-  25% {
-    opacity: 0;
   }
 }
 
