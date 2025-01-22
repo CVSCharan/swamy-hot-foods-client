@@ -213,8 +213,12 @@ const Landing = () => {
           {/* Share Button */}
           <button
             onClick={handleShare}
-            className="josefin-sans-text call-us-button share-button"
-            style={{ borderColor: "#4CAF50", color: "#4CAF50" }}
+            className="josefin-sans-text call-us-button"
+            style={{
+              borderColor: "#4CAF50",
+              color: "#4CAF50",
+              backgroundColor: "transparent",
+            }}
           >
             <i class="fa-solid fa-share" style={{ color: "#4CAF50" }}></i> Share
           </button>
