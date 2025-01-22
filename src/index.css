@@ -559,7 +559,7 @@
 }
 
 .blinking-effect {
-  animation: blink 2.2s linear infinite; /* Blinking animation */
+  animation: blink 1.2s linear infinite; /* Blinking animation */
 }
 
 @keyframes blink {
@@ -623,6 +623,48 @@
 
 .MuiButtonBase-root svg {
   fill: white !important;
+}
+
+.call-animation {
+  display: inline-block;
+  animation: vibrate 0.4s ease-in-out infinite, delayAnimation 4s infinite;
+}
+
+@keyframes vibrate {
+  0% {
+    transform: translate(0);
+  }
+  20% {
+    transform: translate(-2px, 2px);
+  }
+  40% {
+    transform: translate(2px, -2px);
+  }
+  60% {
+    transform: translate(-2px, -2px);
+  }
+  80% {
+    transform: translate(2px, 2px);
+  }
+  100% {
+    transform: translate(0);
+  }
+}
+
+@keyframes delayAnimation {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  75% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  25% {
+    opacity: 0;
+  }
 }
 
 /* Extra Small Mobile Devices (Portrait) */
