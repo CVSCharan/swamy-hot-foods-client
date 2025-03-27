@@ -151,7 +151,7 @@ const GoogleReviewsComonent = () => {
             rel="noopener noreferrer"
             aria-label="Review us on Google"
           >
-            LINK BELOW
+            Click Here
           </a>
         </div>
 
