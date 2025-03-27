@@ -11,6 +11,7 @@
   padding: 40px 20px;
   font-family: "Arial", sans-serif;
   border-radius: 8px;
+  box-sizing: border-box;
 }
 
 .google-reviews-container {
@@ -19,6 +20,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 100%;
 }
 
 .google-card {
@@ -32,13 +34,12 @@
   margin-bottom: 40px;
   position: relative;
   overflow: hidden;
+  box-sizing: border-box;
 }
 
-/* Add this to your existing CSS file */
-
 .review-logo {
-  width: 100px;
-  height: 100px;
+  width: 90px;
+  height: 90px;
   border-radius: 50%;
   object-fit: contain;
   border: 5px solid #4285f4;
@@ -46,7 +47,6 @@
   padding: 5px;
 }
 
-/* Adjust the logo container if needed */
 .logo-container {
   margin-bottom: 20px;
   display: flex;
@@ -250,24 +250,196 @@
   transform: scale(1.2);
 }
 
-@media (max-width: 768px) {
-  .google-card {
-    padding: 20px;
+/* Enhanced responsive styles */
+@media (max-width: 992px) {
+  .google-reviews-wrapper {
+    padding: 30px 15px;
   }
+  
+  .google-card {
+    max-width: 450px;
+  }
+  
+  .review-heading {
+    font-size: 32px;
+  }
+  
+  .carousel-content {
+    width: 85%;
+  }
+}
 
+@media (max-width: 768px) {
+  .google-reviews-wrapper {
+    padding: 25px 15px;
+  }
+  
+  .google-card {
+    padding: 25px 20px;
+    max-width: 400px;
+  }
+  
   .support-text {
     font-size: 28px;
   }
-
+  
   .review-heading {
-    font-size: 30px;
+    font-size: 28px;
   }
-
+  
   .review-description {
     font-size: 14px;
   }
-
+  
+  .review-logo {
+    width: 80px;
+    height: 80px;
+  }
+  
+  .big-star {
+    font-size: 24px;
+  }
+  
+  .review-link-button {
+    padding: 10px 25px;
+    font-size: 16px;
+  }
+  
   .carousel-content {
     width: 90%;
+  }
+  
+  .testimonial-heading {
+    font-size: 22px;
+  }
+}
+
+@media (max-width: 576px) {
+  .google-reviews-wrapper {
+    padding: 20px 10px;
+    border-radius: 6px;
+  }
+  
+  .google-card {
+    padding: 20px 15px;
+    border-radius: 15px;
+    max-width: 100%;
+  }
+  
+  .support-text {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  
+  .review-heading {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  
+  .review-description {
+    font-size: 13px;
+    margin-bottom: 20px;
+  }
+  
+  .review-logo {
+    width: 70px;
+    height: 70px;
+    border-width: 4px;
+  }
+  
+  .big-star {
+    font-size: 20px;
+  }
+  
+  .review-link-button {
+    padding: 8px 20px;
+    font-size: 14px;
+  }
+  
+  .carousel-button {
+    width: 35px;
+    height: 35px;
+    font-size: 16px;
+    margin: 0 5px;
+  }
+  
+  .review-card {
+    padding: 20px 15px;
+    min-height: 120px;
+  }
+  
+  .review-text {
+    font-size: 14px;
+    margin-bottom: 15px;
+  }
+  
+  .review-footer {
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+  }
+  
+  .reviewer-name, .review-time {
+    text-align: center;
+  }
+  
+  .testimonial-heading {
+    font-size: 20px;
+    margin-bottom: 15px;
+  }
+}
+
+@media (max-width: 375px) {
+  .google-reviews-wrapper {
+    padding: 15px 8px;
+  }
+  
+  .google-card {
+    padding: 15px 10px;
+    border-radius: 12px;
+  }
+  
+  .support-text {
+    font-size: 22px;
+  }
+  
+  .review-heading {
+    font-size: 22px;
+  }
+  
+  .review-description {
+    font-size: 12px;
+  }
+  
+  .review-logo {
+    width: 60px;
+    height: 60px;
+    border-width: 3px;
+  }
+  
+  .big-star {
+    font-size: 18px;
+    margin: 0 1px;
+  }
+  
+  .review-link-button {
+    padding: 8px 18px;
+    font-size: 13px;
+  }
+  
+  .carousel-button {
+    width: 30px;
+    height: 30px;
+    font-size: 14px;
+  }
+  
+  .star {
+    font-size: 16px;
+  }
+  
+  .indicator {
+    width: 8px;
+    height: 8px;
+    margin: 0 3px;
   }
 }
