@@ -2,8 +2,7 @@ import React, { useEffect } from "react";
 import { useShopStatus } from "../context/StatusContext";
 import { useLogo } from "../context/LogoCoontext";
 import { WaveText } from "./TextAnimation";
-import { AccessTime, CalendarToday, Share } from "@mui/icons-material";
-import GoogleReviews from "./CutomGoogleRatings";
+import { AccessTime, CalendarToday } from "@mui/icons-material";
 import Footer from "./Footer";
 import GetDirectionsButton from "./GMapsDirection";
 import { Helmet } from "react-helmet";
@@ -12,6 +11,7 @@ import WhatsAppComp from "./WhatsAppComp";
 import RestaurantMenuOutlinedIcon from "@mui/icons-material/RestaurantMenuOutlined";
 import { Link } from "react-router-dom";
 import "@fortawesome/fontawesome-free/css/all.min.css";
+import GoogleReviewsComonent from "./GoogleReviewsComonent";
 
 const Landing = () => {
   const {
@@ -284,7 +284,7 @@ const Landing = () => {
       </div>
 
       <div className="landing-container-two">
-        <GoogleReviews />
+        <GoogleReviewsComonent />
       </div>
 
       <WhatsAppComp />

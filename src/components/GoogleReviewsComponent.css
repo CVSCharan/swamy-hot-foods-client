@@ -1,0 +1,273 @@
+.google-reviews-wrapper {
+  width: 100%;
+  background: linear-gradient(
+    135deg,
+    #4285f4 0%,
+    #ea4335 25%,
+    #fbbc05 50%,
+    #34a853 75%,
+    #4285f4 100%
+  );
+  padding: 40px 20px;
+  font-family: "Arial", sans-serif;
+  border-radius: 8px;
+}
+
+.google-reviews-container {
+  max-width: 900px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.google-card {
+  background-color: white;
+  border-radius: 20px;
+  padding: 30px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  width: 100%;
+  max-width: 500px;
+  margin-bottom: 40px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Add this to your existing CSS file */
+
+.review-logo {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: contain;
+  border: 5px solid #4285f4;
+  background-color: white;
+  padding: 5px;
+}
+
+/* Adjust the logo container if needed */
+.logo-container {
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.logo-circle {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background-color: white;
+  border: 5px solid #4285f4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+}
+
+.logo-text {
+  font-size: 12px;
+  font-weight: bold;
+  color: #4285f4;
+  text-align: center;
+}
+
+.support-text {
+  font-family: "Brush Script MT", cursive;
+  font-size: 32px;
+  margin-bottom: 15px;
+  color: #333;
+}
+
+.stars-row {
+  margin-bottom: 15px;
+}
+
+.big-star {
+  color: #fbbc05;
+  font-size: 28px;
+  margin: 0 2px;
+}
+
+.review-heading {
+  font-size: 36px;
+  font-weight: bold;
+  margin-bottom: 15px;
+  color: #333;
+  line-height: 1.2;
+}
+
+.review-description {
+  font-size: 16px;
+  line-height: 1.5;
+  margin-bottom: 25px;
+  color: #555;
+}
+
+.review-link-button {
+  display: inline-block;
+  background-color: #333;
+  color: white;
+  font-weight: bold;
+  padding: 12px 30px;
+  border-radius: 30px;
+  text-decoration: none;
+  font-size: 18px;
+  transition: all 0.3s ease;
+}
+
+.review-link-button:hover {
+  background-color: #555;
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Carousel section styling */
+.carousel-section {
+  width: 100%;
+  margin-top: 20px;
+}
+
+.testimonial-heading {
+  text-align: center;
+  color: white;
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.carousel-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.carousel-content {
+  width: 80%;
+  overflow: hidden;
+  position: relative;
+}
+
+.review-card {
+  background-color: white;
+  border-radius: 10px;
+  padding: 25px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  position: relative;
+  min-height: 150px;
+}
+
+.review-content {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+}
+
+.review-rating {
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+.star {
+  color: #d4d4d4;
+  font-size: 20px;
+  margin-right: 3px;
+}
+
+.star.filled {
+  color: #fbbc05;
+}
+
+.review-text {
+  font-size: 16px;
+  line-height: 1.6;
+  margin-bottom: 20px;
+  font-style: italic;
+  color: #444;
+  text-align: center;
+}
+
+.review-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid #e0e0e0;
+  padding-top: 12px;
+}
+
+.reviewer-name {
+  font-weight: bold;
+  color: #333;
+}
+
+.review-time {
+  font-size: 14px;
+  color: #777;
+}
+
+.carousel-button {
+  background-color: white;
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 18px;
+  color: #333;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+  z-index: 2;
+  margin: 0 10px;
+}
+
+.carousel-button:hover {
+  background-color: #f5f5f5;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
+}
+
+.carousel-indicators {
+  display: flex;
+  justify-content: center;
+  margin-top: 15px;
+}
+
+.indicator {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.5);
+  margin: 0 5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.indicator.active {
+  background-color: white;
+  transform: scale(1.2);
+}
+
+@media (max-width: 768px) {
+  .google-card {
+    padding: 20px;
+  }
+
+  .support-text {
+    font-size: 28px;
+  }
+
+  .review-heading {
+    font-size: 30px;
+  }
+
+  .review-description {
+    font-size: 14px;
+  }
+
+  .carousel-content {
+    width: 90%;
+  }
+}
