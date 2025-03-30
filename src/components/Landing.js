@@ -13,6 +13,9 @@ import { Link } from "react-router-dom";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import GoogleReviewsComonent from "./GoogleReviewsComonent";
 
+// Add this import at the top of your file
+import "../styles/Landing.css";
+
 const Landing = () => {
   const {
     shopStatus,
@@ -105,185 +108,165 @@ const Landing = () => {
         </script>
       </Helmet>
 
-      <div className="landing-container-one">
-        {logoUrl && (
-          <img
-            className="landing-logo"
-            src={logoUrl}
-            alt="Swamy's Hot Foods Landing Logo"
-            key={logoUrl}
-            loading="lazy"
-          />
-        )}
-        {!logoUrl && (
-          <div
-            style={{
-              height: "5vh",
-              width: "100%",
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-            }}
-          >
-            <span className="logo-loader"></span>
-          </div>
-        )}
-        <div className="title-heading-container">
-          <h2 className="quicksand-text title-heading">Swamy's Hot Foods</h2>
-          <span className="macondo-regular title-heading-span">
-            --- Pure Veg ---
-          </span>
-        </div>
-
-        <div className="address-container">
-          <GetDirectionsButton />
-          <h3 className="quicksand-text address-body">
-            7-1-931, Opp. road of Nellore railway station west entrance,
-          </h3>
-          <h3 className="quicksand-text address-body">
-            Railway feeders road, Nellore - 524001.
-          </h3>
-        </div>
-
-        {cooking ? (
-          <div className="cooking-container">
+      <div className="hero-section">
+        <div className="hero-background"></div>
+        <div className="landing-container-one">
+          {logoUrl ? (
             <img
-              src="/cooking.gif"
-              className="cooking-img"
-              alt="Cooking Animation"
+              className="landing-logo"
+              src={logoUrl}
+              alt="Swamy's Hot Foods Landing Logo"
+              key={logoUrl}
               loading="lazy"
             />
-            <WaveText text="Cooking..!!" />
+          ) : (
+            <div className="logo-loader-container">
+              <span className="logo-loader"></span>
+            </div>
+          )}
+          
+          <div className="title-heading-container">
+            <h1 className="quicksand-text title-heading">Swamy's Hot Foods</h1>
+            <span className="macondo-regular title-heading-span">
+              Pure Vegetarian Delight
+            </span>
           </div>
-        ) : (
-          <div
-            className={`restaurant-status ${shopStatus ? "open" : "closed"}`}
-          >
-            {shopStatus ? "We are Open! 😊" : "Sorry, We're Closed Now. 😔"}
-          </div>
-        )}
 
-        {!holiday ? (
-          <>
-            {currentStatusMsg && (
+          <div className="status-badge-container">
+            {cooking ? (
+              <div className="cooking-container">
+                <img
+                  src="/cooking.gif"
+                  className="cooking-img"
+                  alt="Cooking Animation"
+                  loading="lazy"
+                />
+                <WaveText text="Cooking..!!" />
+              </div>
+            ) : (
               <div
-                className={`status-message ${
-                  currentStatusMsg.includes("Closing")
-                    ? "blinking-effect  warning"
-                    : "info"
-                }`}
+                className={`restaurant-status ${shopStatus ? "open" : "closed"}`}
               >
-                {currentStatusMsg}
+                {shopStatus ? "We are Open! 😊" : "Sorry, We're Closed Now. 😔"}
               </div>
             )}
-          </>
-        ) : (
-          <div className={`status-message ${"warning"}`}>{holidayTxt}</div>
-        )}
 
-        <div className="call-us-container">
-          <a
-            href="tel:+91 9642415385"
-            className="josefin-sans-text call-us-button"
-            style={{ borderColor: "#FF7722", color: "#FF7722" }}
-          >
-            <div className="call-animation">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="22"
-                height="22"
-                viewBox="0 0 122.9 98.9"
-                fill="#FF7722"
-              >
-                <path
-                  d="M109,98.9H13.7v-14c0.5-16.3,14.9-28.7,23.6-42.8V29.7h14.5v8.9h19.5v-8.9h14.5v12.4C95.2,57.2,109,67,109,84.7V98.9z 
-           M122.5,42.1c0-2.2,0.4-4.4,0.1-6.8c-10.7,3.5-21.1,2.5-31.3-3.1c-0.4,3.8,0.2,7.2,1.6,10.4C96.5,50.6,122.2,53.3,122.5,42.1z 
-           M0.3,42.1c0-2.2-0.4-4.4-0.1-6.8c10.7,3.5,21.1,2.5,31.3-3.1c0.4,3.8-0.2,7.2-1.6,10.4C26.3,50.6,0.5,53.3,0.3,42.1z 
-           M0,31.9C8.6-8.2,115.4-13,122.9,32c-10.4,2.9-21,1.2-31.6-3.6c0.3-2.1-0.2-3.8-1.3-5.2c-6.3-7.9-51.4-8.2-57.2,0.3
-           c-0.9,1.3-1.3,2.9-1.2,4.7C21.1,34.6,10.5,36.1,0,31.9z 
-           M47.2,47.7c2.4,0,4.3,1.9,4.3,4.3s-1.9,4.3-4.3,4.3-4.3-1.9-4.3-4.3,1.9-4.3,4.3-4.3z 
-           M74.8,71.7c2.4,0,4.3,1.9,4.3,4.3s-1.9,4.3-4.3,4.3-4.3-1.9-4.3-4.3,1.9-4.3,4.3-4.3z 
-           M61,71.7c2.4,0,4.3,1.9,4.3,4.3s-1.9,4.3-4.3-4.3-4.3-1.9-4.3-4.3,1.9-4.3,4.3-4.3z 
-           M47.2,71.7c2.4,0,4.3,1.9,4.3,4.3s-1.9,4.3-4.3,4.3-4.3-1.9-4.3-4.3,1.9-4.3,4.3-4.3z"
-                />
-              </svg>
-            </div>
-            Call
-          </a>
-          {/* Share Button */}
-          <button
-            onClick={handleShare}
-            className="josefin-sans-text call-us-button"
-            style={{
-              borderColor: "royalblue",
-              color: "royalblue",
-              backgroundColor: "transparent",
-            }}
-          >
-            <i class="fa-solid fa-share" style={{ color: "royalblue" }}></i>{" "}
-            Share
-          </button>
+            {!holiday ? (
+              <>
+                {currentStatusMsg && (
+                  <div
+                    className={`status-message ${
+                      currentStatusMsg.includes("Closing")
+                        ? "blinking-effect warning"
+                        : "info"
+                    }`}
+                  >
+                    {currentStatusMsg}
+                  </div>
+                )}
+              </>
+            ) : (
+              <div className="status-message warning">{holidayTxt}</div>
+            )}
+          </div>
 
-          <Link
-            to="/menu"
-            className="josefin-sans-text call-us-button"
-            style={{ color: "#4CAF50", borderColor: "#4CAF50" }}
-          >
-            <RestaurantMenuOutlinedIcon
-              sx={{ fontSize: 22, fill: "#4CAF50" }}
-            />{" "}
-            Menu
-          </Link>
+          <div className="address-container">
+            <GetDirectionsButton />
+            <h3 className="quicksand-text address-body">
+              7-1-931, Opp. road of Nellore railway station west entrance,
+            </h3>
+            <h3 className="quicksand-text address-body">
+              Railway feeders road, Nellore - 524001.
+            </h3>
+          </div>
+
+          <div className="action-buttons">
+            <a
+              href="tel:+91 9642415385"
+              className="action-button call-button"
+            >
+              <div className="call-animation">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="22"
+                  height="22"
+                  viewBox="0 0 122.9 98.9"
+                  fill="currentColor"
+                >
+                  <path
+                    d="M109,98.9H13.7v-14c0.5-16.3,14.9-28.7,23.6-42.8V29.7h14.5v8.9h19.5v-8.9h14.5v12.4C95.2,57.2,109,67,109,84.7V98.9z 
+                 M122.5,42.1c0-2.2,0.4-4.4,0.1-6.8c-10.7,3.5-21.1,2.5-31.3-3.1c-0.4,3.8,0.2,7.2,1.6,10.4C96.5,50.6,122.2,53.3,122.5,42.1z 
+                 M0.3,42.1c0-2.2-0.4-4.4-0.1-6.8c10.7,3.5,21.1,2.5,31.3-3.1c0.4,3.8-0.2,7.2-1.6,10.4C26.3,50.6,0.5,53.3,0.3,42.1z 
+                 M0,31.9C8.6-8.2,115.4-13,122.9,32c-10.4,2.9-21,1.2-31.6-3.6c0.3-2.1-0.2-3.8-1.3-5.2c-6.3-7.9-51.4-8.2-57.2,0.3
+                 c-0.9,1.3-1.3,2.9-1.2,4.7C21.1,34.6,10.5,36.1,0,31.9z 
+                 M47.2,47.7c2.4,0,4.3,1.9,4.3,4.3s-1.9,4.3-4.3,4.3-4.3-1.9-4.3-4.3,1.9-4.3,4.3-4.3z 
+                 M74.8,71.7c2.4,0,4.3,1.9,4.3,4.3s-1.9,4.3-4.3,4.3-4.3-1.9-4.3-4.3,1.9-4.3,4.3-4.3z 
+                 M61,71.7c2.4,0,4.3,1.9,4.3,4.3s-1.9,4.3-4.3-4.3-4.3-1.9-4.3-4.3,1.9-4.3,4.3-4.3z 
+                 M47.2,71.7c2.4,0,4.3,1.9,4.3,4.3s-1.9,4.3-4.3,4.3-4.3-1.9-4.3-4.3,1.9-4.3,4.3-4.3z"
+                  />
+                </svg>
+              </div>
+              <span>Call Us</span>
+            </a>
+            
+            <button
+              onClick={handleShare}
+              className="action-button share-button"
+            >
+              <i className="fa-solid fa-share"></i>
+              <span>Share</span>
+            </button>
+
+            <Link
+              to="/menu"
+              className="action-button menu-button"
+            >
+              <RestaurantMenuOutlinedIcon />
+              <span>Menu</span>
+            </Link>
+          </div>
         </div>
+      </div>
 
-        {/* Notice Board Section */}
-        {noticeBoard && (
-          <>
-            {noticeBoardTxt &&
-              typeof noticeBoardTxt === "string" &&
-              noticeBoardTxt.trim() !== "" && (
-                <div className="notice-board-container">
-                  <h3 className="josefin-sans-text notice-board-title">
-                    Notice Board
-                  </h3>
+      {/* Notice Board Section */}
+      {noticeBoard && noticeBoardTxt && typeof noticeBoardTxt === "string" && noticeBoardTxt.trim() !== "" && (
+        <div className="notice-board-section">
+          <div className="notice-board-container">
+            <h3 className="notice-board-title">
+              <i className="fas fa-bullhorn"></i> Notice Board
+            </h3>
+            <div className="notice-content">
+              <Typewriter text={noticeBoardTxt} noticeBoard={noticeBoard} />
+            </div>
+          </div>
+        </div>
+      )}
 
-                  <Typewriter text={noticeBoardTxt} noticeBoard={noticeBoard} />
-                </div>
-              )}
-          </>
-        )}
-
+      <div className="info-section">
         <div className="working-hours">
-          <h2>Working Hours</h2>
+          <h2 className="section-title">Working Hours</h2>
           <div className="hours-container">
             <div className="hours-item">
-              <span className="josefin-sans-text time-label">
-                Monday - Saturday
-              </span>
+              <span className="time-label">Monday - Saturday</span>
               <div className="hours-item-sub">
-                <AccessTime style={{ fontSize: "1.4rem", color: "#FF6347" }} />
-                <span className="josefin-sans-text time">
-                  5:30 AM - 11:00 AM
-                </span>
+                <AccessTime />
+                <span className="time">5:30 AM - 11:00 AM</span>
               </div>
               <div className="hours-item-sub">
-                <AccessTime style={{ fontSize: "1.4rem", color: "#FF6347" }} />
-                <span className="josefin-sans-text time">
-                  4:30 PM - 9:00 PM
-                </span>
+                <AccessTime />
+                <span className="time">4:30 PM - 9:00 PM</span>
               </div>
             </div>
             <div className="hours-item-holiday">
-              <CalendarToday sx={{ fontSize: "1.4rem", color: "#FF6347" }} />
-              <span className="josefin-sans-text time-label">
-                Sunday's holiday
-              </span>
+              <CalendarToday />
+              <span className="time-label">Sunday's holiday</span>
             </div>
           </div>
         </div>
       </div>
 
-      <div className="landing-container-two">
+      <div className="reviews-section">
+        <h2 className="section-title">What Our Customers Say</h2>
         <GoogleReviewsComonent />
       </div>
 

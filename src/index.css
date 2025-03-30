@@ -177,7 +177,7 @@
   gap: 10px;
   overflow-y: auto;
   overflow-x: hidden;
-  background-color: #fff;
+  background-color: #fafafa;
   padding: 2rem;
 }
 
@@ -621,32 +621,6 @@
 
 .MuiButtonBase-root svg {
   fill: white !important;
-}
-
-.call-animation {
-  display: inline-block;
-  animation: vibrate 0.4s ease-in-out infinite;
-}
-
-@keyframes vibrate {
-  0% {
-    transform: translate(0);
-  }
-  20% {
-    transform: translate(-2px, 2px);
-  }
-  40% {
-    transform: translate(2px, -2px);
-  }
-  60% {
-    transform: translate(-2px, -2px);
-  }
-  80% {
-    transform: translate(2px, 2px);
-  }
-  100% {
-    transform: translate(0);
-  }
 }
 
 /* Extra Small Mobile Devices (Portrait) */

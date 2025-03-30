@@ -1,0 +1,499 @@
+/* Modern Restaurant Menu Styling - Aceternity UI Inspired */
+
+/* Main container */
+#Menu.App {
+  background-color: #fafafa;
+  min-height: 100vh;
+  padding: 2rem 1rem;
+  font-family: "Quicksand", sans-serif;
+  position: relative;
+  overflow: hidden;
+}
+
+#Menu.App::before {
+  content: "";
+  position: absolute;
+  width: 1000px;
+  height: 1000px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(255, 179, 71, 0.1) 0%,
+    rgba(255, 179, 71, 0) 70%
+  );
+  top: -400px;
+  right: -400px;
+  z-index: -1;
+}
+
+#Menu.App::after {
+  content: "";
+  position: absolute;
+  width: 800px;
+  height: 800px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(255, 111, 60, 0.1) 0%,
+    rgba(255, 111, 60, 0) 70%
+  );
+  bottom: -300px;
+  left: -300px;
+  z-index: -1;
+}
+
+/* Logo section styling */
+.landing-container-one {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 2.5rem;
+  position: relative;
+}
+
+.landing-logo {
+  width: 120px;
+  height: 120px;
+  border-radius: 24px;
+  object-fit: cover;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+    0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+  transform: perspective(1000px) rotateX(0deg);
+  background-color: white;
+  padding: 5px;
+}
+
+.landing-logo:hover {
+  transform: perspective(1000px) rotateX(10deg) scale(1.05);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
+    0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+.logo-loader-container {
+  height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo-loader {
+  width: 40px;
+  height: 40px;
+  border: 3px solid #f3f3f3;
+  border-top: 3px solid #ff6b3d;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.title-heading-container {
+  margin-top: 1.5rem;
+  text-align: center;
+}
+
+.title-heading {
+  font-size: 2.5rem;
+  color: #333;
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, #ff6b3d 0%, #ffb347 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  letter-spacing: -0.02em;
+}
+
+.title-heading-span {
+  font-size: 1.2rem;
+  color: #50ba94;
+  letter-spacing: 0.1em;
+  position: relative;
+  display: inline-block;
+  padding: 0 1rem;
+}
+
+/* Shop description */
+/* Shop description styling */
+.shop-description-container {
+  text-align: center;
+  margin-bottom: 2.5rem;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.shop-description-container h2 {
+  font-size: 1.1rem;
+  color: #666;
+  font-style: italic;
+  line-height: 1.7;
+  padding: 1.5rem 2rem;
+  background-color: white;
+  border-radius: 16px;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05),
+    0 4px 6px -2px rgba(0, 0, 0, 0.02);
+  position: relative;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  backdrop-filter: blur(10px);
+}
+
+.quote-mark {
+  font-size: 1.5rem;
+  color: rgba(255, 107, 61, 0.5);
+  font-family: "Georgia", serif;
+  line-height: 0;
+  vertical-align: middle;
+  margin: 0 0.3rem;
+}
+
+/* Category filter */
+.category-filter {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 2.5rem;
+  padding: 0.5rem;
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 16px;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05),
+    0 2px 4px -1px rgba(0, 0, 0, 0.02);
+  backdrop-filter: blur(10px);
+}
+
+.category-btn {
+  padding: 0.5rem 1.2rem;
+  border-radius: 9999px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  background-color: transparent;
+  color: #666;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.category-btn::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.05);
+  border-radius: 9999px;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease;
+  z-index: -1;
+}
+
+.category-btn:hover::before {
+  transform: scaleX(1);
+}
+
+.category-btn.active {
+  background: linear-gradient(135deg, #ff6b3d 0%, #ffb347 100%);
+  color: white;
+  box-shadow: 0 4px 6px -1px rgba(255, 107, 61, 0.3),
+    0 2px 4px -1px rgba(255, 107, 61, 0.2);
+}
+
+/* Menu container */
+.menu-container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.loading-text,
+.error-text,
+.no-items-text {
+  text-align: center;
+  padding: 2rem;
+  font-size: 1.1rem;
+  color: #666;
+  background-color: white;
+  border-radius: 16px;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05),
+    0 4px 6px -2px rgba(0, 0, 0, 0.02);
+}
+
+.error-text {
+  color: #e53e3e;
+  background-color: #fff5f5;
+}
+
+/* Menu grid layout */
+.menu-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+/* Menu card styling */
+.menu-card {
+  background-color: white;
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05),
+    0 4px 6px -2px rgba(0, 0, 0, 0.02);
+  transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  position: relative;
+  transform: translateY(0);
+}
+
+.menu-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
+    0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+/* Menu image container and image styling adjustments */
+.menu-image-container {
+  position: relative;
+  overflow: hidden;
+  height: 220px; /* Standardized height */
+  background-color: #f5f5f5; /* Light background for images that don't fill the space */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.menu-image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover; /* This ensures images cover the area without distortion */
+  object-position: center; /* Centers the image focus */
+  transition: transform 0.5s ease;
+}
+
+/* Ensure food is properly displayed on banana leaf background */
+.menu-card:nth-child(odd) .menu-image {
+  object-position: center 40%; /* Slight adjustment for odd items */
+}
+
+/* Add a subtle border to separate image from content */
+.menu-image-container::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 107, 61, 0.2),
+    rgba(255, 179, 71, 0.2)
+  );
+}
+
+.menu-card:hover .menu-image {
+  transform: scale(1.05);
+}
+
+.menu-category-tag {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: rgba(255, 255, 255, 0.9);
+  color: #ff6b3d;
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 0.3rem 0.8rem;
+  border-radius: 9999px;
+  backdrop-filter: blur(4px);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.menu-info {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.menu-item-name {
+  font-size: 1.4rem;
+  color: #333;
+  margin-bottom: 0.8rem;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.menu-item-desc {
+  color: #666;
+  margin-bottom: 1rem;
+  line-height: 1.6;
+  font-size: 0.95rem;
+}
+
+.menu-item-timings {
+  color: #888;
+  font-size: 0.85rem;
+  margin-bottom: 1rem;
+  padding: 0.5rem 0.8rem;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  display: inline-block;
+}
+
+.menu-ingredients {
+  margin-bottom: 1.2rem;
+  padding-top: 0.5rem;
+}
+
+.ingredients-title {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #555;
+  margin-bottom: 0.5rem;
+}
+
+.menu-item-ingredients {
+  color: #666;
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+/* Read more button */
+.read-more-btn {
+  background: none;
+  border: none;
+  color: #ff6b3d;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0;
+  font-size: 0.85rem;
+  margin-top: 0.5rem;
+  display: inline-flex;
+  align-items: flex-end;
+  transition: all 0.3s ease;
+}
+
+.read-more-btn:hover {
+  color: #ffb347;
+}
+
+.read-more-btn::after {
+  content: "→";
+  margin-left: 0.3rem;
+  transition: transform 0.3s ease;
+}
+
+.read-more-btn:hover::after {
+  transform: translateX(3px);
+}
+
+/* Menu details section */
+.menu-details {
+  margin-top: auto;
+  padding-top: 1rem;
+  border-top: 1px solid #f0f0f0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.menu-price {
+  font-size: 1.5rem;
+  color: #333;
+  font-weight: 700;
+}
+
+.order-btn {
+  background: linear-gradient(135deg, #ff6b3d 0%, #ffb347 100%);
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 9999px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px -1px rgba(255, 107, 61, 0.3),
+    0 2px 4px -1px rgba(255, 107, 61, 0.2);
+}
+
+.order-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 15px -3px rgba(255, 107, 61, 0.3),
+    0 4px 6px -2px rgba(255, 107, 61, 0.2);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .menu-grid {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .title-heading {
+    font-size: 2rem;
+  }
+
+  .menu-item-name {
+    font-size: 1.3rem;
+  }
+}
+
+@media (max-width: 480px) {
+  #Menu.App {
+    padding: 1.5rem 1rem;
+  }
+
+  .menu-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .landing-logo {
+    width: 100px;
+    height: 100px;
+  }
+
+  .category-filter {
+    padding: 0.3rem;
+  }
+
+  .category-btn {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.8rem;
+  }
+}
+
+/* Animation for cards */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.menu-card {
+  animation: fadeIn 0.5s ease forwards;
+}
+
+.menu-grid {
+  perspective: 1000px;
+}

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useLogo } from "../context/LogoCoontext";
 import Footer from "./Footer";
+import "../styles/Menu.css";
 
 const MenuPage = () => {
   const { logoUrl } = useLogo();
@@ -86,9 +87,14 @@ const MenuPage = () => {
         </div>
       </div>
 
-      <div>
+      {/* Shop Description Section */}
+      <div className="shop-description-container">
         {shopDescription && (
-          <h2 className="quicksand-text">{shopDescription}</h2>
+          <h2 className="quicksand-text">
+            <span className="quote-mark">"</span>
+            {shopDescription}
+            <span className="quote-mark">"</span>
+          </h2>
         )}
       </div>
 
@@ -112,7 +118,9 @@ const MenuPage = () => {
             return (
               <div key={item._id} className="menu-card">
                 <img
-                  src={item.imgSrc !== "" ? item.imgSrc : "/default_menu_img.png"}
+                  src={
+                    item.imgSrc !== "" ? item.imgSrc : "/default_menu_img.png"
+                  }
                   alt={item.name}
                   className="menu-image"
                 />
@@ -124,9 +132,11 @@ const MenuPage = () => {
                     <p className="quicksand-text menu-item-desc">{item.desc}</p>
                   )}
 
-                  <p className="quicksand-text menu-item-timings">
-                    {item.timings}
-                  </p>
+                  {item.timings && (
+                    <p className="quicksand-text menu-item-timings">
+                      {item.timings}
+                    </p>
+                  )}
 
                   {/* Ingredients - Initially show 100 words, expand on Read More */}
                   {item.ingredients && (
