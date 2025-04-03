@@ -143,7 +143,7 @@ const Landing = () => {
           </div>
 
           <div className="status-badge-container">
-            {true ? (
+            {cooking ? (
               <div className="cooking-container">
                 <img
                   src="/cooking.gif"
