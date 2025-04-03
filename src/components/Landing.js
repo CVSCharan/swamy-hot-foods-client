@@ -132,8 +132,18 @@ const Landing = () => {
             </span>
           </div>
 
+          <div className="address-container">
+            <GetDirectionsButton />
+            <h3 className="quicksand-text address-body">
+              7-1-931, Opp. road of Nellore railway station west entrance,
+            </h3>
+            <h3 className="quicksand-text address-body">
+              Railway feeders road, Nellore - 524001.
+            </h3>
+          </div>
+
           <div className="status-badge-container">
-            {cooking ? (
+            {true ? (
               <div className="cooking-container">
                 <img
                   src="/cooking.gif"
@@ -175,16 +185,6 @@ const Landing = () => {
             ) : (
               <div className="status-message warning">{holidayTxt}</div>
             )}
-          </div>
-
-          <div className="address-container">
-            <GetDirectionsButton />
-            <h3 className="quicksand-text address-body">
-              7-1-931, Opp. road of Nellore railway station west entrance,
-            </h3>
-            <h3 className="quicksand-text address-body">
-              Railway feeders road, Nellore - 524001.
-            </h3>
           </div>
 
           <div className="action-buttons">
