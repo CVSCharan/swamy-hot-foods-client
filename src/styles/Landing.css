@@ -1137,3 +1137,65 @@
     padding: 0.6rem 1rem;
   }
 }
+
+/* Improve mobile alignment */
+.landing-container-one {
+  gap: 0.3rem;
+  padding: 0 0.3rem;
+  margin: 0 auto;
+  align-items: center;
+}
+
+.address-container {
+  padding: 0.5rem;
+  margin: 0.3rem auto;
+  width: 90%;
+  max-width: 500px;
+}
+
+.restaurant-status,
+.status-message,
+.directions-button {
+  margin: 0.3rem auto;
+  width: 90%;
+  max-width: 280px;
+}
+
+.action-buttons {
+  width: 90%;
+  max-width: 500px;
+  margin: 0.5rem auto 1.5rem;
+}
+
+/* Improve mobile responsiveness */
+@media (max-width: 576px) {
+  .landing-container-one {
+    width: 100%;
+  }
+
+  .restaurant-status,
+  .status-message,
+  .directions-button {
+    width: 90%;
+    max-width: 280px;
+  }
+
+  .action-button {
+    width: 90%;
+    max-width: 280px;
+  }
+
+  .address-container {
+    width: 90%;
+  }
+}
+
+@media (max-width: 375px) {
+  .restaurant-status,
+  .status-message,
+  .directions-button,
+  .action-button {
+    width: 90%;
+    max-width: 260px;
+  }
+}
