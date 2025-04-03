@@ -218,6 +218,12 @@ const GoogleReviewsComonent = () => {
             className="review-link-button"
             onClick={handleReviewClick}
             aria-label="Review us on Google"
+            style={{
+              backgroundColor: "#8A2BE2", // Violet color
+              color: "white",
+              fontWeight: "bold",
+              boxShadow: "0 4px 8px rgba(138, 43, 226, 0.3)"
+            }}
           >
             Click Here
           </a>
