@@ -220,23 +220,62 @@
   color: white;
 }
 
+/* Status message styling - Enhanced */
 .status-message {
-  max-width: none;
-  background-color: #2196f3;
+  min-width: 280px;
+  padding: 0.8rem 1.5rem;
+  font-size: 1.2rem;
+  font-weight: 700;
+  border-radius: 50px;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  margin: 0.5rem auto;
+  width: 90%;
+  max-width: 280px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   color: white;
   border: none;
 }
 
 .status-message.info {
   background-color: #2196f3;
-  color: white;
-  border: none;
 }
 
 .status-message.warning {
   background-color: #ff9800;
-  color: white;
-  border: none;
+}
+
+/* Make sure the blinking effect is properly defined */
+.blinking-effect {
+  animation: blink 1.5s infinite;
+}
+
+@keyframes blink {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.6;
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 576px) {
+  .status-message {
+    min-width: 240px;
+    font-size: 1.1rem;
+    padding: 0.7rem 1.2rem;
+  }
+}
+
+@media (max-width: 375px) {
+  .status-message {
+    min-width: 220px;
+    font-size: 1rem;
+    padding: 0.6rem 1rem;
+  }
 }
 
 .directions-button {
