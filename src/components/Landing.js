@@ -51,7 +51,7 @@ const Landing = () => {
   };
 
   return (
-    <main id="Landing" className="App">
+    <main id="Landing" className="App compact-layout">
       <Helmet>
         <title>Swamy's Hot Foods - Pure Veg Restaurant in Nellore</title>
         <meta
@@ -124,7 +124,7 @@ const Landing = () => {
               <span className="logo-loader"></span>
             </div>
           )}
-          
+
           <div className="title-heading-container">
             <h1 className="quicksand-text title-heading">Swamy's Hot Foods</h1>
             <span className="macondo-regular title-heading-span">
@@ -140,12 +140,19 @@ const Landing = () => {
                   className="cooking-img"
                   alt="Cooking Animation"
                   loading="lazy"
+                  onError={(e) => {
+                    e.target.onerror = null;
+                    e.target.src =
+                      "https://cdn.dribbble.com/users/1787505/screenshots/7300251/media/a351d9e0236c03a539181b95faced9e0.gif";
+                  }}
                 />
                 <WaveText text="Cooking..!!" />
               </div>
             ) : (
               <div
-                className={`restaurant-status ${shopStatus ? "open" : "closed"}`}
+                className={`restaurant-status ${
+                  shopStatus ? "open" : "closed"
+                }`}
               >
                 {shopStatus ? "We are Open! 😊" : "Sorry, We're Closed Now. 😔"}
               </div>
@@ -181,10 +188,7 @@ const Landing = () => {
           </div>
 
           <div className="action-buttons">
-            <a
-              href="tel:+91 9642415385"
-              className="action-button call-button"
-            >
+            <a href="tel:+91 9642415385" className="action-button call-button">
               <div className="call-animation">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -208,7 +212,7 @@ const Landing = () => {
               </div>
               <span>Call Us</span>
             </a>
-            
+
             <button
               onClick={handleShare}
               className="action-button share-button"
@@ -217,10 +221,7 @@ const Landing = () => {
               <span>Share</span>
             </button>
 
-            <Link
-              to="/menu"
-              className="action-button menu-button"
-            >
+            <Link to="/menu" className="action-button menu-button">
               <RestaurantMenuOutlinedIcon />
               <span>Menu</span>
             </Link>
@@ -229,18 +230,21 @@ const Landing = () => {
       </div>
 
       {/* Notice Board Section */}
-      {noticeBoard && noticeBoardTxt && typeof noticeBoardTxt === "string" && noticeBoardTxt.trim() !== "" && (
-        <div className="notice-board-section">
-          <div className="notice-board-container">
-            <h3 className="notice-board-title">
-              <i className="fas fa-bullhorn"></i> Notice Board
-            </h3>
-            <div className="notice-content">
-              <Typewriter text={noticeBoardTxt} noticeBoard={noticeBoard} />
+      {noticeBoard &&
+        noticeBoardTxt &&
+        typeof noticeBoardTxt === "string" &&
+        noticeBoardTxt.trim() !== "" && (
+          <div className="notice-board-section">
+            <div className="notice-board-container">
+              <h3 className="notice-board-title">
+                <i className="fas fa-bullhorn"></i> Notice Board
+              </h3>
+              <div className="notice-content">
+                <Typewriter text={noticeBoardTxt} noticeBoard={noticeBoard} />
+              </div>
             </div>
           </div>
-        </div>
-      )}
+        )}
 
       <div className="info-section">
         <div className="working-hours">
@@ -266,7 +270,14 @@ const Landing = () => {
       </div>
 
       <div className="reviews-section">
-        <h2 className="section-title">What Our Customers Say</h2>
+        <h2 className="section-title">Support Our Small Business</h2>
+        <div className="chef-image-container">
+          <img
+            src="/chef-cartoon.webp"
+            alt="Chef recommending reviews"
+            className="chef-review-image"
+          />
+        </div>
         <GoogleReviewsComonent />
       </div>
 

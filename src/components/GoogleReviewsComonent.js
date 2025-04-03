@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import "./GoogleReviewsComponent.css";
 import { useLogo } from "../context/LogoCoontext";
+import Confetti from "react-confetti";
 
 // Static reviews data for place ID: ChIJmYN2XqONTDoR_zgIHSRpnfI
 const reviewsData = [
@@ -51,6 +52,13 @@ const GoogleReviewsComonent = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [autoplay, setAutoplay] = useState(true);
   const { logoUrl } = useLogo();
+  const [showConfetti, setShowConfetti] = useState(false);
+  const [confettiPosition, setConfettiPosition] = useState({
+    x: 0,
+    y: 0,
+    width: window.innerWidth,
+    height: window.innerHeight
+  });
 
   // Function to render stars based on rating
   const renderStars = (rating) => {
@@ -98,8 +106,69 @@ const GoogleReviewsComonent = () => {
   const handleMouseEnter = () => setAutoplay(false);
   const handleMouseLeave = () => setAutoplay(true);
 
+  // Update window dimensions when window resizes
+  useEffect(() => {
+    const handleResize = () => {
+      setConfettiPosition({
+        ...confettiPosition,
+        width: window.innerWidth,
+        height: window.innerHeight
+      });
+    };
+    
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, [confettiPosition]);
+
+  // Handle review button click
+  const handleReviewClick = (e) => {
+    e.preventDefault();
+    
+    // Calculate viewport-relative position for confetti
+    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    setConfettiPosition({
+      x: 0,
+      y: scrollTop,
+      width: window.innerWidth,
+      height: window.innerHeight
+    });
+    
+    setShowConfetti(true);
+    
+    // After 2.5 seconds, open the review page
+    setTimeout(() => {
+      window.open("https://g.page/r/Cf84CB0kaZ3yEBM/review", "_blank", "noopener,noreferrer");
+      
+      // Hide confetti after a bit more time
+      setTimeout(() => {
+        setShowConfetti(false);
+      }, 500);
+    }, 2500);
+  };
+
   return (
     <div className="google-reviews-wrapper">
+      {showConfetti && (
+        <div style={{
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          width: '100%',
+          height: '100%',
+          zIndex: 9999,
+          pointerEvents: 'none'
+        }}>
+          <Confetti
+            width={confettiPosition.width}
+            height={confettiPosition.height}
+            recycle={false}
+            numberOfPieces={500}
+            gravity={0.3}
+            colors={['#ff6b3d', '#ffb347', '#4caf50', '#8bc34a', '#4169e1']}
+          />
+        </div>
+      )}
+      
       <div
         className="google-reviews-container"
         onMouseEnter={handleMouseEnter}
@@ -147,8 +216,7 @@ const GoogleReviewsComonent = () => {
           <a
             href="https://g.page/r/Cf84CB0kaZ3yEBM/review"
             className="review-link-button"
-            target="_blank"
-            rel="noopener noreferrer"
+            onClick={handleReviewClick}
             aria-label="Review us on Google"
           >
             Click Here
