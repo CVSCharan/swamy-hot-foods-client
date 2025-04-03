@@ -1,0 +1,17 @@
+.classic-border-top {
+  width: 100%;
+  height: 5px;
+  background: linear-gradient(90deg, #ff6b3d, #ffb347);
+  margin-bottom: 1rem;
+  position: relative;
+}
+
+.classic-border-top:before {
+  content: "";
+  position: absolute;
+  top: 5px;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: rgba(0, 0, 0, 0.1);
+}
