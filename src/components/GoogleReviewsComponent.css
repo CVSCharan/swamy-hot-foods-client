@@ -2,16 +2,17 @@
   width: 100%;
   background: linear-gradient(
     135deg,
-    #4285f4 0%,
-    #ea4335 25%,
-    #fbbc05 50%,
-    #34a853 75%,
-    #4285f4 100%
+    #FF9933 0%, /* Saffron */
+    #FFFFFF 33%, /* White */
+    #138808 66%, /* Green */
+    #FFFFFF 100%
   );
   padding: 40px 20px;
-  font-family: "Arial", sans-serif;
+  font-family: "Lora", serif; /* Classic, readable font */
   border-radius: 8px;
   box-sizing: border-box;
+  position: relative;
+  overflow: hidden;
 }
 
 .google-reviews-container {
@@ -24,7 +25,7 @@
 }
 
 .google-card {
-  background-color: white;
+  background-color: #FFF8E7; /* Parchment-like off-white for vintage feel */
   border-radius: 20px;
   padding: 30px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
@@ -33,8 +34,20 @@
   max-width: 500px;
   margin-bottom: 40px;
   position: relative;
-  overflow: hidden;
+  border: 2px solid #000080; /* Navy blue border for Ashoka Chakra vibe */
   box-sizing: border-box;
+}
+
+.google-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url("https://www.transparenttextures.com/patterns/old-wall.png"); /* Subtle vintage texture */
+  opacity: 0.1;
+  z-index: 0;
 }
 
 .review-logo {
@@ -42,23 +55,26 @@
   height: 90px;
   border-radius: 50%;
   object-fit: contain;
-  border: 5px solid #4285f4;
-  background-color: white;
+  border: 5px solid #000080; /* Navy blue border */
+  background-color: #FFFFFF;
   padding: 5px;
+  position: relative;
+  z-index: 1;
 }
 
 .logo-container {
   margin-bottom: 20px;
   display: flex;
   justify-content: center;
+  position: relative;
 }
 
 .logo-circle {
   width: 80px;
   height: 80px;
   border-radius: 50%;
-  background-color: white;
-  border: 5px solid #4285f4;
+  background-color: #FFFFFF;
+  border: 5px solid #000080;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -68,15 +84,16 @@
 .logo-text {
   font-size: 12px;
   font-weight: bold;
-  color: #4285f4;
+  color: #000080;
   text-align: center;
 }
 
 .support-text {
-  font-family: "Brush Script MT", cursive;
+  font-family: "Cinzel", serif; /* Classic, decorative font */
   font-size: 32px;
   margin-bottom: 15px;
-  color: #333;
+  color: #FF9933; /* Saffron */
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
 }
 
 .stars-row {
@@ -84,16 +101,17 @@
 }
 
 .big-star {
-  color: #fbbc05;
+  color: #FF9933; /* Saffron for stars */
   font-size: 28px;
   margin: 0 2px;
 }
 
 .review-heading {
+  font-family: "Cinzel", serif;
   font-size: 36px;
   font-weight: bold;
   margin-bottom: 15px;
-  color: #333;
+  color: #000080; /* Navy blue */
   line-height: 1.2;
 }
 
@@ -101,23 +119,27 @@
   font-size: 16px;
   line-height: 1.5;
   margin-bottom: 25px;
-  color: #555;
+  color: #333;
 }
 
 .review-link-button {
   display: inline-block;
-  background-color: #333;
-  color: white;
+  background-color: #138808; /* Green */
+  color: #FFFFFF;
   font-weight: bold;
   padding: 12px 30px;
   border-radius: 30px;
   text-decoration: none;
   font-size: 18px;
   transition: all 0.3s ease;
+  position: relative;
+  z-index: 1;
+  border: 2px solid #FF9933; /* Saffron border */
 }
 
 .review-link-button:hover {
-  background-color: #555;
+  background-color: #FF9933; /* Saffron on hover */
+  color: #000080;
   transform: translateY(-3px);
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 }
@@ -130,9 +152,11 @@
 
 .testimonial-heading {
   text-align: center;
-  color: white;
+  color: #FFFFFF;
+  font-family: "Cinzel", serif;
   font-size: 24px;
   margin-bottom: 20px;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
 }
 
 .carousel-container {
@@ -150,12 +174,13 @@
 }
 
 .review-card {
-  background-color: white;
+  background-color: #FFFFFF;
   border-radius: 10px;
   padding: 25px;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
   position: relative;
   min-height: 150px;
+  border: 1px solid #000080; /* Navy blue border */
 }
 
 .review-content {
@@ -176,7 +201,7 @@
 }
 
 .star.filled {
-  color: #fbbc05;
+  color: #FF9933; /* Saffron for filled stars */
 }
 
 .review-text {
@@ -184,7 +209,7 @@
   line-height: 1.6;
   margin-bottom: 20px;
   font-style: italic;
-  color: #444;
+  color: #333;
   text-align: center;
 }
 
@@ -192,13 +217,13 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-top: 1px solid #e0e0e0;
+  border-top: 1px solid #FF9933; /* Saffron border */
   padding-top: 12px;
 }
 
 .reviewer-name {
   font-weight: bold;
-  color: #333;
+  color: #000080; /* Navy blue */
 }
 
 .review-time {
@@ -207,8 +232,8 @@
 }
 
 .carousel-button {
-  background-color: white;
-  border: none;
+  background-color: #FFFFFF;
+  border: 2px solid #000080; /* Navy blue border */
   border-radius: 50%;
   width: 40px;
   height: 40px;
@@ -217,7 +242,7 @@
   justify-content: center;
   cursor: pointer;
   font-size: 18px;
-  color: #333;
+  color: #FF9933; /* Saffron */
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
   transition: all 0.3s ease;
   z-index: 2;
@@ -225,8 +250,9 @@
 }
 
 .carousel-button:hover {
-  background-color: #f5f5f5;
-  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
+  background-color: #FF9933; /* Saffron */
+  color: #FFFFFF;
+  border-color: #FFFFFF;
 }
 
 .carousel-indicators {
@@ -246,7 +272,7 @@
 }
 
 .indicator.active {
-  background-color: white;
+  background-color: #FF9933; /* Saffron */
   transform: scale(1.2);
 }
 
@@ -255,15 +281,15 @@
   .google-reviews-wrapper {
     padding: 30px 15px;
   }
-  
+
   .google-card {
     max-width: 450px;
   }
-  
+
   .review-heading {
     font-size: 32px;
   }
-  
+
   .carousel-content {
     width: 85%;
   }
@@ -273,42 +299,42 @@
   .google-reviews-wrapper {
     padding: 25px 15px;
   }
-  
+
   .google-card {
     padding: 25px 20px;
     max-width: 400px;
   }
-  
+
   .support-text {
     font-size: 28px;
   }
-  
+
   .review-heading {
     font-size: 28px;
   }
-  
+
   .review-description {
     font-size: 14px;
   }
-  
+
   .review-logo {
     width: 80px;
     height: 80px;
   }
-  
+
   .big-star {
     font-size: 24px;
   }
-  
+
   .review-link-button {
     padding: 10px 25px;
     font-size: 16px;
   }
-  
+
   .carousel-content {
     width: 90%;
   }
-  
+
   .testimonial-heading {
     font-size: 22px;
   }
@@ -319,70 +345,71 @@
     padding: 20px 10px;
     border-radius: 6px;
   }
-  
+
   .google-card {
     padding: 20px 15px;
     border-radius: 15px;
     max-width: 100%;
   }
-  
+
   .support-text {
     font-size: 24px;
     margin-bottom: 10px;
   }
-  
+
   .review-heading {
     font-size: 24px;
     margin-bottom: 10px;
   }
-  
+
   .review-description {
     font-size: 13px;
     margin-bottom: 20px;
   }
-  
+
   .review-logo {
     width: 70px;
     height: 70px;
     border-width: 4px;
   }
-  
+
   .big-star {
     font-size: 20px;
   }
-  
+
   .review-link-button {
     padding: 8px 20px;
     font-size: 14px;
   }
-  
+
   .carousel-button {
     width: 35px;
     height: 35px;
     font-size: 16px;
     margin: 0 5px;
   }
-  
+
   .review-card {
     padding: 20px 15px;
     min-height: 120px;
   }
-  
+
   .review-text {
     font-size: 14px;
     margin-bottom: 15px;
   }
-  
+
   .review-footer {
     flex-direction: column;
     align-items: center;
     gap: 5px;
   }
-  
-  .reviewer-name, .review-time {
+
+  .reviewer-name,
+  .review-time {
     text-align: center;
   }
-  
+
   .testimonial-heading {
     font-size: 20px;
     margin-bottom: 15px;
@@ -393,50 +420,50 @@
   .google-reviews-wrapper {
     padding: 15px 8px;
   }
-  
+
   .google-card {
     padding: 15px 10px;
     border-radius: 12px;
   }
-  
+
   .support-text {
     font-size: 22px;
   }
-  
+
   .review-heading {
     font-size: 22px;
   }
-  
+
   .review-description {
     font-size: 12px;
   }
-  
+
   .review-logo {
     width: 60px;
     height: 60px;
     border-width: 3px;
   }
-  
+
   .big-star {
     font-size: 18px;
     margin: 0 1px;
   }
-  
+
   .review-link-button {
     padding: 8px 18px;
     font-size: 13px;
   }
-  
+
   .carousel-button {
     width: 30px;
     height: 30px;
     font-size: 14px;
   }
-  
+
   .star {
     font-size: 16px;
   }
-  
+
   .indicator {
     width: 8px;
     height: 8px;
