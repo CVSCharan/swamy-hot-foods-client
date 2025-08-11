@@ -1,9 +1,9 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect } from "react";
 import "./GoogleReviewsComponent.css";
-import { useLogo } from "../context/LogoCoontext";
+import { useLogo } from "../context/LogoContext"; // Ensure correct import path
 import Confetti from "react-confetti";
 
-// Static reviews data for place ID: ChIJmYN2XqONTDoR_zgIHSRpnfI
+// Static reviews data (unchanged)
 const reviewsData = [
   {
     author_name: "Ravindra V",
@@ -48,7 +48,7 @@ const reviewsData = [
   },
 ];
 
-const GoogleReviewsComonent = () => {
+const GoogleReviewsComponent = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [autoplay, setAutoplay] = useState(true);
   const { logoUrl } = useLogo();
@@ -57,7 +57,7 @@ const GoogleReviewsComonent = () => {
     x: 0,
     y: 0,
     width: window.innerWidth,
-    height: window.innerHeight
+    height: window.innerHeight,
   });
 
   // Function to render stars based on rating
@@ -112,33 +112,37 @@ const GoogleReviewsComonent = () => {
       setConfettiPosition({
         ...confettiPosition,
         width: window.innerWidth,
-        height: window.innerHeight
+        height: window.innerHeight,
       });
     };
-    
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
   }, [confettiPosition]);
 
   // Handle review button click
   const handleReviewClick = (e) => {
     e.preventDefault();
-    
+
     // Calculate viewport-relative position for confetti
     const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
     setConfettiPosition({
       x: 0,
       y: scrollTop,
       width: window.innerWidth,
-      height: window.innerHeight
+      height: window.innerHeight,
     });
-    
+
     setShowConfetti(true);
-    
+
     // After 2.5 seconds, open the review page
     setTimeout(() => {
-      window.open("https://g.page/r/Cf84CB0kaZ3yEBM/review", "_blank", "noopener,noreferrer");
-      
+      window.open(
+        "https://g.page/r/Cf84CB0kaZ3yEBM/review",
+        "_blank",
+        "noopener,noreferrer"
+      );
+
       // Hide confetti after a bit more time
       setTimeout(() => {
         setShowConfetti(false);
@@ -149,26 +153,28 @@ const GoogleReviewsComonent = () => {
   return (
     <div className="google-reviews-wrapper">
       {showConfetti && (
-        <div style={{
-          position: 'fixed',
-          top: 0,
-          left: 0,
-          width: '100%',
-          height: '100%',
-          zIndex: 9999,
-          pointerEvents: 'none'
-        }}>
+        <div
+          style={{
+            position: "fixed",
+            top: 0,
+            left: 0,
+            width: "100%",
+            height: "100%",
+            zIndex: 9999,
+            pointerEvents: "none",
+          }}
+        >
           <Confetti
             width={confettiPosition.width}
             height={confettiPosition.height}
             recycle={false}
             numberOfPieces={500}
             gravity={0.3}
-            colors={['#ff6b3d', '#ffb347', '#4caf50', '#8bc34a', '#4169e1']}
+            colors={["#FF9933", "#FFFFFF", "#138808", "#000080"]} // Indian flag colors
           />
         </div>
       )}
-      
+
       <div
         className="google-reviews-container"
         onMouseEnter={handleMouseEnter}
@@ -187,9 +193,37 @@ const GoogleReviewsComonent = () => {
                 <span className="logo-text">YOUR LOGO HERE</span>
               </div>
             )}
+            {/* Optional Ashoka Chakra SVG */}
+            <svg
+              className="ashoka-chakra"
+              width="30"
+              height="30"
+              viewBox="0 0 100 100"
+              style={{
+                position: "absolute",
+                bottom: "-10px",
+                right: "-10px",
+                zIndex: 1,
+              }}
+            >
+              <circle cx="50" cy="50" r="45" fill="none" stroke="#000080" strokeWidth="5" />
+              <circle cx="50" cy="50" r="5" fill="#000080" />
+              {Array.from({ length: 24 }).map((_, i) => (
+                <line
+                  key={i}
+                  x1="50"
+                  y1="10"
+                  x2="50"
+                  y2="20"
+                  stroke="#000080"
+                  strokeWidth="3"
+                  transform={`rotate(${(i * 360) / 24} 50 50)`}
+                />
+              ))}
+            </svg>
           </div>
 
-          <h2 className="support-text">Support Our Small Business</h2>
+          <h2 className="support-text">Celebrate with Us</h2>
 
           <div className="stars-row">
             {[1, 2, 3, 4, 5].map((star) => (
@@ -200,17 +234,17 @@ const GoogleReviewsComonent = () => {
           </div>
 
           <h1 className="review-heading">
-            REVIEW US
+            SHARE YOUR
             <br />
-            ON GOOGLE
+            LOVE FOR US
           </h1>
 
           <p className="review-description">
-            Your Opinion helps us reach more people!
+            Your feedback strengthens our spirit!
             <br />
-            Rate us only if Impressed with our
+            Rate us to join the celebration of
             <br />
-            products or service!
+            quality and service!
           </p>
 
           <a
@@ -218,19 +252,13 @@ const GoogleReviewsComonent = () => {
             className="review-link-button"
             onClick={handleReviewClick}
             aria-label="Review us on Google"
-            style={{
-              backgroundColor: "#8A2BE2", // Violet color
-              color: "white",
-              fontWeight: "bold",
-              boxShadow: "0 4px 8px rgba(138, 43, 226, 0.3)"
-            }}
           >
-            Click Here
+            Share Your Review
           </a>
         </div>
 
         <div className="carousel-section">
-          <h3 className="testimonial-heading">What Our Customers Say</h3>
+          <h3 className="testimonial-heading">Voices of Our Patrons</h3>
 
           <div className="carousel-container">
             <button className="carousel-button prev" onClick={prevSlide}>
@@ -267,9 +295,7 @@ const GoogleReviewsComonent = () => {
             {reviewsData.map((_, index) => (
               <span
                 key={index}
-                className={`indicator ${
-                  index === currentIndex ? "active" : ""
-                }`}
+                className={`indicator ${index === currentIndex ? "active" : ""}`}
                 onClick={() => setCurrentIndex(index)}
               />
             ))}
@@ -280,4 +306,4 @@ const GoogleReviewsComonent = () => {
   );
 };
 
-export default GoogleReviewsComonent;
+export default GoogleReviewsComponent;
