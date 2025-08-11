@@ -1,17 +1,134 @@
-.classic-border-top {
+.footer-container {
   width: 100%;
-  height: 5px;
-  background: linear-gradient(90deg, #ff6b3d, #ffb347);
-  margin-bottom: 1rem;
+  background: linear-gradient(
+    135deg,
+    #FF9933 0%, /* Saffron */
+    #FFFFFF 33%, /* White */
+    #138808 66%, /* Green */
+    #FFFFFF 100%
+  );
+  padding: 20px 0;
+  text-align: center;
+  font-family: "Lora", serif; /* Readable, classic font */
   position: relative;
+  overflow: hidden;
+  box-sizing: border-box;
 }
 
-.classic-border-top:before {
+.footer-container::before {
   content: "";
   position: absolute;
-  top: 5px;
+  top: 0;
   left: 0;
-  right: 0;
-  height: 1px;
-  background: rgba(0, 0, 0, 0.1);
+  width: 100%;
+  height: 100%;
+  background: url("https://www.transparenttextures.com/patterns/old-wall.png"); /* Subtle vintage texture */
+  opacity: 0.1;
+  z-index: 0;
+}
+
+.footer-divider {
+  width: 80%;
+  height: 2px;
+  background: linear-gradient(
+    to right,
+    #FF9933 0%, /* Saffron */
+    #FFFFFF 33%, /* White */
+    #138808 66%, /* Green */
+    #000080 100% /* Navy blue */
+  );
+  margin: 0 auto 20px;
+}
+
+.cinzel-text {
+  font-family: "Cinzel", serif; /* Classic, patriotic font */
+  font-size: 18px;
+  color: #000080; /* Navy blue */
+  margin: 10px 0;
+  position: relative;
+  z-index: 1;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.footer-heading {
+  font-weight: 700;
+}
+
+.heart-icon {
+  color: #FF9933; /* Saffron */
+  font-size: 16px;
+}
+
+.footer-tagline {
+  font-family: "Lora", serif;
+  font-size: 14px;
+  color: #333;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.ashoka-chakra {
+  vertical-align: middle;
+}
+
+@media (max-width: 768px) {
+  .footer-container {
+    padding: 15px 0;
+  }
+
+  .cinzel-text {
+    font-size: 16px;
+  }
+
+  .footer-tagline {
+    font-size: 12px;
+  }
+
+  .ashoka-chakra {
+    width: 18px;
+    height: 18px;
+  }
+}
+
+@media (max-width: 576px) {
+  .footer-container {
+    padding: 10px 0;
+  }
+
+  .cinzel-text {
+    font-size: 14px;
+  }
+
+  .footer-divider {
+    width: 90%;
+    height: 1.5px;
+  }
+
+  .footer-tagline {
+    font-size: 11px;
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .ashoka-chakra {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+@media (max-width: 375px) {
+  .cinzel-text {
+    font-size: 12px;
+  }
+
+  .footer-tagline {
+    font-size: 10px;
+  }
+
+  .heart-icon {
+    font-size: 14px;
+  }
 }
