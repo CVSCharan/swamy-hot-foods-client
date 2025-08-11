@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./GoogleReviewsComponent.css";
-import { useLogo } from "../context/LogoContext"; // Ensure correct import path
+import { useLogo } from "../context/LogoCoontext"; // Ensure correct import path
 import Confetti from "react-confetti";
 
 // Static reviews data (unchanged)
