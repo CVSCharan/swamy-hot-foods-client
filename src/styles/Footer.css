@@ -1,18 +1,19 @@
 .footer-container {
   width: 100%;
   background: linear-gradient(
-    135deg,
-    #FF9933 0%, /* Saffron */
-    #FFFFFF 33%, /* White */
-    #138808 66%, /* Green */
-    #FFFFFF 100%
+    180deg,
+    #ff9933 0%,
+    /* Bright Saffron */ #ffffff 30%,
+    /* Crisp White */ #138808 70%,
+    /* Vibrant Green */ #000080 100% /* Deep Navy */
   );
-  padding: 20px 0;
-  text-align: center;
-  font-family: "Lora", serif; /* Readable, classic font */
+  padding: 50px 20px;
   position: relative;
   overflow: hidden;
+  font-family: "Lora", serif;
   box-sizing: border-box;
+  border-top: 6px solid #000080; /* Thicker Navy border */
+  box-shadow: 0 -10px 20px rgba(0, 0, 0, 0.3); /* Raised effect */
 }
 
 .footer-container::before {
@@ -22,113 +23,210 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: url("https://www.transparenttextures.com/patterns/old-wall.png"); /* Subtle vintage texture */
-  opacity: 0.1;
+  background: url("https://www.transparenttextures.com/patterns/wave.png"); /* Wave pattern */
+  opacity: 0.2;
   z-index: 0;
+  animation: waveAnimation 10s infinite linear;
+}
+
+@keyframes waveAnimation {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 100% 0;
+  }
+}
+
+.footer-chakra {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0.2;
+  z-index: 1;
+  animation: pulseChakra 5s infinite alternate;
+}
+
+@keyframes pulseChakra {
+  0% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1.1);
+  }
+}
+
+.ashoka-chakra {
+  fill: none;
+  stroke: #000080;
+  stroke-width: 6;
 }
 
 .footer-divider {
-  width: 80%;
-  height: 2px;
-  background: linear-gradient(
-    to right,
-    #FF9933 0%, /* Saffron */
-    #FFFFFF 33%, /* White */
-    #138808 66%, /* Green */
-    #000080 100% /* Navy blue */
-  );
-  margin: 0 auto 20px;
+  width: 50%;
+  height: 4px;
+  background: linear-gradient(to right, #ff9933, #ffffff, #138808);
+  margin: 0 auto 25px;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
+  border-radius: 2px;
 }
 
 .cinzel-text {
-  font-family: "Cinzel", serif; /* Classic, patriotic font */
-  font-size: 18px;
-  color: #000080; /* Navy blue */
-  margin: 10px 0;
+  font-family: "Cinzel", serif;
+  font-size: 22px;
+  color: #ffffff; /* White for contrast */
+  margin: 15px 0;
   position: relative;
-  z-index: 1;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+  z-index: 2;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 .footer-heading {
   font-weight: 700;
+  text-align: center;
 }
 
 .heart-icon {
-  color: #FF9933; /* Saffron */
-  font-size: 16px;
+  color: #ff9933; /* Bright Saffron */
+  font-size: 20px;
+  animation: heartbeat 1.5s infinite;
+}
+
+@keyframes heartbeat {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
 
 .footer-tagline {
-  font-family: "Lora", serif;
-  font-size: 14px;
-  color: #333;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
-  gap: 8px;
-  margin-top: 10px;
+  gap: 15px;
+  position: relative;
+  z-index: 2;
 }
 
-.ashoka-chakra {
-  vertical-align: middle;
+.lora-text {
+  font-family: "Lora", serif;
+  font-size: 18px;
+  color: #ffffff;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+.animated-text {
+  animation: fadeIn 3s infinite alternate;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0.7;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.social-icons {
+  display: flex;
+  gap: 20px;
+}
+
+.social-icon {
+  transition: transform 0.3s ease, fill 0.3s ease;
+}
+
+.social-icon:hover {
+  transform: scale(1.3);
+  fill: #ff9933; /* Saffron on hover */
 }
 
 @media (max-width: 768px) {
   .footer-container {
-    padding: 15px 0;
+    padding: 40px 15px;
+  }
+
+  .footer-chakra {
+    transform: translate(-50%, -50%) scale(0.8);
+  }
+
+  .cinzel-text {
+    font-size: 18px;
+  }
+
+  .lora-text {
+    font-size: 16px;
+  }
+
+  .footer-divider {
+    width: 60%;
+    height: 3px;
+  }
+
+  .social-icon {
+    width: 24px;
+    height: 24px;
+  }
+}
+
+@media (max-width: 576px) {
+  .footer-container {
+    padding: 30px 10px;
+  }
+
+  .footer-chakra {
+    transform: translate(-50%, -50%) scale(0.6);
   }
 
   .cinzel-text {
     font-size: 16px;
   }
 
-  .footer-tagline {
-    font-size: 12px;
-  }
-
-  .ashoka-chakra {
-    width: 18px;
-    height: 18px;
-  }
-}
-
-@media (max-width: 576px) {
-  .footer-container {
-    padding: 10px 0;
-  }
-
-  .cinzel-text {
+  .lora-text {
     font-size: 14px;
   }
 
   .footer-divider {
-    width: 90%;
-    height: 1.5px;
+    width: 70%;
+    height: 2px;
   }
 
-  .footer-tagline {
-    font-size: 11px;
-    flex-direction: column;
-    gap: 5px;
-  }
-
-  .ashoka-chakra {
-    width: 16px;
-    height: 16px;
+  .social-icon {
+    width: 20px;
+    height: 20px;
   }
 }
 
 @media (max-width: 375px) {
+  .footer-container {
+    padding: 20px 8px;
+  }
+
+  .footer-chakra {
+    transform: translate(-50%, -50%) scale(0.5);
+  }
+
   .cinzel-text {
+    font-size: 14px;
+  }
+
+  .lora-text {
     font-size: 12px;
   }
 
-  .footer-tagline {
-    font-size: 10px;
+  .social-icons {
+    gap: 12px;
   }
 
-  .heart-icon {
-    font-size: 14px;
+  .social-icon {
+    width: 18px;
+    height: 18px;
   }
 }

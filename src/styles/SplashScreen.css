@@ -1,0 +1,163 @@
+.jets-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #87ceeb 0%, #e0f6ff 100%);
+  overflow: hidden;
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+}
+
+.jets-svg {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+/* Cloud animations */
+.cloud {
+  animation: cloudDrift 8s ease-in-out infinite;
+}
+
+.cloud1 {
+  animation-delay: 0s;
+}
+
+.cloud2 {
+  animation-delay: 2s;
+}
+
+.cloud3 {
+  animation-delay: 4s;
+}
+
+/* Jet animations */
+.jet {
+  animation: jetFly 4s ease-in-out infinite;
+  transform-origin: center;
+}
+
+.jet1 {
+  animation-delay: 0s;
+  transform: translate(200px, 450px);
+}
+
+.jet2 {
+  animation-delay: 0.3s;
+  transform: translate(250px, 450px);
+}
+
+.jet3 {
+  animation-delay: 0.6s;
+  transform: translate(300px, 450px);
+}
+
+/* Smoke trail animations */
+.smoke-trail {
+  animation: smokeFlow 4s ease-in-out infinite;
+  stroke-dasharray: 200;
+}
+
+.saffron-trail {
+  animation-delay: 0.5s;
+}
+
+.white-trail {
+  animation-delay: 0.8s;
+}
+
+.green-trail {
+  animation-delay: 1.1s;
+}
+
+/* Particle animations */
+.particle {
+  animation: particleFloat 3s ease-in-out infinite;
+}
+
+/* Keyframe animations */
+@keyframes jetFly {
+  0% {
+    transform: translate(var(--start-x, 200px), 450px) rotate(-15deg);
+    opacity: 0.8;
+  }
+  50% {
+    transform: translate(calc(var(--start-x, 200px) + 200px), 200px)
+      rotate(-10deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(calc(var(--start-x, 200px) + 400px), -50px)
+      rotate(-5deg);
+    opacity: 0.6;
+  }
+}
+
+@keyframes smokeFlow {
+  0% {
+    stroke-dashoffset: 200;
+    opacity: 0;
+  }
+  20% {
+    opacity: 0.8;
+  }
+  80% {
+    opacity: 0.6;
+  }
+  100% {
+    stroke-dashoffset: -200;
+    opacity: 0;
+  }
+}
+
+@keyframes cloudDrift {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(20px);
+  }
+}
+
+@keyframes particleFloat {
+  0% {
+    transform: translateY(0) scale(1);
+    opacity: 0.8;
+  }
+  50% {
+    transform: translateY(-20px) scale(1.2);
+    opacity: 0.4;
+  }
+  100% {
+    transform: translateY(-40px) scale(0.8);
+    opacity: 0;
+  }
+}
+
+/* Jet component styling */
+.jet-body {
+  filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.3));
+}
+
+.jet-wing {
+  filter: drop-shadow(1px 1px 2px rgba(0, 0, 0, 0.2));
+}
+
+.jet-cockpit {
+  filter: drop-shadow(0 0 3px rgba(231, 76, 60, 0.6));
+}
+
+/* CSS Variables for jet starting positions */
+.jet1 {
+  --start-x: 200px;
+}
+
+.jet2 {
+  --start-x: 250px;
+}
+
+.jet3 {
+  --start-x: 300px;
+}
