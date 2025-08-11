@@ -34,7 +34,7 @@ const Footer = () => {
             />
           ))}
         </svg>
-      </h3>
+      </div>
     </section>
   );
 };
