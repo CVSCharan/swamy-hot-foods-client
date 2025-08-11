@@ -57,7 +57,7 @@
   }
 }
 
-.ashoka-chakra {
+.footer-container .ashoka-chakra {
   fill: none;
   stroke: #000080;
   stroke-width: 6;
@@ -72,7 +72,7 @@
   border-radius: 2px;
 }
 
-.cinzel-text {
+.footer-container .cinzel-text {
   font-family: "Cinzel", serif;
   font-size: 22px;
   color: #ffffff; /* White for contrast */
@@ -114,7 +114,7 @@
   z-index: 2;
 }
 
-.lora-text {
+.footer-container .lora-text {
   font-family: "Lora", serif;
   font-size: 18px;
   color: #ffffff;
@@ -157,11 +157,11 @@
     transform: translate(-50%, -50%) scale(0.8);
   }
 
-  .cinzel-text {
+  .footer-container .cinzel-text {
     font-size: 18px;
   }
 
-  .lora-text {
+  .footer-container .lora-text {
     font-size: 16px;
   }
 
@@ -185,11 +185,11 @@
     transform: translate(-50%, -50%) scale(0.6);
   }
 
-  .cinzel-text {
+  .footer-container .cinzel-text {
     font-size: 16px;
   }
 
-  .lora-text {
+  .footer-container .lora-text {
     font-size: 14px;
   }
 
@@ -213,11 +213,11 @@
     transform: translate(-50%, -50%) scale(0.5);
   }
 
-  .cinzel-text {
+  .footer-container .cinzel-text {
     font-size: 14px;
   }
 
-  .lora-text {
+  .footer-container .lora-text {
     font-size: 12px;
   }
 
